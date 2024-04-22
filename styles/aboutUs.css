@@ -1,0 +1,166 @@
+body{
+    margin-top: 80px;
+}
+main{
+    margin-top: 80px;
+}
+
+
+main .con-flex .context-con{
+    text-align: center;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+main .con-flex .context-con hr
+{
+    width: 40px;
+    border: 1px solid #011425;
+}
+
+main .con-flex .context-con .hr-div
+{
+    display: flex;
+    justify-content: center;
+}
+
+main .con-flex .context-con .context{
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+main .con-flex .context-con h4{
+    font-weight: 400;
+    color: #02223e;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+}
+
+main .con-flex .context-con .title{
+    font-size: 36px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+
+.con-flex-imgs{
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+    overflow: hidden;
+}
+
+.con-flex-imgs .second-con-cars .img-con-flex{
+    display: flex;
+    margin-top: -7px;
+}
+
+.con-flex-imgs .second-con-cars .img-con-2, .con-flex-imgs .img-con{
+    overflow: hidden;
+}
+
+.con-flex-imgs img{
+    transition: 0.5s ease;
+}
+
+.con-flex-imgs img:hover{
+    transform: scale(120%);
+}
+
+@media (min-width: 768px) {
+    .con-flex-imgs{
+        flex-direction: row;
+    }
+
+    .con-flex-imgs .img-con, .con-flex-imgs .second-con-cars{
+        flex: 1;
+    }
+    .con-flex-imgs .second-con-cars .img-con-flex{
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 980px) {
+    .con-flex{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        justify-content: center;
+    }
+
+    main{
+        margin-top: 0;
+    }
+    body{
+        margin-top: 75px;
+    }
+
+    main .con-flex .vid-con video{
+        height: 500px;
+        object-fit: cover;
+    }
+
+    main .con-flex .context-con{
+        padding: 0 100px 0 100px;
+        text-align: start;
+        font-size: 15px;
+    }
+
+    main .con-flex .context-con .hr-div{
+        justify-content: start;
+    }
+
+    main .second-main-context{
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+    main .second-main-context{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    main .second-main-context .context-con{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    main .second-main-context .context-con .context{
+        width: 600px;
+        font-size: 16px;
+    }
+
+    main .con-flex .context-con .context{
+        font-size: 16px;
+    }
+
+    main .second-main-context .context-con .hr-div
+    {
+        justify-content: center;
+    }
+
+}
+
+@media (min-width: 1200px) {
+    .con-flex-imgs{
+        max-height: 600px;
+    }
+}
+
+@media (min-width: 1520px) {
+    .con-flex-imgs{
+        max-height: 800px;
+    }
+
+    main .con-flex .vid-con video{
+        height: 700px;
+        object-fit: cover;
+    }
+}

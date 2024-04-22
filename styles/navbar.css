@@ -1,0 +1,136 @@
+/* Your CSS styles */
+nav {
+    padding: 0 20px;
+    height: 80px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    overflow: hidden;
+
+    box-shadow: 1px 2px 5px -1px rgba(0,0,0,0.44);
+-webkit-box-shadow: 1px 2px 5px -1px rgba(0,0,0,0.44);
+-moz-box-shadow: 1px 2px 5px -1px rgba(0,0,0,0.44);
+  }
+
+  nav .left .img-con{
+    height: 70px;
+    width: 70px;
+    display: none;
+  }
+
+  nav .left a, nav .right a{
+    text-decoration: none;
+    color: rgb(55, 55, 55);
+  }
+
+
+  nav i {
+    cursor: pointer;
+  }
+
+  nav .right {
+    display: flex;
+    gap: 14px;
+  }
+
+  nav .right .login {
+    display: none;
+  }
+
+
+  nav .left {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    line-height: 40px;
+    gap: 10px;
+    z-index: 1000;
+    transition: 0.3s ease;
+    height: 0;
+    overflow: hidden;
+    border-bottom: 1px solid lightgray;
+    background: white;
+  }
+
+  #bar {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 20px;
+  }
+
+  nav .left i {
+    display: none;
+  }
+
+
+  nav .left a:hover div{
+    background: #011425;
+    color: white;
+  }
+
+  nav .left div, nav .right a{
+    border: 1px solid white;
+  }
+
+  @media (min-width: 768px) {
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      height: 80px;
+    }
+
+    nav .left,
+    nav .right {
+      display: flex;
+      align-items: center;
+    }
+
+    nav .right .login{
+      display: block;
+      cursor: pointer;
+      border: 1px solid lightslategray;
+      padding: 3px 18px;
+      font-size: 14px;
+      border-radius: 50px;
+    }
+
+    nav .right .login:hover{
+        background: #052d50;
+        color: white;
+        border-color: transparent;
+    }
+
+    nav .left{
+      position: static;
+      line-height: 20px;
+      gap: 30px;
+      overflow: visible;
+      border-bottom: none;
+    }
+
+    nav .left a:hover div, nav .right a i:hover, nav .right a:hover .prod{
+      background: none;
+      border-bottom: 1px solid rgb(23, 100, 148);
+      color: rgb(55, 55, 55);
+    }
+
+    nav .left .login, #bar{
+      display: none;
+    }
+    
+    nav .left i, nav .left .img-con{
+      display: block;
+    }
+
+  }

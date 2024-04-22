@@ -1,0 +1,44 @@
+body{
+    margin-top: 150px;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center .con{
+    max-width: 990px;
+    width: 100%;
+    padding: 0 30px 0 30px;
+}
+
+.center .con .title{
+    font-size: 28px;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.center .con .col{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-weight: 300;
+    line-height: 30px;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+
+@media (min-width: 768px) {
+    .center .con .title{
+        font-size: 32px;
+    }
+
+    .center .con .col{
+        font-size: 15px;
+    }
+}

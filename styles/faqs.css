@@ -1,0 +1,56 @@
+
+body{
+    margin-top: 130px;
+ }
+ 
+ .center{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+ 
+ .center .con{
+     padding: 0 30px 0 30px;
+     max-width: 900px;
+     width: 100%;
+ }
+ 
+ .center .con h1{
+     font-weight: 600;
+     font-size: 28px;
+     color: #032b4e;
+     border-bottom: 1px solid #032b4e;
+     padding-bottom: 4px;
+     width: 100px;
+     margin-bottom: 30px;
+ }
+ 
+ .center .con .context-con{
+     margin-bottom: 40px;
+ }
+ 
+ .center .con .context-con .title{
+     font-weight: 500;
+     font-size: 17px;
+     margin-bottom: 10px;
+ }
+ 
+ .center .con .context-con ul .description{
+     font-size: 13px;
+     font-weight: 300;
+     line-height: 28px;
+ }
+ 
+ @media (min-width: 768px) {
+     .center .con h1{
+         font-size: 42px;
+     }
+ 
+     .center .con .context-con .title{
+         font-size: 20px;
+     }
+ 
+     .center .con .context-con ul .description{
+         font-size: 15px;
+     }
+ }

@@ -1,0 +1,167 @@
+.con-relative{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+.con-relative .img-con{
+    height: 350px;
+    width: 100%;
+}
+
+.con-relative .img-con img{
+    filter: brightness(70%);
+    object-position: center;
+    object-fit: cover;
+}
+
+.con-relative .con-abs{
+    position: absolute;
+}
+
+.con-relative .con-abs .flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-align: center;
+    gap: 10px;
+}
+
+.con-relative .con-abs .flex .header{
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.con-relative .con-abs .flex button{
+    background: none;
+    color: white;
+    border: 1px solid white;
+    border-radius: 50px;
+    padding: 4px 24px 4px 24px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.con-relative .con-abs .flex button:hover{
+    background: rgb(236, 236, 236);
+    color: rgb(55, 55, 55);
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.con{
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 30px 0 30px;
+}
+
+
+.center .con .con-flex{
+    margin-top: 40px;
+}
+
+.center .con .con-desc{
+    text-align: center;
+}
+
+.center .con .con-desc h1{
+    font-size: 26px;
+    font-weight: 500;
+    color: #003767;
+    margin-bottom: 20px;
+}
+
+.center .con .con-desc .context{
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+
+form{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+form .form-div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+form .form-div label{
+    font-size: 14px;
+    font-weight: 300;
+    color: #011425;
+}
+
+form .form-div span{
+    color: red;
+}
+
+form .form-div input, form .form-div textarea{
+    width: 100%;
+    border-radius: 6px;
+    padding: 6px;
+    border: 1px solid lightgray;
+}
+
+form button{
+    background: #011425;
+    color: white;
+    border: none;
+    padding: 8px 32px 8px 32px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    letter-spacing: 1.5px;
+}
+
+form button:hover{
+    background: #012e57;
+}
+
+@media (min-width: 900px) {
+    .con-relative .img-con{
+        height: 500px;
+    }
+    .con-relative .con-abs .flex .header{
+        font-size: 50px;
+        font-weight: 400;
+    }
+
+    .center .con .con-flex{
+        display: flex;
+        gap: 70px;
+        justify-content: space-between;
+    }
+
+    .con-desc, form{
+        flex: 1;
+    }
+
+    form{
+        margin-top: 0;
+    }
+
+    .center .con .con-desc h1{
+        font-size: 36px;
+    }
+
+    .con-flex{
+        margin-bottom: 70px;
+    }
+
+}
