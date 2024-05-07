@@ -19,7 +19,7 @@
             <img src="./assets/imgs/logo.png" alt="">
         </div></a>
         <a href=""><div>Home</div></a>
-        <a href="./components/aboutUs.php"><div>About Us</div></a>
+        <a href="./components/aboutUs.php"><div>About Usasd</div></a>
         <a href="./components/contactUs.php"><div>Contact Us</div></a>
         <a href="./components/login.php"><div class="login">Log in</div></a>
       </div>
