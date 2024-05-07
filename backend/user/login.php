@@ -48,6 +48,8 @@
                 echo "Invalid Password";
             }
 
+        }else{
+            echo "Invalid Password";
         }
     }
 
