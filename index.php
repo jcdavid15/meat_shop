@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,9 +30,23 @@
 
 
       <div class="right">
-        <a href="./components/login.php"><div class="login">Log in</div></a>
-        <a href=""><div class="prod">Products</div></a>
-        <a href=""><i class="fa-regular fa-heart"></i></a>
+          <a href="./components/products.php"><div class="prod">Products</div></a>
+          <?php if(!empty($_SESSION["user_id"])){ ?>
+              <a href="./components/history.php"><div class="history">History</div></a>
+          <?php }?>
+          <a href="./components/cart.php"><i class="fa-regular fa-heart"></i></a>
+
+          <?php if(!empty($_SESSION["user_id"])){ ?>
+              <div class="dropdown">
+                  <i class="fa-regular fa-user" onclick="toggleDropdown()"></i>
+                  <div class="dropdown-content" id="dropdownContent">
+                      <a href="./components/profile.php">Profile</a>
+                      <a href="./components/logout.php">Log out</a>
+                  </div>
+              </div>
+          <?php } else { ?>
+              <a href="./components/login.php"><div class="login">Log in</div></a>
+          <?php }?>
       </div>
     </nav>
 
@@ -94,53 +109,61 @@
                     </div>
                     <div class="center">
                         <div class="flex">
-                            <div class="con-item">
-                                <div class="img-con">
-                                    <img src="./assets/imgs/item-1.webp" alt="">
-                                </div>
-                                <div class="details">
-                                    <div class="title">
-                                        Honey-Cured Bacon
+                            <a href="./components/porkprod.php">
+                                <div class="con-item">
+                                    <div class="img-con">
+                                        <img src="./assets/pork/img-1.jpeg" alt="">
                                     </div>
-                                    <p class="price">₱360.00 PHP</p>
+                                    <div class="details">
+                                        <div class="title">
+                                            Fresh Pork Chop
+                                        </div>
+                                        <p class="price">₱360.00 PHP</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
     
-                            <div class="con-item">
-                                <div class="img-con">
-                                    <img src="./assets/imgs/item-2.webp" alt="">
-                                </div>
-                                <div class="details">
-                                    <div class="title">
-                                        Smoked Bacon
+                            <a href="./components/porkprod.php">
+                                <div class="con-item">
+                                    <div class="img-con">
+                                        <img src="./assets/pork/img-6.jpeg" alt="">
                                     </div>
-                                    <p class="price">₱370.00 PHP</p>
+                                    <div class="details">
+                                        <div class="title">
+                                            Pork Liempo
+                                        </div>
+                                        <p class="price">₱290.00 PHP</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
     
-                            <div class="con-item">
-                                <div class="img-con">
-                                    <img src="./assets/imgs/item-3.webp" alt="">
-                                </div>
-                                <div class="details">
-                                    <div class="title">
-                                        Back Bacon
+                            <a href="./components/porkprod.php">
+                                <div class="con-item">
+                                    <div class="img-con">
+                                        <img src="./assets/pork/img-7.jpeg" alt="">
                                     </div>
-                                    <p class="price">₱370.00PHP</p>
-                                </div>
-                            </div>
-    
-                            <div class="con-item">
-                                <div class="img-con">
-                                    <img src="./assets/imgs/item-4.webp" alt="">
-                                </div>
-                                <div class="details">
-                                    <div class="title">
-                                        Bacon Roll
+                                    <div class="details">
+                                        <div class="title">
+                                            Pork Kasim
+                                        </div>
+                                        <p class="price">₱230.00 PHP</p>
                                     </div>
-                                    <p class="price">₱360.00PHP</p>
                                 </div>
-                            </div>
+                            </a>
+
+                            <a href="./components/porkprod.php">
+                                <div class="con-item">
+                                    <div class="img-con">
+                                        <img src="./assets/pork/img-8.jpeg" alt="">
+                                    </div>
+                                    <div class="details">
+                                        <div class="title">
+                                            Pork Lomo
+                                        </div>
+                                        <p class="price">₱210.00 PHP</p>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -152,37 +175,19 @@
                     <div class="center">
                         <div class="flex flex-second">
                             <div class="con-item">
-                                <div class="img-con">
-                                    <img src="./assets/imgs/item-5.webp" alt="">
-                                </div>
-                                <div class="details">
-                                    <div class="title">
-                                        Premium Ribeye Steak
+                                <a href="./components/chickenprod.php">
+                                    <div class="img-con">
+                                        <img src="./assets/chicken/img-1.webp" alt="">
                                     </div>
-                                    <p class="price">₱750.00 PHP</p>
-                                </div>
-                                <div class="div-button">
-                                    <a href="">
-                                        <button>
-                                            SHOP NOW
-                                            <div><i class="fa-solid fa-arrow-right"></i></div>
-                                        </button>
-                                    </a>
-                                </div>
-                            </div>
-    
-                            <div class="con-item">
-                                <div class="img-con">
-                                    <img src="./assets/imgs/item-6.webp" alt="">
-                                </div>
+                                </a>
                                 <div class="details">
                                     <div class="title">
-                                        Choice Ribeye Steak
+                                        Chicken Breast
                                     </div>
                                     <p class="price">₱310.00 PHP</p>
                                 </div>
                                 <div class="div-button">
-                                    <a href="">
+                                    <a href="./components/chickenprod.php">
                                         <button>
                                             SHOP NOW
                                             <div><i class="fa-solid fa-arrow-right"></i></div>
@@ -192,17 +197,41 @@
                             </div>
     
                             <div class="con-item">
-                                <div class="img-con">
-                                    <img src="./assets/imgs/item-7.webp" alt="">
-                                </div>
+                                <a href="./components/products.php">
+                                    <div class="img-con">
+                                        <img src="./assets/beef/img-3.jpeg" alt="">
+                                    </div>
+                                </a>
                                 <div class="details">
                                     <div class="title">
-                                        Wagyu Cubes
+                                        Roast Beef
+                                    </div>
+                                    <p class="price">₱370.00 PHP</p>
+                                </div>
+                                <div class="div-button">
+                                    <a href="./components/products.php">
+                                        <button>
+                                            SHOP NOW
+                                            <div><i class="fa-solid fa-arrow-right"></i></div>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+    
+                            <div class="con-item">
+                                <a href="./components/products.php">
+                                    <div class="img-con">
+                                        <img src="./assets/beef/img-1.webp" alt="">
+                                    </div>
+                                </a>
+                                <div class="details">
+                                    <div class="title">
+                                        Fresh Beef Steak
                                     </div>
                                     <p class="price">₱370.00PHP</p>
                                 </div>
                                 <div class="div-button">
-                                    <a href="">
+                                    <a href="./components/products.php">
                                         <button>
                                             SHOP NOW
                                             <div><i class="fa-solid fa-arrow-right"></i></div>
@@ -212,17 +241,19 @@
                             </div>
     
                             <div class="con-item">
-                                <div class="img-con">
-                                    <img src="./assets/imgs/item-8.webp" alt="">
-                                </div>
+                                <a href="./components/porkprod.php">
+                                    <div class="img-con">
+                                        <img src="./assets/pork/img-2.jpeg" alt="">
+                                    </div>
+                                </a>
                                 <div class="details">
                                     <div class="title">
-                                        CAB Ribeye
+                                        Fresh Pork Ribs
                                     </div>
-                                    <p class="price">₱650.00PHP</p>
+                                    <p class="price">₱340.00PHP</p>
                                 </div>
                                 <div class="div-button">
-                                    <a href="">
+                                    <a href="./components/porkprod.php">
                                         <button>
                                             SHOP NOW
                                             <div><i class="fa-solid fa-arrow-right"></i></div>
@@ -264,5 +295,24 @@
 
     <script src="./scripts/navbar.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    function toggleDropdown() {
+        document.getElementById("dropdownContent").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.fa-user')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
 </body>
 </html>

@@ -11,7 +11,6 @@ nav {
     left: 0;
     right: 0;
     z-index: 1000;
-    overflow: hidden;
 
     box-shadow: 1px 2px 5px -1px rgba(0,0,0,0.44);
 -webkit-box-shadow: 1px 2px 5px -1px rgba(0,0,0,0.44);
@@ -81,6 +80,40 @@ nav {
     border: 1px solid white;
   }
 
+
+  /* Dropdown Button */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  left: -130px;
+  bottom: -100px;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+
   @media (min-width: 768px) {
     nav {
       display: flex;
@@ -117,9 +150,11 @@ nav {
       gap: 30px;
       overflow: visible;
       border-bottom: none;
+      height: 70px !important;
     }
 
-    nav .left a:hover div, nav .right a i:hover, nav .right a:hover .prod{
+    nav .left a:hover div, nav .right a i:hover, nav .right a:hover .prod,
+    nav .right a:hover .history{
       background: none;
       border-bottom: 1px solid rgb(23, 100, 148);
       color: rgb(55, 55, 55);

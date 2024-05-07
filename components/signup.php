@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="../styles/footer.css">
     <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+    <script src="../jquery/jquery.js"></script>
+    <script src="../scripts/sweetalert2.js"></script>
     <link rel="stylesheet" href="../styles/signup.css">
     <title>Sign up</title>
 </head>
@@ -18,37 +19,49 @@
             <div class="container">
                 <div class="title">Sign up</div>
                 <div class="content">
-                <form action="#">
+                <form>
                     <div class="user-details">
                     <div class="input-box">
-                        <span class="details">Full Name</span>
-                        <input type="text" placeholder="Enter your name" required>
+                        <span class="details">First name<span>*</span></span>
+                        <input type="text" id="fname" placeholder="Enter first name">
                     </div>
                     <div class="input-box">
-                        <span class="details">Username</span>
-                        <input type="text" placeholder="Enter your username" required>
+                        <span class="details">Middle name</span>
+                        <input type="text" id="mname" placeholder="Enter middle name">
                     </div>
                     <div class="input-box">
-                        <span class="details">Email</span>
-                        <input type="text" placeholder="Enter your email" required>
+                        <span class="details">Last name<span>*</span></span>
+                        <input type="text" id="lname" placeholder="Enter last name">
                     </div>
                     <div class="input-box">
-                        <span class="details">Phone Number</span>
-                        <input type="text" placeholder="Enter your number" required>
+                        <span class="details">Email<span>*</span></span>
+                        <input type="text" id="email" placeholder="Enter your email">
                     </div>
                     <div class="input-box">
-                        <span class="details">Password</span>
-                        <input type="text" placeholder="Enter your password" required>
+                        <span class="details">Phone Number<span>*</span></span>
+                        <input type="text" id="phoneNum" placeholder="Enter your number" oninput="validateInput(this)" pattern="\d*" maxlength="11">
                     </div>
                     <div class="input-box">
-                        <span class="details">Confirm Password</span>
-                        <input type="text" placeholder="Confirm your password" required>
+                        <span class="details">Address<span>*</span></span>
+                        <input type="text" id="address" placeholder="Enter your address">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Username<span>*</span></span>
+                        <input type="text" id="uname" placeholder="Enter your username">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Password<span>*</span></span>
+                        <input type="password" id="password" placeholder="Enter your password">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Confirm Password<span>*</span></span>
+                        <input type="password" id="confirmPass" placeholder="Confirm your password">
                     </div>
                     </div>
                     <div class="gender-details">
-                    <input type="radio" name="gender" id="dot-1">
-                    <input type="radio" name="gender" id="dot-2">
-                    <input type="radio" name="gender" id="dot-3">
+                    <input type="radio" value="Male" name="gender" id="dot-1">
+                    <input type="radio" value="Female" name="gender" id="dot-2">
+                    <input type="radio" value="Other" name="gender" id="dot-3">
                     <span class="gender-title">Gender</span>
                     <div class="category">
                         <label for="dot-1">
@@ -76,5 +89,6 @@
     <?php include "./footer.php" ?>
 
   <script src="../scripts/navbar.js"></script>
+  <script src="../jquery/signup.js"></script>
 </body>
 </html>

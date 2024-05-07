@@ -123,16 +123,18 @@ body{
     color: rgb(109, 109, 109);
 }
 
-.center .con .con-div-third .flex .con-item .img-con{
+.con-div-third .flex .con-item .img-con{
+    height: 250px;
     cursor: pointer;
     overflow: hidden;
 }
 
 .center .con .con-div-third .flex .con-item img:hover{
-    transform: scale(110%);
+    transform: scale(120%);
 }
 
 .center .con .con-div-third .flex-second .con-item .img-con{
+    height: 100%;
     overflow: hidden;
 }
 
@@ -152,6 +154,7 @@ body{
 
 .center .con .con-div-third .flex-second .con-item .details .title{
     color: rgb(78, 145, 233);
+    font-size: 22px;
 }
 
 .center .con .con-div-third .flex-second .con-item .price{
@@ -226,5 +229,9 @@ body{
 
     .center .con .con-div-third h1{
         font-size: 28px;
+    }
+
+    .center .con .con-div-third .flex .con-item .img-con{
+        height: 300px;
     }
 }
