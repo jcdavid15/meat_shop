@@ -1,126 +1,39 @@
-<div id="layoutSidenav_nav">
-        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-          <div class="sb-sidenav-menu">
-            <div class="nav">
-              <div class="sb-sidenav-menu-heading">Main</div>
-              <!-- Link manipulation -->
-              <a class="nav-link" href="./index.php">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-tachometer-alt"></i>
-                </div>
-                Dashboard
-              </a>
-              <a class="nav-link" href="announcement.php">
-                <div class="sb-nav-link-icon">
-                  <i class="fa-solid fa-bullhorn"></i>
-                </div>
-                Announcement List
-              </a>
-              <a class="nav-link" href="request.php">
-                <div class="sb-nav-link-icon">
-                  <i class="fa-solid fa-hand-holding-heart"></i>
-                </div>
-                Service Request Status
-              </a>
-              <a class="nav-link" href="manageServices.php">
-                <div class="sb-nav-link-icon">
-                  <i class="fa-solid fa-hand-holding-dollar"></i>
-                </div>
-                Manage Services
-              </a>
-              <a class="nav-link" href="templateModify.php">
-                <div class="sb-nav-link-icon">
-                  <i class="fa-solid fa-edit"></i>
-                </div>
-                Template Configuration
-              </a>
-
-              <div class="sb-sidenav-menu-heading">Account Management</div>
-              <a
-                class="nav-link collapsed"
-                href="#"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseEmployee"
-                aria-expanded="false"
-                aria-controls="collapseEmployee"
-              >
-                <div class="sb-nav-link-icon">
-                  <i class="fa-solid fa-briefcase"></i>
-                </div>
-                Employee
-                <div class="sb-sidenav-collapse-arrow">
-                  <i class="fas fa-angle-down"></i>
-                </div>
-              </a>
-              <div
-                class="collapse"
-                id="collapseEmployee"
-                aria-labelledby="headingOne"
-                data-bs-parent="#sidenavAccordion"
-              >
-                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="employeeList.php"
-                    >Accounts List</a
-                  >
-                </nav>
-                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="employeeDeactivated.php"
-                    >Deactivated Accounts</a
-                  >
-                </nav>
-
-              </div>
-              <a
-                class="nav-link collapsed"
-                href="#"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseResidence"
-                aria-expanded="false"
-                aria-controls="collapseResidence"
-              >
-                <div class="sb-nav-link-icon">
-                  <i class="fa-solid fa-house-user"></i>
-                </div>
-                Residence
-                <div class="sb-sidenav-collapse-arrow">
-                  <i class="fas fa-angle-down"></i>
-                </div>
-              </a>
-              <div
-                class="collapse"
-                id="collapseResidence"
-                aria-labelledby="headingOne"
-                data-bs-parent="#sidenavAccordion"
-              >
-                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="residenceList.php"
-                    >Accounts List</a
-                  >
-                </nav>
-                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="residenceDeactivated.php"
-                    >Deactivated Accounts</a
-                  >
-                </nav>
-              </div>
-              <div class="sb-sidenav-menu-heading">Report </div>
-              <a class="nav-link" href="auditLogs.php">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-person-walking"></i></div>
-                Audit Logs
-              </a>
-              <a class="nav-link" href="auditTrail.php">
-                <div class="sb-nav-link-icon">
-                  <i class="fa-solid fa-chart-line"></i>
-                </div>
-                Audit Trail
-              </a>
-              <a class="nav-link" href="history.php">
-                <div class="sb-nav-link-icon">
-                <i class="fa-solid fa-clock-rotate-left"></i>
-                </div>
-                Transaction History
-              </a>
-            </div>
-          </div>
-        </nav>
-      </div>
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+      <!-- Navbar Brand-->
+      <a class="navbar-brand ps-3" href="index.html">Brgy. San Manuel</a>
+      <!-- Sidebar Toggle-->
+      <button
+        class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
+        id="sidebarToggle"
+        href="#!"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <!-- Navbar Search-->
+      <form
+        class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"
+      ></form>
+      <!-- Navbar-->
+      <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="settingsDropDown"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="fas fa-user fa-fw"></i
+          ></a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="settingsDropDown"
+          >
+            <!-- <li><a class="dropdown-item" href="#!">Settings</a></li>
+            <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+            <li><hr class="dropdown-divider" /></li> -->
+            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>

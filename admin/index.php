@@ -48,8 +48,42 @@ require_once("../backend/config/config.php");
                 <h4
                   class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"
                 >
+                  Total Sales
                 </h4>
-                <span class='hind-font caption-12 c-dashboardInfo__count'></span>
+                <span class='hind-font caption-12 c-dashboardInfo__count'>100</span>
+              </div>
+            </div>
+
+            <div class="c-dashboardInfo col-xl-3 col-md-6">
+              <div class="wrap">
+                <h4
+                  class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"
+                >
+                  Order Claimed
+                </h4>
+                <span class='hind-font caption-12 c-dashboardInfo__count'>100</span>
+              </div>
+            </div>
+
+            <div class="c-dashboardInfo col-xl-3 col-md-6">
+              <div class="wrap">
+                <h4
+                  class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"
+                >
+                  Pending Orders
+                </h4>
+                <span class='hind-font caption-12 c-dashboardInfo__count'>100</span>
+              </div>
+            </div>
+
+            <div class="c-dashboardInfo col-xl-3 col-md-6">
+              <div class="wrap">
+                <h4
+                  class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"
+                >
+                  To Claimed
+                </h4>
+                <span class='hind-font caption-12 c-dashboardInfo__count'>100</span>
               </div>
             </div>
 
@@ -64,7 +98,7 @@ require_once("../backend/config/config.php");
                   <div class="card">
                     <div class="card-header bg-secondary pt-3">
                       <div class="text-center">
-                        <p class="card-title text-light">Employee Counts</p>
+                        <p class="card-title text-light">Account Counts</p>
                       </div>
                     </div>
                     <div class="card-body">
@@ -90,7 +124,7 @@ require_once("../backend/config/config.php");
                   </div>
                 </div>
                 <div class="col-md m-1">
-                  <div class="card">
+                  <div class="card" style="height:500px; overflow: auto;">
                     <div class="text-center mt-3">
                             <p class="card-title">Available Request</p>
                     </div>
@@ -189,7 +223,7 @@ require_once("../backend/config/config.php");
                     <div class="card-body">
                         <?php
                         date_default_timezone_set('Asia/Manila');
-                        $monthlyCoiRequest = mysqli_query($conn, "SELECT COUNT(*) AS serviceRequestCoiCount, DATE_FORMAT(order_date, '%M %Y') AS Dates FROM tbl_orders WHERE status_id = 4 AND (order_date IS NOT NULL AND order_date != '0000-00-00') GROUP BY DATE_FORMAT(order_date, '%Y-%m')");
+                        $monthlyCoiRequest = mysqli_query($conn, "SELECT COUNT(*) AS serviceRequestCoiCount, DATE_FORMAT(order_date, '%M %Y') AS Dates FROM tbl_cart WHERE status_id = 4 AND (order_date IS NOT NULL AND order_date != '0000-00-00') GROUP BY DATE_FORMAT(order_date, '%Y-%m')");
                         foreach($monthlyCoiRequest as $data)
                         {
                             $monthlyCoi[] = $data['Dates'];
@@ -214,7 +248,7 @@ require_once("../backend/config/config.php");
     <script src="../scripts/jquery.js"></script>
     <script src="../scripts/toggle.js"></script>
     <!-- ChartJS -->
-    <script src="../Chart.min.js"></script>
+    <script src="../scripts/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                       
   <script>
@@ -228,17 +262,6 @@ require_once("../backend/config/config.php");
   const serviceRequestCoiCount = <?php echo json_encode($serviceRequestCoiCount);?>;
   const monthlyCoiHold = [...monthlyCoi];
   const serviceRequestCoiCountHold = [...serviceRequestCoiCount];
-  // Note: Barangay Id Request Variables
-  const monthlyBi = <?php echo json_encode($monthlyBi);?>;
-  const serviceRequestBiCount = <?php echo json_encode($serviceRequestBiCount);?>;
-  const monthlyBiHold = [...monthlyBi];
-  const serviceRequestBiCountHold = [...serviceRequestBiCount];
-  // Note: Business Permit Request Variables
-  const monthlyBp = <?php echo json_encode($monthlyBp);?>;
-  const serviceRequestBpCount = <?php echo json_encode($serviceRequestBpCount);?>;
-  const monthlyBpHold = [...monthlyBp];
-  const serviceRequestBpCountHold = [...serviceRequestBpCount];
-  
 
   // Note: Request Maps
   const dateMaps = new Map([
@@ -519,7 +542,7 @@ require_once("../backend/config/config.php");
     $(function() {
         var pieChartCanvas = $('#employeePerRoleCount').get(0).getContext('2d')
         var donutData = {
-            labels: ['Secretary', 'Barangay Captain', 'Cashier'],
+            labels: ['User', 'Admin', 'Cashier'],
             datasets: [{
                 data: [<?php echo $countOfSecretary;?>, <?php echo $countOfBrgyCapt;?>,
                     <?php echo $countOfCashier;?>
