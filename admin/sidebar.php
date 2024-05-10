@@ -10,32 +10,7 @@
                 </div>
                 Dashboard
               </a>
-              <a class="nav-link" href="announcement.php">
-                <div class="sb-nav-link-icon">
-                  <i class="fa-solid fa-bullhorn"></i>
-                </div>
-                Announcement List
-              </a>
-              <a class="nav-link" href="request.php">
-                <div class="sb-nav-link-icon">
-                  <i class="fa-solid fa-hand-holding-heart"></i>
-                </div>
-                Service Request Status
-              </a>
-              <a class="nav-link" href="manageServices.php">
-                <div class="sb-nav-link-icon">
-                  <i class="fa-solid fa-hand-holding-dollar"></i>
-                </div>
-                Manage Services
-              </a>
-              <a class="nav-link" href="templateModify.php">
-                <div class="sb-nav-link-icon">
-                  <i class="fa-solid fa-edit"></i>
-                </div>
-                Template Configuration
-              </a>
-
-              <div class="sb-sidenav-menu-heading">Account Management</div>
+              <div class="sb-sidenav-menu-heading">Products</div>
               <a
                 class="nav-link collapsed"
                 href="#"
@@ -45,9 +20,9 @@
                 aria-controls="collapseEmployee"
               >
                 <div class="sb-nav-link-icon">
-                  <i class="fa-solid fa-briefcase"></i>
+                <i class="fa-solid fa-utensils"></i>
                 </div>
-                Employee
+                Products List
                 <div class="sb-sidenav-collapse-arrow">
                   <i class="fas fa-angle-down"></i>
                 </div>
@@ -59,50 +34,52 @@
                 data-bs-parent="#sidenavAccordion"
               >
                 <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="employeeList.php"
-                    >Accounts List</a
+                  <a class="nav-link" href="beef.php"
+                    >Beef</a
                   >
                 </nav>
                 <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="employeeDeactivated.php"
-                    >Deactivated Accounts</a
+                  <a class="nav-link" href="pork.php"
+                    >Pork</a
+                  >
+                </nav>
+                <nav class="sb-sidenav-menu-nested nav">
+                  <a class="nav-link" href="chicken.php"
+                    >Chicken</a
+                  >
+                </nav>
+                <nav class="sb-sidenav-menu-nested nav">
+                  <a class="nav-link" href="lamb.php"
+                    >Lamb</a
+                  >
+                </nav>
+                <nav class="sb-sidenav-menu-nested nav">
+                  <a class="nav-link" href="deli.php"
+                    >Deli Meats</a
                   >
                 </nav>
 
               </div>
-              <a
-                class="nav-link collapsed"
-                href="#"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseResidence"
-                aria-expanded="false"
-                aria-controls="collapseResidence"
-              >
+              <a class="nav-link" href="customers.php">
                 <div class="sb-nav-link-icon">
-                  <i class="fa-solid fa-house-user"></i>
+                  <i class="fa-solid fa-hand-holding-heart"></i>
                 </div>
-                Residence
-                <div class="sb-sidenav-collapse-arrow">
-                  <i class="fas fa-angle-down"></i>
-                </div>
+                Customers
               </a>
-              <div
-                class="collapse"
-                id="collapseResidence"
-                aria-labelledby="headingOne"
-                data-bs-parent="#sidenavAccordion"
-              >
-                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="residenceList.php"
-                    >Accounts List</a
-                  >
-                </nav>
-                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="residenceDeactivated.php"
-                    >Deactivated Accounts</a
-                  >
-                </nav>
-              </div>
+              <a class="nav-link" href="reports.php">
+                <div class="sb-nav-link-icon">
+                  <i class="fa-solid fa-hand-holding-dollar"></i>
+                </div>
+                Reports
+              </a>
+              <a class="nav-link" href="templateModify.php">
+                <div class="sb-nav-link-icon">
+                  <i class="fa-solid fa-edit"></i>
+                </div>
+                Inventory
+              </a>
+
+        
               <div class="sb-sidenav-menu-heading">Report </div>
               <a class="nav-link" href="auditLogs.php">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-person-walking"></i></div>

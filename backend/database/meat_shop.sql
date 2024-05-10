@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 07, 2024 at 03:11 PM
+-- Generation Time: May 10, 2024 at 06:00 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -106,6 +106,7 @@ CREATE TABLE `tbl_products` (
   `prod_name` varchar(255) NOT NULL,
   `prod_price` int(11) NOT NULL,
   `prod_type` int(11) NOT NULL,
+  `prod_stocks` int(11) NOT NULL,
   `prod_img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -113,28 +114,28 @@ CREATE TABLE `tbl_products` (
 -- Dumping data for table `tbl_products`
 --
 
-INSERT INTO `tbl_products` (`prod_id`, `prod_name`, `prod_price`, `prod_type`, `prod_img`) VALUES
-(1, 'Fresh Beef Steak', 370, 1, 'img-1.webp'),
-(2, 'Ground Beef', 360, 1, 'img-2.jpeg'),
-(3, 'Roast Beef', 370, 1, 'img-3.jpeg'),
-(4, 'Fresh Pork Chops', 390, 2, 'img-1.jpeg'),
-(5, 'Fresh Pork Ribs', 340, 2, 'img-2.jpeg'),
-(6, 'Fresh Bacon', 370, 2, 'img-3.jpeg'),
-(7, 'Pork Ham', 340, 2, 'img-4.jpeg'),
-(8, 'Pork Sausage', 310, 2, 'img-5.jpeg'),
-(9, 'Chicken Breast', 310, 3, 'img-1.webp'),
-(10, 'Chicken Thigh', 320, 3, 'img-2.jpeg'),
-(11, 'Chicken Wings', 290, 3, 'img-3.jpeg'),
-(12, 'Drumsticks', 300, 3, 'img-4.jpeg'),
-(13, 'One Whole Chicken', 360, 3, 'img-5.webp'),
-(14, 'Fresh Lamb Chops', 610, 4, 'img-1.jpeg'),
-(15, 'Fresh Lamb Legs', 990, 4, 'img-2.jpeg'),
-(16, 'Fresh Salami', 375, 5, 'img-1.jpeg'),
-(17, 'Fresh Pastrami', 315, 5, 'img-2.jpeg'),
-(18, 'Roast Beef', 870, 5, 'img-3.jpeg'),
-(19, 'Pork Liempo', 290, 2, 'img-6.jpeg'),
-(20, 'Pork Kasim', 230, 2, 'img-7.jpeg'),
-(21, 'Pork Lomo', 210, 2, 'img-8.jpeg');
+INSERT INTO `tbl_products` (`prod_id`, `prod_name`, `prod_price`, `prod_type`, `prod_stocks`, `prod_img`) VALUES
+(1, 'Fresh Beef Steak', 370, 1, 50, 'img-1.webp'),
+(2, 'Ground Beef', 360, 1, 50, 'img-2.jpeg'),
+(3, 'Roast Beef', 370, 1, 40, 'img-3.jpeg'),
+(4, 'Fresh Pork Chops', 390, 2, 50, 'img-1.jpeg'),
+(5, 'Fresh Pork Ribs', 340, 2, 50, 'img-2.jpeg'),
+(6, 'Fresh Bacon', 370, 2, 50, 'img-3.jpeg'),
+(7, 'Pork Ham', 340, 2, 50, 'img-4.jpeg'),
+(8, 'Pork Sausage', 310, 2, 50, 'img-5.jpeg'),
+(9, 'Chicken Breast', 310, 3, 50, 'img-1.webp'),
+(10, 'Chicken Thigh', 320, 3, 50, 'img-2.jpeg'),
+(11, 'Chicken Wings', 290, 3, 50, 'img-3.jpeg'),
+(12, 'Drumsticks', 300, 3, 50, 'img-4.jpeg'),
+(13, 'One Whole Chicken', 360, 3, 50, 'img-5.webp'),
+(14, 'Fresh Lamb Chops', 610, 4, 50, 'img-1.jpeg'),
+(15, 'Fresh Lamb Legs', 990, 4, 50, 'img-2.jpeg'),
+(16, 'Fresh Salami', 375, 5, 50, 'img-1.jpeg'),
+(17, 'Fresh Pastrami', 315, 5, 50, 'img-2.jpeg'),
+(18, 'Roast Beef', 870, 5, 50, 'img-3.jpeg'),
+(19, 'Pork Liempo', 290, 2, 50, 'img-6.jpeg'),
+(20, 'Pork Kasim', 230, 2, 50, 'img-7.jpeg'),
+(21, 'Pork Lomo', 210, 2, 50, 'img-8.jpeg');
 
 -- --------------------------------------------------------
 
@@ -157,6 +158,26 @@ INSERT INTO `tbl_product_type` (`prod_type_id`, `prod_type_name`) VALUES
 (3, 'Chicken'),
 (4, 'Lamb'),
 (5, 'Deli Meats');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_reports`
+--
+
+CREATE TABLE `tbl_reports` (
+  `report_id` int(11) NOT NULL,
+  `rp_name` varchar(50) NOT NULL,
+  `rp_email` varchar(150) NOT NULL,
+  `rp_message` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_reports`
+--
+
+INSERT INTO `tbl_reports` (`report_id`, `rp_name`, `rp_email`, `rp_message`) VALUES
+(1, 'Jc David', 'jcdavid@gmail.com', 'magandaaa');
 
 -- --------------------------------------------------------
 
@@ -228,6 +249,12 @@ ALTER TABLE `tbl_product_type`
   ADD PRIMARY KEY (`prod_type_id`);
 
 --
+-- Indexes for table `tbl_reports`
+--
+ALTER TABLE `tbl_reports`
+  ADD PRIMARY KEY (`report_id`);
+
+--
 -- Indexes for table `tbl_role`
 --
 ALTER TABLE `tbl_role`
@@ -266,6 +293,12 @@ ALTER TABLE `tbl_products`
 --
 ALTER TABLE `tbl_product_type`
   MODIFY `prod_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbl_reports`
+--
+ALTER TABLE `tbl_reports`
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_role`

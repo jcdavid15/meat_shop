@@ -9,7 +9,7 @@
           <div><a href="./privacyPolicy.php">Privacy Policy</a></div>
           <div><a href="./terms.php">Terms & Condition</a></div>
           <div><a href="./aboutUs.php">About Us</a></div>
-          <div><a href="./reviews.php">Reviews</a></div>
+          <!-- <div><a href="./reviews.php">Reviews</a></div> -->
         </div>
         <div class="soc-flex">
           <div style="font-size: 14px;">©M&S meatshop 2024</div>

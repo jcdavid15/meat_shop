@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../styles/general.css">
     <link rel="stylesheet" href="../styles/footer.css">
     <link rel="stylesheet" href="../styles/navbar.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../scripts/sweetalert2.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <link rel="stylesheet" href="../styles/contactUs.css">
@@ -61,7 +63,7 @@
                             <textarea name="message" id="message" cols="30" rows="10" required></textarea>
                         </div>
                         <div style="display: flex; justify-content: end;">
-                            <button type="submit">Submit</button>
+                            <button type="submit" id="submit">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -72,5 +74,6 @@
     <?php include "./footer.php" ?>
 
     <script src="../scripts/navbar.js"></script>
+    <script src="../jquery/report.js"></script>
 </body>
 </html>

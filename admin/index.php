@@ -17,7 +17,7 @@ require_once("../backend/config/config.php");
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Meat Shop</title>
+    <title>Admin Panel</title>
     <link href="../styles/bootstrap5-min.css" rel="stylesheet" />
     <link href="../styles/card-general.css" rel="stylesheet" />
     <script
@@ -36,7 +36,7 @@ require_once("../backend/config/config.php");
         <main>
             <div class="container-fluid px-4">
               <!-- Page indicator -->
-              <h1 class="mt-4">Admin, </h1>
+              <h1 class="mt-4" id='full_name'>Admin, </h1>
               <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>
               </ol>
@@ -48,9 +48,18 @@ require_once("../backend/config/config.php");
                 <h4
                   class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"
                 >
+                <?php
+                  $query5 = "SELECT SUM(tp.prod_price * tc.prod_qnty) AS total_sales FROM tbl_cart tc 
+                  INNER JOIN tbl_products tp ON tc.prod_id = tp.prod_id
+                  WHERE status_id = 2;";
+                  $stmt5 = $conn->prepare($query5);
+                  $stmt5->execute();
+                  $result5 = $stmt5->get_result();
+                  $data5 = $result5->fetch_assoc();
+                ?>
                   Total Sales
                 </h4>
-                <span class='hind-font caption-12 c-dashboardInfo__count'>100</span>
+                <span class='hind-font caption-12 c-dashboardInfo__count'><?php echo $data5["total_sales"] ?></span>
               </div>
             </div>
 
@@ -59,9 +68,16 @@ require_once("../backend/config/config.php");
                 <h4
                   class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"
                 >
+                <?php
+                  $query6 = "SELECT COUNT(item_id) AS total_claimed FROM tbl_cart WHERE status_id = 2";
+                  $stmt6 = $conn->prepare($query6);
+                  $stmt6->execute();
+                  $result6 = $stmt6->get_result();
+                  $data6 = $result6->fetch_assoc();
+                ?>
                   Order Claimed
                 </h4>
-                <span class='hind-font caption-12 c-dashboardInfo__count'>100</span>
+                <span class='hind-font caption-12 c-dashboardInfo__count'><?php echo $data6["total_claimed"] ?></span>
               </div>
             </div>
 
@@ -70,9 +86,16 @@ require_once("../backend/config/config.php");
                 <h4
                   class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"
                 >
+                <?php
+                  $query7 = "SELECT COUNT(item_id) AS total_pending FROM tbl_cart WHERE status_id = 1";
+                  $stmt7 = $conn->prepare($query7);
+                  $stmt7->execute();
+                  $result7 = $stmt7->get_result();
+                  $data7 = $result7->fetch_assoc();
+                ?>
                   Pending Orders
                 </h4>
-                <span class='hind-font caption-12 c-dashboardInfo__count'>100</span>
+                <span class='hind-font caption-12 c-dashboardInfo__count'><?php echo $data7["total_pending"] ?></span>
               </div>
             </div>
 
@@ -81,9 +104,16 @@ require_once("../backend/config/config.php");
                 <h4
                   class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"
                 >
+                <?php
+                  $query8 = "SELECT COUNT(item_id) AS total_claim FROM tbl_cart WHERE status_id = 4";
+                  $stmt8 = $conn->prepare($query8);
+                  $stmt8->execute();
+                  $result8 = $stmt8->get_result();
+                  $data8 = $result8->fetch_assoc();
+                ?>
                   To Claimed
                 </h4>
-                <span class='hind-font caption-12 c-dashboardInfo__count'>100</span>
+                <span class='hind-font caption-12 c-dashboardInfo__count'><?php echo $data8["total_claim"] ?></span>
               </div>
             </div>
 
@@ -250,7 +280,11 @@ require_once("../backend/config/config.php");
     <!-- ChartJS -->
     <script src="../scripts/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                      
+  <script>
+    const full_name = document.getElementById('full_name');
+    const acc_data = JSON.parse(localStorage.getItem('adminDetails'))
+    full_name.innerText = 'Admin, ' + acc_data.full_name;
+  </script>      
   <script>
   // Note: Barangay Clearance Request Variables
   const monthlyBc = <?php echo json_encode($monthlyBc);?>;
