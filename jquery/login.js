@@ -19,6 +19,13 @@ $(document).ready(()=>{
                             showConfirmButton: false,
                             timer: 3000,
                         });
+                    }else if(response === "deactivated"){
+                        Swal.fire({
+                            title: "Account Deactivated!",
+                            icon: "warning",
+                            showConfirmButton: false,
+                            timer: 3000,
+                        });
                     }else{
                         console.log(response)
                         Swal.fire({
@@ -37,6 +44,11 @@ $(document).ready(()=>{
                                 window.location.href = "../admin/index.php"
                             }else if(data.role_id == 3){
                                 localStorage.setItem("cashierDetails", response);
+                                if(data.branch_id == 1){
+                                    window.location.href = "../cashier1/index.php";
+                                }else{
+                                    window.location.href = "../cashier2/index.php";
+                                }
                             }
                         });
                     }

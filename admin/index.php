@@ -6,6 +6,7 @@ if(empty($_SESSION["admin_id"])){
 require_once("../backend/config/config.php");
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -59,7 +60,7 @@ require_once("../backend/config/config.php");
                 ?>
                   Total Sales
                 </h4>
-                <span class='hind-font caption-12 c-dashboardInfo__count'><?php echo $data5["total_sales"] ?></span>
+                <span class='hind-font caption-12 c-dashboardInfo__count'><?php echo $data5["total_sales"] != 0 ? $data5["total_sales"] : "0"; ?></span>
               </div>
             </div>
 
@@ -87,7 +88,7 @@ require_once("../backend/config/config.php");
                   class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"
                 >
                 <?php
-                  $query7 = "SELECT COUNT(item_id) AS total_pending FROM tbl_cart WHERE status_id = 1";
+                  $query7 = "SELECT COUNT(item_id) AS total_pending FROM tbl_cart WHERE status_id = 3";
                   $stmt7 = $conn->prepare($query7);
                   $stmt7->execute();
                   $result7 = $stmt7->get_result();
@@ -95,7 +96,7 @@ require_once("../backend/config/config.php");
                 ?>
                   Pending Orders
                 </h4>
-                <span class='hind-font caption-12 c-dashboardInfo__count'><?php echo $data7["total_pending"] ?></span>
+                <span class='hind-font caption-12 c-dashboardInfo__count'><?php echo $data7["total_pending"] != 0 ? $data7["total_pending"] : "0"; ?></span>
               </div>
             </div>
 
@@ -147,7 +148,7 @@ require_once("../backend/config/config.php");
                           $countOfCashier = $count3['cashierRoleCount'];
                           ?>
                         <canvas id="employeePerRoleCount"
-                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                            style="min-height: 400px; height: 400px; max-height: 400px; max-width: 100%;">
                         </canvas>
                     </div>
 
@@ -190,156 +191,128 @@ require_once("../backend/config/config.php");
               </div>
               <div class="row">
                 <!-- Barangay Clearance Start of graph -->
+                <!-- Barangay Clearance Start of graph -->
                 <div class="col-md m-1">
-                  <div class="card">
-                    <div class="card-header bg-primary pt-3">
-                      <div class="text-center">
-                          <p class="card-title text-light">Claimed Orders</p>
-                      </div>
-                    </div>
-                    <div class="card-header text-center d-flex justify-content-center flex-wrap" style="gap: 10px;">
-                      <div class="d-flex flex-column">
-                          <p>Start date</p>
-                          <input
-                              onchange="filterData(reqbcstartdate, reqbcenddate, chartBcRequest, serviceRequestBcCount, monthlyBcHold, configRequestBc, dataBcReq)"
-                              type="month" id="reqbcstartdate">
-                      </div>
-                      <div class="d-flex flex-column">
-                          <p>End date</p>
-                          <input
-                              onchange="filterData(reqbcstartdate, reqbcenddate, chartBcRequest, serviceRequestBcCount, monthlyBcHold, configRequestBc, dataBcReq)"
-                              type="month" id="reqbcenddate">
-                      </div>
-                    </div>
-                    <div class="card-body">
-                        <?php
-                        date_default_timezone_set('Asia/Manila');
-                        $monthlyBcRequest = mysqli_query($conn, "SELECT COUNT(*) AS serviceRequestBcCount, DATE_FORMAT(order_date, '%M %Y') AS Dates FROM tbl_cart WHERE status_id = 2 AND (order_date IS NOT NULL AND order_date != '0000-00-00') GROUP BY DATE_FORMAT(order_date, '%Y-%m')");
-                        foreach($monthlyBcRequest as $data)
-                        {
-                            $monthlyBc[] = $data['Dates'];
-                            $serviceRequestBcCount[] = $data['serviceRequestBcCount'];
-                        }
-                        ?>
-                        <div>
-                          <canvas id="chartBcRequest"></canvas>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Barangay Clerance End of graph -->
-                <!-- Certificate of Indigency Start of graph -->
-                <div class="col-md m-1">
-                  <div class="card">
-                    <div class="card-header bg-primary pt-3">
-                      <div class="text-center">
-                          <p class="card-title text-light">Pending Orders</p>
-                      </div>
-                    </div>
-                    <div class="card-header text-center d-flex justify-content-center flex-wrap" style="gap: 10px;">
-                      <div class="d-flex flex-column">
-                          <p>Start date</p>
-                          <input
-                              onchange="filterData(reqcoistartdate, reqcoienddate, chartCoiRequest, serviceRequestCoiCount, monthlyCoiHold, configRequestCoi, dataCoiReq)"
-                              type="month" id="reqcoistartdate">
-                      </div>
-                      <div class="d-flex flex-column">
-                          <p>End date</p>
-                          <input
-                              onchange="filterData(reqcoistartdate, reqcoienddate, chartCoiRequest, serviceRequestCoiCount, monthlyCoiHold, configRequestCoi, dataCoiReq)"
-                              type="month" id="reqcoienddate">
-                      </div>
-                    </div>
-                    <div class="card-body">
-                        <?php
-                        date_default_timezone_set('Asia/Manila');
-                        $monthlyCoiRequest = mysqli_query($conn, "SELECT COUNT(*) AS serviceRequestCoiCount, DATE_FORMAT(order_date, '%M %Y') AS Dates FROM tbl_cart WHERE status_id = 4 AND (order_date IS NOT NULL AND order_date != '0000-00-00') GROUP BY DATE_FORMAT(order_date, '%Y-%m')");
-                        foreach($monthlyCoiRequest as $data)
-                        {
-                            $monthlyCoi[] = $data['Dates'];
-                            $serviceRequestCoiCount[] = $data['serviceRequestCoiCount'];
-                        }
-                        ?>
-                        <div>
-                          <canvas id="chartCoiRequest"></canvas>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Certificate of Indigency End of graph -->
+    <div class="card">
+        <div class="card-header bg-primary pt-3">
+            <div class="text-center">
+                <p class="card-title text-light">Claimed Orders</p>
             </div>
-          </div>
-        </main>
-      </div>
+        </div>
+        <div class="card-header text-center d-flex justify-content-center flex-wrap" style="gap: 10px;">
+            <div class="d-flex flex-column">
+                <p>Start date</p>
+                <input onchange="filterData(reqbcstartdate, reqbcenddate, chartBcRequest, serviceRequestBcCount, monthlyBcHold, configRequestBc, dataBcReq)" type="month" id="reqbcstartdate">
+            </div>
+            <div class="d-flex flex-column">
+                <p>End date</p>
+                <input onchange="filterData(reqbcstartdate, reqbcenddate, chartBcRequest, serviceRequestBcCount, monthlyBcHold, configRequestBc, dataBcReq)" type="month" id="reqbcenddate">
+            </div>
+        </div>
+        <div class="card-body">
+            <?php
+            date_default_timezone_set('Asia/Manila');
+            $monthlyBc = [];
+            $serviceRequestBcCount = [];
+            $monthlyBcRequest = mysqli_query($conn, "SELECT COUNT(*) AS serviceRequestBcCount, DATE_FORMAT(order_date, '%M %Y') AS Dates FROM tbl_cart WHERE status_id = 2 AND (order_date IS NOT NULL AND order_date != '0000-00-00') GROUP BY DATE_FORMAT(order_date, '%Y-%m')");
+            foreach ($monthlyBcRequest as $data) {
+                $monthlyBc[] = $data['Dates'];
+                $serviceRequestBcCount[] = $data['serviceRequestBcCount'];
+            }
+            ?>
+            <div>
+                <canvas id="chartBcRequest"></canvas>
+            </div>
+        </div>
     </div>
-    <script
-      src="../scripts/bootstrap.bundle.min.js"
-    ></script>
-    <script src="../scripts/jquery.js"></script>
-    <script src="../scripts/toggle.js"></script>
-    <!-- ChartJS -->
-    <script src="../scripts/Chart.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
+</div>
+<!-- Barangay Clearance End of graph -->
+<!-- Certificate of Indigency Start of graph -->
+<div class="col-md m-1">
+    <div class="card">
+        <div class="card-header bg-primary pt-3">
+            <div class="text-center">
+                <p class="card-title text-light">Pending Orders</p>
+            </div>
+        </div>
+        <div class="card-header text-center d-flex justify-content-center flex-wrap" style="gap: 10px;">
+            <div class="d-flex flex-column">
+                <p>Start date</p>
+                <input onchange="filterData(reqcoistartdate, reqcoienddate, chartCoiRequest, serviceRequestCoiCount, monthlyCoiHold, configRequestCoi, dataCoiReq)" type="month" id="reqcoistartdate">
+            </div>
+            <div class="d-flex flex-column">
+                <p>End date</p>
+                <input onchange="filterData(reqcoistartdate, reqcoienddate, chartCoiRequest, serviceRequestCoiCount, monthlyCoiHold, configRequestCoi, dataCoiReq)" type="month" id="reqcoienddate">
+            </div>
+        </div>
+        <div class="card-body">
+            <?php
+            $monthlyCoi = [];
+            $serviceRequestCoiCount = [];
+            $monthlyCoiRequest = mysqli_query($conn, "SELECT COUNT(*) AS serviceRequestCoiCount, DATE_FORMAT(order_date, '%M %Y') AS Dates FROM tbl_cart WHERE status_id = 1 AND (order_date IS NOT NULL AND order_date != '0000-00-00') GROUP BY DATE_FORMAT(order_date, '%Y-%m')");
+            foreach ($monthlyCoiRequest as $data) {
+                $monthlyCoi[] = $data['Dates'];
+                $serviceRequestCoiCount[] = $data['serviceRequestCoiCount'];
+            }
+            ?>
+            <div>
+                <canvas id="chartCoiRequest"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../scripts/bootstrap.bundle.min.js"></script>
+<script src="../scripts/jquery.js"></script>
+<script src="../scripts/toggle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
     const full_name = document.getElementById('full_name');
-    const acc_data = JSON.parse(localStorage.getItem('adminDetails'))
+    const acc_data = JSON.parse(localStorage.getItem('adminDetails'));
     full_name.innerText = 'Admin, ' + acc_data.full_name;
-  </script>      
-  <script>
-  // Note: Barangay Clearance Request Variables
-  const monthlyBc = <?php echo json_encode($monthlyBc);?>;
-  const serviceRequestBcCount = <?php echo json_encode($serviceRequestBcCount);?>;
-  const monthlyBcHold = [...monthlyBc];
-  const serviceRequestBcCountHold = [...serviceRequestBcCount];
-  // Note: Certificate of Indigency Request Variables
-  const monthlyCoi = <?php echo json_encode($monthlyCoi);?>;
-  const serviceRequestCoiCount = <?php echo json_encode($serviceRequestCoiCount);?>;
-  const monthlyCoiHold = [...monthlyCoi];
-  const serviceRequestCoiCountHold = [...serviceRequestCoiCount];
+</script>
 
-  // Note: Request Maps
-  const dateMaps = new Map([
-        [1, 'January'],
-        [2, 'February'],
-        [3, 'March'],
-        [4, 'April'],
-        [5, 'May'],
-        [6, 'June'],
-        [7, 'July'],
-        [8, 'August'],
-        [9, 'September'],
-        [10, 'October'],
-        [11, 'November'],
-        [12, 'December']
-  ]);
+<script>
+    // Note: Barangay Clearance Request Variables
+    const monthlyBc = <?php echo json_encode($monthlyBc); ?>;
+    const serviceRequestBcCount = <?php echo json_encode($serviceRequestBcCount); ?>;
+    const monthlyBcHold = [...monthlyBc];
+    const serviceRequestBcCountHold = [...serviceRequestBcCount];
 
-  // Note: Barangay Clearance Request Data
-  const dataBcReq = {
+    // Note: Certificate of Indigency Request Variables
+    const monthlyCoi = <?php echo json_encode($monthlyCoi); ?>;
+    const serviceRequestCoiCount = <?php echo json_encode($serviceRequestCoiCount); ?>;
+    const monthlyCoiHold = [...monthlyCoi];
+    const serviceRequestCoiCountHold = [...serviceRequestCoiCount];
+
+    // Note: Request Maps
+    const dateMaps = new Map([
+        [1, 'January'], [2, 'February'], [3, 'March'], [4, 'April'], [5, 'May'],
+        [6, 'June'], [7, 'July'], [8, 'August'], [9, 'September'], [10, 'October'],
+        [11, 'November'], [12, 'December']
+    ]);
+
+    // Note: Barangay Clearance Request Data
+    const dataBcReq = {
         labels: monthlyBc,
         datasets: [{
             label: 'Request Count Monthly',
             data: serviceRequestBcCount,
             backgroundColor: [
-                'rgba(255, 26, 104, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 26, 104, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)',
                 'rgba(0, 0, 0, 0.2)'
             ],
             borderColor: [
-                'rgba(255, 26, 104, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
+                'rgba(255, 26, 104, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)',
                 'rgba(0, 0, 0, 1)'
             ],
             borderWidth: 1
         }]
     };
+
     // Note: Certificate of Indigency Request Data
     const dataCoiReq = {
         labels: monthlyCoi,
@@ -347,76 +320,14 @@ require_once("../backend/config/config.php");
             label: 'Request Count Monthly',
             data: serviceRequestCoiCount,
             backgroundColor: [
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-              'rgba(0, 0, 0, 0.2)',
-              'rgba(255, 26, 104, 0.2)'
+                'rgba(255, 26, 104, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)',
+                'rgba(0, 0, 0, 0.2)'
             ],
             borderColor: [
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-              'rgba(0, 0, 0, 1)',
-              'rgba(255, 26, 104, 1)'
-            ],
-            borderWidth: 1
-        }]
-    };
-    // Note: Barangay Id Request Data
-    const dataBiReq = {
-        labels: monthlyBi,
-        datasets: [{
-            label: 'Request Count Monthly',
-            data: serviceRequestBiCount,
-            backgroundColor: [
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-              'rgba(0, 0, 0, 0.2)',
-              'rgba(255, 26, 104, 0.2)',
-              'rgba(54, 162, 235, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-              'rgba(0, 0, 0, 1)',
-              'rgba(255, 26, 104, 1)',
-              'rgba(54, 162, 235, 1)'
-            ],
-            borderWidth: 1
-        }]
-    };
-    // Note: Business Permit Request Data
-    const dataBpReq = {
-        labels: monthlyBp,
-        datasets: [{
-            label: 'Request Count Monthly',
-            data: serviceRequestBpCount,
-            backgroundColor: [
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-              'rgba(0, 0, 0, 0.2)',
-              'rgba(255, 26, 104, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)'
-            ],
-            borderColor: [
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-              'rgba(0, 0, 0, 1)',
-              'rgba(255, 26, 104, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)'
+                'rgba(255, 26, 104, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)',
+                'rgba(0, 0, 0, 1)'
             ],
             borderWidth: 1
         }]
@@ -427,53 +338,9 @@ require_once("../backend/config/config.php");
         type: 'bar',
         data: dataBcReq,
         options: {
-            scale: {
-                ticks: {
-                    precision: 0
-                },
+            scales: {
                 y: {
-                    suggestedMin: 0,
-                    suggestedMax: 30
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    };
-    // Note: Certificate of Indigency Request Config
-    const configRequestCoi = {
-        type: 'bar',
-        data: dataCoiReq,
-        options: {
-            scale: {
-                ticks: {
-                    precision: 0
-                },
-                y: {
-                    suggestedMin: 0,
-                    suggestedMax: 30
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    };
-    // Note: Barangay Id Request Config
-    const configRequestBi = {
-        type: 'bar',
-        data: dataBiReq,
-        options: {
-            scale: {
-                ticks: {
-                    precision: 0
-                },
-                y: {
+                    beginAtZero: true,
                     suggestedMin: 0,
                     suggestedMax: 30
                 }
@@ -486,16 +353,14 @@ require_once("../backend/config/config.php");
         }
     };
 
-    // Note: Business Permit Request Config
-    const configRequestBp = {
+    // Note: Certificate of Indigency Request Config
+    const configRequestCoi = {
         type: 'bar',
-        data: dataBpReq,
+        data: dataCoiReq,
         options: {
-            scale: {
-                ticks: {
-                    precision: 0
-                },
+            scales: {
                 y: {
+                    beginAtZero: true,
                     suggestedMin: 0,
                     suggestedMax: 30
                 }
@@ -520,52 +385,22 @@ require_once("../backend/config/config.php");
         configRequestCoi
     );
 
-    // Note: Barangay Id Request Chart
-    const chartBiRequest = new Chart(
-        document.getElementById('chartBiRequest'),
-        configRequestBi
-    );
-
-    // Note: Barangay Id Request Chart
-    const chartBpRequest = new Chart(
-        document.getElementById('chartBpRequest'),
-        configRequestBp
-    );
-
     // Note: Request Filtering
     function filterData(start, end, chart, datapoint2, month2, config, dataConfig) {
-        let dateArrStart = start.value.split('-'); //array 1: Year - 2: Month
-        let dateArrEnd = end.value.split('-');
+        const startDateArr = start.value.split('-');
+        const endDateArr = end.value.split('-');
 
-        if (dateArrEnd != '') {
-            // get index in array
-            const indexstartdate = month2.indexOf(`${dateMaps.get(Number(dateArrStart[1]))} ${dateArrStart[0]}`);
-            const indexenddate = month2.indexOf(`${dateMaps.get(Number(dateArrEnd[1]))} ${dateArrEnd[0]}`);
+        if (endDateArr.length) {
+            const startIndex = month2.indexOf(`${dateMaps.get(Number(startDateArr[1]))} ${startDateArr[0]}`);
+            const endIndex = month2.indexOf(`${dateMaps.get(Number(endDateArr[1]))} ${endDateArr[0]}`);
 
-            const monthPlaceHolderLabel = [];
-
-            // NOTE: Date Label
-            for (let x = Number(dateArrStart[1]); x <= Number(dateArrEnd[1]); x++) {
-                monthPlaceHolderLabel.push(`${dateMaps.get(x)} ${dateArrStart[0]}`);
+            const filteredLabels = [];
+            for (let x = Number(startDateArr[1]); x <= Number(endDateArr[1]); x++) {
+                filteredLabels.push(`${dateMaps.get(x)} ${startDateArr[0]}`);
             }
 
-            const filterDateLabel = monthPlaceHolderLabel.filter((val, i) => {
-                for (const valMonth2 of month2) {
-                    if (valMonth2 === val) {
-                        if (i >= 1) {
-                            return val;
-                        } else {
-                            return val;
-                        }
-                    }
-                }
-            })
-
-            chart.config.data.labels = filterDateLabel;
-            chart.update();
-
-            const filterDatePoints = datapoint2.slice(month2.indexOf(filterDateLabel[0]));
-            chart.config.data.datasets[0].data = filterDatePoints;
+            chart.config.data.labels = filteredLabels.filter(val => month2.includes(val));
+            chart.config.data.datasets[0].data = datapoint2.slice(startIndex, endIndex + 1);
             chart.update();
         }
     }
@@ -574,30 +409,26 @@ require_once("../backend/config/config.php");
 <!-- Employee per role counter -->
 <script>
     $(function() {
-        var pieChartCanvas = $('#employeePerRoleCount').get(0).getContext('2d')
-        var donutData = {
+        const pieChartCanvas = $('#employeePerRoleCount').get(0).getContext('2d');
+        const donutData = {
             labels: ['User', 'Admin', 'Cashier'],
             datasets: [{
-                data: [<?php echo $countOfSecretary;?>, <?php echo $countOfBrgyCapt;?>,
-                    <?php echo $countOfCashier;?>
-                ],
-                backgroundColor: ['#00d4ff', '#fd1d1d', '#eeaeca'],
+                data: [<?php echo $countOfSecretary; ?>, <?php echo $countOfBrgyCapt; ?>, <?php echo $countOfCashier; ?>],
+                backgroundColor: ['#00d4ff', '#fd1d1d', '#eeaeca']
             }]
-        }
-        var pieData = donutData;
-        var pieOptions = {
+        };
+        const pieOptions = {
             maintainAspectRatio: false,
-            responsive: true,
-        }
-        //Create pie or douhnut chart
-        // You can switch between pie and douhnut using the method below.
+            responsive: true
+        };
         new Chart(pieChartCanvas, {
             type: 'pie',
-            data: pieData,
+            data: donutData,
             options: pieOptions
-        })
-    })
-    </script>
+        });
+    });
+</script>
+
 
   </body>
 </html>

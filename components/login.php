@@ -35,7 +35,7 @@
                 </div>
                 <div class="error error-txt">Password can't be blank</div>
             </div>
-            <div class="pass-txt"><a href="#">Forgot password?</a></div>
+            <div class="pass-txt"><a href="./forgotPass.php">Forgot password?</a></div>
             <input type="submit" id="submit" value="Login">
             </form>
             <div class="sign-txt">Not yet member? <a href="./signup.php">Signup now</a></div>

@@ -34,9 +34,10 @@
         </div>
     </div>
     <?php 
-        $query = "SELECT tc.prod_qnty, ts.status_name, tp.* FROM `tbl_cart` tc 
+        $query = "SELECT tc.prod_qnty, tc.branch_id, tb.branch_name, ts.status_name, tp.* FROM `tbl_cart` tc
         INNER JOIN tbl_products tp ON tc.prod_id = tp.prod_id 
         INNER JOIN tbl_status ts ON tc.status_id = ts.status_id
+        INNER JOIN tbl_branch tb ON tb.branch_id = tc.branch_id
         WHERE tc.account_id = ? AND (tc.status_id = 3 OR tc.status_id = 4);";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $current_user);
@@ -58,6 +59,7 @@
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Subtotal</th>
+                                <th>Branch</th>
                                 <th>Status</th>
                                 <th></th>
                             </thead>
@@ -95,8 +97,9 @@
                                         </div>
                                     </td>
                                     <td class="total-price-js">₱<span class="subtotal-js"><?php echo $subtotal; ?></span>.00</td>
+                                    <td><?php echo $data['branch_name']; ?></td>
                                     <td><?php echo $data['status_name']; ?></td>
-                                    <td class="delete-js" id="<?php echo $data["prod_id"]; ?>"><i class="fa-solid fa-x"></i></td>
+                                    <td class="delete-js" id="<?php echo $data["prod_id"]; ?>" data-branch-id="<?php echo $data["branch_id"]; ?>"><i class="fa-solid fa-x"></i></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>
@@ -118,9 +121,10 @@
 
 
     <?php 
-        $query1 = "SELECT tc.prod_qnty, ts.status_name, tp.* FROM `tbl_cart` tc 
+        $query1 = "SELECT tc.prod_qnty, tc.branch_id, tb.branch_name, ts.status_name, tp.* FROM `tbl_cart` tc
         INNER JOIN tbl_products tp ON tc.prod_id = tp.prod_id 
         INNER JOIN tbl_status ts ON tc.status_id = ts.status_id
+        INNER JOIN tbl_branch tb ON tb.branch_id = tc.branch_id
         WHERE tc.account_id = ? AND tc.status_id = 2;";
         $stmt1 = $conn->prepare($query1);
         $stmt1->bind_param("i", $current_user);
@@ -141,6 +145,7 @@
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Subtotal</th>
+                                <th>Branch</th>
                                 <th>Status</th>
                                 <th></th>
                             </thead>
@@ -178,6 +183,7 @@
                                         </div>
                                     </td>
                                     <td class="total-price-js">₱<span class="subtotal-js"><?php echo $subtotal; ?></span>.00</td>
+                                    <td><?php echo $data['branch_name']; ?></td>
                                     <td><?php echo $data['status_name']; ?></td>
                                     <td></td>
                                 </tr>

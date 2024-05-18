@@ -33,7 +33,7 @@
                 </div>
                 <div class="container">
                     <?php
-                        $query = "SELECT pr.prod_id, pr.prod_name, pr.prod_price, pr.prod_type,
+                        $query = "SELECT pr.prod_id, pr.prod_name, pr.prod_stocks, pr.prod_price, pr.prod_type,
                         pr.prod_img, pt.prod_type_name FROM tbl_products pr
                         INNER JOIN tbl_product_type pt ON pr.prod_type = pt.prod_type_id;";
                         $stmt = $conn->prepare($query);
@@ -41,7 +41,7 @@
                         $result = $stmt->get_result();
                         while($data = $result->fetch_assoc())
                         {
-                            if($data['prod_type'] == 4){
+                            if($data['prod_type'] == 4 && ($data['prod_stocks'] >= 1)){
                     ?>
                     <div class="con-item" id="<?php echo $data['prod_id']; ?>">
                         <div class="img-con">
@@ -56,6 +56,15 @@
                             <div class="input-div">
                                 <span>Quantity:</span>
                                 <input type="number" class="qnty" min="1" value="1">
+                            </div>
+                        </div>
+                        <div class="flex-con-det">
+                            <div class="con-details">
+                                <div class="name">Pick up Branch</div>
+                                <select name="branch" class="branch">
+                                    <option value="1">Bagbag</option>
+                                    <option value="2">Sauyo</option>
+                                </select>
                             </div>
                         </div>
                         <div class="div-button">

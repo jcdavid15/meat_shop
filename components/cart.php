@@ -34,7 +34,10 @@
         </div>
     </div>
     <?php 
-        $query = "SELECT tc.prod_qnty, tp.* FROM `tbl_cart` tc INNER JOIN tbl_products tp ON tc.prod_id = tp.prod_id WHERE tc.account_id = ? AND tc.status_id = 1;";
+        $query = "SELECT tc.prod_qnty, tc.branch_id, tb.branch_name, tp.* FROM `tbl_cart` tc 
+        INNER JOIN tbl_products tp ON tc.prod_id = tp.prod_id 
+        INNER JOIN tbl_branch tb ON tb.branch_id = tc.branch_id
+        WHERE tc.account_id = ? AND tc.status_id = 1;";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $current_user);
         $stmt->execute();
@@ -52,6 +55,7 @@
                                 <th class='th-1'></th>
                                 <th>Product</th>
                                 <th>Price</th>
+                                <th>Branch</th>
                                 <th>Quantity</th>
                                 <th>Subtotal</th>
                                 <th></th>
@@ -81,16 +85,17 @@
                                     <td class="img-con"><img src="../assets/<?php echo $path; ?>/<?php echo $data["prod_img"]; ?>" alt=""></td>
                                     <td><?php echo $data["prod_name"]; ?></td>
                                     <td>₱<?php echo $data["prod_price"]; ?>.00</td>
+                                    <td><?php echo $data["branch_name"]; ?></td>
                                     <td>
                                         <div class="qnty-td">
-                                            <div class="minus-btn">-</div>
+                                            <div class="minus-btn" data-branch-id="<?php echo $data["branch_id"]; ?>">-</div>
                                         <!-- <input type="text" class="qnty-input" min="1" value="1"> -->
                                             <div class="qnty-js"><?php echo $data["prod_qnty"]; ?></div>
-                                            <div class="add-btn">+</div>
+                                            <div class="add-btn" data-branch-id="<?php echo $data["branch_id"]; ?>">+</div>
                                         </div>
                                     </td>
                                     <td class="total-price-js">₱<span class="subtotal-js"><?php echo $subtotal; ?></span>.00</td>
-                                    <td class="delete-js" id="<?php echo $data["prod_id"]; ?>"><i class="fa-solid fa-x"></i></td>
+                                    <td class="delete-js" id="<?php echo $data["prod_id"]; ?>" data-branch-id="<?php echo $data["branch_id"]; ?>"><i class="fa-solid fa-x"></i></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 10, 2024 at 06:00 PM
+-- Generation Time: May 18, 2024 at 06:06 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -32,17 +32,24 @@ CREATE TABLE `tbl_account` (
   `ac_username` varchar(255) NOT NULL,
   `ac_email` varchar(255) NOT NULL,
   `ac_password` varchar(255) NOT NULL,
-  `role_id` int(11) NOT NULL
+  `role_id` int(11) NOT NULL,
+  `account_status_id` int(11) NOT NULL DEFAULT 1,
+  `branch_id` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_account`
 --
 
-INSERT INTO `tbl_account` (`account_id`, `ac_username`, `ac_email`, `ac_password`, `role_id`) VALUES
-(1, 'jcdavid', 'jcdavid@gmail.com', '$2y$10$RODMoKIV07P52KXrI.nKHuOomcEOTiHvrlZXGH1hXVeZV.zfS5eWG', 1),
-(2, 'golden', 'golden@gmail.com', '$2y$10$92lKJT/9e9JSzuGmEZ1N8.cPldvOQexUuU2k97F5GykS0rP4l5tqq', 1),
-(3, 'john erick', 'johnerick@gmail.com', '$2y$10$OZIIZnjXfRrVNX5G389R3.emX0dGaTb35PIQAbOqKhEB6qYWnoAuC', 2);
+INSERT INTO `tbl_account` (`account_id`, `ac_username`, `ac_email`, `ac_password`, `role_id`, `account_status_id`, `branch_id`) VALUES
+(1, 'jcdavid', 'jcdavid@gmail.com', '$2y$10$RODMoKIV07P52KXrI.nKHuOomcEOTiHvrlZXGH1hXVeZV.zfS5eWG', 1, 1, 1),
+(2, 'golden', 'golden@gmail.com', '$2y$10$92lKJT/9e9JSzuGmEZ1N8.cPldvOQexUuU2k97F5GykS0rP4l5tqq', 1, 1, 1),
+(3, 'john erick', 'johnerick@gmail.com', '$2y$10$OZIIZnjXfRrVNX5G389R3.emX0dGaTb35PIQAbOqKhEB6qYWnoAuC', 2, 1, 1),
+(4, 'lugo', 'lugo@gmail.com', '$2y$10$m5gg4RhBizZnqOJXR6IFIemRMw/0bex4eY4mxCNpgys2aQDRr.auq', 2, 1, 1),
+(6, 'admin', 'admin@gmail.com', '$2y$10$t3.cWIceqWE/cDo9lNYXAuK2fSFiRplX6QHlbuTR8TlGJU1cRtkA6', 2, 1, 1),
+(7, 'juan', 'cashier@gmail.com', '$2y$10$oxj3kjSVZEBHBEFS5EkT8OgwTkRezxKytLTgdov6Vs8qhCmOPPe9K', 3, 1, 2),
+(8, 'jhyra', 'cashier2@gmail.com', '$2y$10$kxW2vsZVDHzuZg.oHujg7OQUWUrr77JZ9tDMhY1GYojPNliEi3cnC', 3, 1, 1),
+(9, 'lugs', 'lugs@gmail.com', '$2y$10$Sgyb8CATbHXkScwxoZmHtOMypd5SCn/fB1jgZ/elykNOe02fN/X0m', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -67,7 +74,89 @@ CREATE TABLE `tbl_account_details` (
 INSERT INTO `tbl_account_details` (`account_id`, `first_name`, `middle_name`, `last_name`, `contact`, `gender`, `address`) VALUES
 (1, 'Jc', 'Domingo', 'David', '09565535401', 'Male', 'Montecillo subd'),
 (2, 'Golden', '', 'Miral', '09565535401', 'Male', 'Bayan Glori'),
-(3, 'John Erick', '', 'Llanita', '09565535401', 'Male', 'Quezon City');
+(3, 'John Erick', '', 'Llanita', '09565535401', 'Male', 'Quezon City'),
+(4, 'Christian', '', 'Lugo', '09512847442', 'Male', 'Bayan Glori'),
+(6, 'Jc', '', 'David', '09565535401', 'Male', 'Bayan Glori'),
+(7, 'Juan', '', 'David', '09565535401', 'Male', 'Cielito Caloocan'),
+(8, 'jhy', '', 'mariano', '09512847442', 'Female', 'Bayan Glori'),
+(9, 'Christian', '', 'Lugo', '09565535401', 'Male', 'Bayan Glori');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_account_status`
+--
+
+CREATE TABLE `tbl_account_status` (
+  `account_status_id` int(11) NOT NULL,
+  `account_status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_account_status`
+--
+
+INSERT INTO `tbl_account_status` (`account_status_id`, `account_status`) VALUES
+(1, 'Active'),
+(2, 'Deactivated');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_audit_log`
+--
+
+CREATE TABLE `tbl_audit_log` (
+  `log_user_id` int(11) DEFAULT NULL,
+  `log_username` varchar(50) DEFAULT NULL,
+  `log_user_type` varchar(50) DEFAULT NULL,
+  `log_date` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_audit_log`
+--
+
+INSERT INTO `tbl_audit_log` (`log_user_id`, `log_username`, `log_user_type`, `log_date`) VALUES
+(9, 'lugs', '1', '2024-05-18 03:55:42'),
+(7, 'juan', '3', '2024-05-18 03:55:57'),
+(9, 'lugs', '1', '2024-05-18 03:56:14'),
+(7, 'juan', '3', '2024-05-18 03:56:31'),
+(9, 'lugs', '1', '2024-05-18 04:04:01'),
+(3, 'john erick', '2', '2024-05-18 04:04:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_audit_trail`
+--
+
+CREATE TABLE `tbl_audit_trail` (
+  `trail_user_id` int(11) DEFAULT NULL,
+  `trail_username` varchar(50) DEFAULT NULL,
+  `trail_activity` varchar(50) DEFAULT NULL,
+  `trail_user_type` varchar(50) DEFAULT NULL,
+  `trail_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_branch`
+--
+
+CREATE TABLE `tbl_branch` (
+  `branch_id` int(11) NOT NULL,
+  `branch_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_branch`
+--
+
+INSERT INTO `tbl_branch` (`branch_id`, `branch_name`) VALUES
+(1, 'Bagbag'),
+(2, 'Sauyo');
 
 -- --------------------------------------------------------
 
@@ -79,8 +168,9 @@ CREATE TABLE `tbl_cart` (
   `item_id` int(11) NOT NULL,
   `prod_id` int(11) NOT NULL,
   `prod_qnty` int(11) NOT NULL,
-  `order_date` date NOT NULL,
+  `order_date` date DEFAULT NULL,
   `status_id` int(11) NOT NULL DEFAULT 1,
+  `branch_id` int(11) NOT NULL,
   `account_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -88,12 +178,9 @@ CREATE TABLE `tbl_cart` (
 -- Dumping data for table `tbl_cart`
 --
 
-INSERT INTO `tbl_cart` (`item_id`, `prod_id`, `prod_qnty`, `order_date`, `status_id`, `account_id`) VALUES
-(8, 3, 2, '0000-00-00', 1, 1),
-(12, 2, 2, '0000-00-00', 1, 1),
-(13, 5, 2, '2024-04-05', 4, 1),
-(14, 5, 1, '2024-07-05', 2, 1),
-(15, 2, 3, '0000-00-00', 1, 2);
+INSERT INTO `tbl_cart` (`item_id`, `prod_id`, `prod_qnty`, `order_date`, `status_id`, `branch_id`, `account_id`) VALUES
+(20, 2, 1, NULL, 3, 1, 9),
+(21, 2, 2, '2024-05-18', 2, 2, 9);
 
 -- --------------------------------------------------------
 
@@ -116,8 +203,8 @@ CREATE TABLE `tbl_products` (
 
 INSERT INTO `tbl_products` (`prod_id`, `prod_name`, `prod_price`, `prod_type`, `prod_stocks`, `prod_img`) VALUES
 (1, 'Fresh Beef Steak', 370, 1, 50, 'img-1.webp'),
-(2, 'Ground Beef', 360, 1, 50, 'img-2.jpeg'),
-(3, 'Roast Beef', 370, 1, 40, 'img-3.jpeg'),
+(2, 'Ground Beef', 360, 1, 49, 'img-2.jpeg'),
+(3, 'Roast Beef', 370, 1, 50, 'img-3.jpeg'),
 (4, 'Fresh Pork Chops', 390, 2, 50, 'img-1.jpeg'),
 (5, 'Fresh Pork Ribs', 340, 2, 50, 'img-2.jpeg'),
 (6, 'Fresh Bacon', 370, 2, 50, 'img-3.jpeg'),
@@ -220,6 +307,34 @@ INSERT INTO `tbl_status` (`status_id`, `status_name`) VALUES
 (3, 'PROCESS'),
 (4, 'TO CLAIM');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_transactions`
+--
+
+CREATE TABLE `tbl_transactions` (
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(50) NOT NULL,
+  `user_type` varchar(50) NOT NULL,
+  `user_activity` varchar(100) NOT NULL,
+  `activity_date` date NOT NULL,
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_transactions`
+--
+
+INSERT INTO `tbl_transactions` (`user_id`, `user_name`, `user_type`, `user_activity`, `activity_date`, `branch_id`) VALUES
+(7, 'juan', '3', 'Accept item 17', '2024-05-18', 2),
+(7, 'juan', '3', 'Claimed item 17', '2024-05-18', 2),
+(8, 'jhyra', '3', 'Accept item 16', '2024-05-18', 1),
+(8, 'jhyra', '3', 'Claimed item 16', '2024-05-18', 1),
+(7, 'juan', '3', 'Accept item 19', '2024-05-18', 2),
+(7, 'juan', '3', 'Accept item 21', '2024-05-18', 2),
+(7, 'juan', '3', 'Claimed item 21', '2024-05-18', 2);
+
 --
 -- Indexes for dumped tables
 --
@@ -229,6 +344,18 @@ INSERT INTO `tbl_status` (`status_id`, `status_name`) VALUES
 --
 ALTER TABLE `tbl_account`
   ADD PRIMARY KEY (`account_id`);
+
+--
+-- Indexes for table `tbl_account_status`
+--
+ALTER TABLE `tbl_account_status`
+  ADD PRIMARY KEY (`account_status_id`);
+
+--
+-- Indexes for table `tbl_branch`
+--
+ALTER TABLE `tbl_branch`
+  ADD PRIMARY KEY (`branch_id`);
 
 --
 -- Indexes for table `tbl_cart`
@@ -274,13 +401,25 @@ ALTER TABLE `tbl_status`
 -- AUTO_INCREMENT for table `tbl_account`
 --
 ALTER TABLE `tbl_account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `tbl_account_status`
+--
+ALTER TABLE `tbl_account_status`
+  MODIFY `account_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_branch`
+--
+ALTER TABLE `tbl_branch`
+  MODIFY `branch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tbl_products`

@@ -93,6 +93,7 @@ main .center .con .container .con-item .div-button button
     margin-bottom: 12px;
     border-radius: 50px;
     border: none;
+    margin-top: 20px;
 }
 
 main .center .con .container .con-item .div-button button:hover
@@ -133,13 +134,13 @@ main .center .con .header-con .flex-prod div:hover
 }
 
 .flex-con-det{
-    padding: 12px 12px;
+    padding: 0 12px;
 }
 
 .input-div
 {
-    margin-top: 8px;
-    margin-bottom: 16px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .input-div input
@@ -159,6 +160,13 @@ main .center .con .header-con .flex-prod div:hover
     font-size: 12px;
     opacity: 0;
     transition: 0.6s;
+}
+
+select{
+    border: 1px solid lightslategray;
+    border-radius: 4px;
+    background: transparent;
+    padding: 2px 4px;
 }
 
 @media (min-width: 768px) {

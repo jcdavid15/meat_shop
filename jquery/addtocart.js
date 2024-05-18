@@ -1,5 +1,6 @@
 $(document).ready(()=>{
     $(".div-button").on("click", function(){
+        
         const userDetails = JSON.parse(localStorage.getItem("userDetails"));
         if(userDetails){
             const check =  $(this).closest(".con-item").find(".check")
@@ -10,13 +11,14 @@ $(document).ready(()=>{
 
             const prodId = $(this).closest(".con-item").attr("id");
             const qnty = $(this).closest(".con-item").find(".qnty").val();
-
+            const branch = $(this).closest('.con-item').find('.branch').val();
             $.ajax({
                 url: "../backend/user/addcart.php",
                 method: "post",
                 data:{
                     prodId,
-                    qnty
+                    qnty,
+                    branch
                 },
                 success: function(response){
                     console.log("added");

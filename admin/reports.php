@@ -42,7 +42,7 @@ require_once("../backend/config/config.php");
             <!-- Page indicator -->
             <h1 class="mt-4" id="full_name">Admin,</h1>
             <ol class="breadcrumb mb-4">
-              <li class="breadcrumb-item active">Products</li>
+              <li class="breadcrumb-item active">Reports</li>
             </ol>
 
               <div class="card mb-5">
