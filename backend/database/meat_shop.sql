@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 18, 2024 at 06:06 AM
+-- Generation Time: May 18, 2024 at 06:19 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -123,7 +123,17 @@ INSERT INTO `tbl_audit_log` (`log_user_id`, `log_username`, `log_user_type`, `lo
 (9, 'lugs', '1', '2024-05-18 03:56:14'),
 (7, 'juan', '3', '2024-05-18 03:56:31'),
 (9, 'lugs', '1', '2024-05-18 04:04:01'),
-(3, 'john erick', '2', '2024-05-18 04:04:19');
+(3, 'john erick', '2', '2024-05-18 04:04:19'),
+(3, 'john erick', '2', '2024-05-18 04:07:38'),
+(8, 'jhyra', '3', '2024-05-18 04:08:34'),
+(3, 'john erick', '2', '2024-05-18 04:08:49'),
+(9, 'lugs', '1', '2024-05-18 04:09:38'),
+(8, 'jhyra', '3', '2024-05-18 04:10:02'),
+(3, 'john erick', '2', '2024-05-18 04:10:20'),
+(9, 'lugs', '1', '2024-05-18 04:16:01'),
+(3, 'john erick', '2', '2024-05-18 04:16:50'),
+(7, 'juan', '3', '2024-05-18 04:17:03'),
+(3, 'john erick', '2', '2024-05-18 04:17:16');
 
 -- --------------------------------------------------------
 
@@ -179,8 +189,8 @@ CREATE TABLE `tbl_cart` (
 --
 
 INSERT INTO `tbl_cart` (`item_id`, `prod_id`, `prod_qnty`, `order_date`, `status_id`, `branch_id`, `account_id`) VALUES
-(20, 2, 1, NULL, 3, 1, 9),
-(21, 2, 2, '2024-05-18', 2, 2, 9);
+(24, 1, 1, '2024-05-18', 3, 1, 9),
+(25, 1, 2, '2024-05-18', 2, 2, 9);
 
 -- --------------------------------------------------------
 
@@ -202,7 +212,7 @@ CREATE TABLE `tbl_products` (
 --
 
 INSERT INTO `tbl_products` (`prod_id`, `prod_name`, `prod_price`, `prod_type`, `prod_stocks`, `prod_img`) VALUES
-(1, 'Fresh Beef Steak', 370, 1, 50, 'img-1.webp'),
+(1, 'Fresh Beef Steak', 370, 1, 49, 'img-1.webp'),
 (2, 'Ground Beef', 360, 1, 49, 'img-2.jpeg'),
 (3, 'Roast Beef', 370, 1, 50, 'img-3.jpeg'),
 (4, 'Fresh Pork Chops', 390, 2, 50, 'img-1.jpeg'),
@@ -323,19 +333,6 @@ CREATE TABLE `tbl_transactions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_transactions`
---
-
-INSERT INTO `tbl_transactions` (`user_id`, `user_name`, `user_type`, `user_activity`, `activity_date`, `branch_id`) VALUES
-(7, 'juan', '3', 'Accept item 17', '2024-05-18', 2),
-(7, 'juan', '3', 'Claimed item 17', '2024-05-18', 2),
-(8, 'jhyra', '3', 'Accept item 16', '2024-05-18', 1),
-(8, 'jhyra', '3', 'Claimed item 16', '2024-05-18', 1),
-(7, 'juan', '3', 'Accept item 19', '2024-05-18', 2),
-(7, 'juan', '3', 'Accept item 21', '2024-05-18', 2),
-(7, 'juan', '3', 'Claimed item 21', '2024-05-18', 2);
-
---
 -- Indexes for dumped tables
 --
 
@@ -419,7 +416,7 @@ ALTER TABLE `tbl_branch`
 -- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `tbl_products`

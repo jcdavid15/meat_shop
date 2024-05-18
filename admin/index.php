@@ -249,7 +249,7 @@ require_once("../backend/config/config.php");
             <?php
             $monthlyCoi = [];
             $serviceRequestCoiCount = [];
-            $monthlyCoiRequest = mysqli_query($conn, "SELECT COUNT(*) AS serviceRequestCoiCount, DATE_FORMAT(order_date, '%M %Y') AS Dates FROM tbl_cart WHERE status_id = 1 AND (order_date IS NOT NULL AND order_date != '0000-00-00') GROUP BY DATE_FORMAT(order_date, '%Y-%m')");
+            $monthlyCoiRequest = mysqli_query($conn, "SELECT COUNT(*) AS serviceRequestCoiCount, DATE_FORMAT(order_date, '%M %Y') AS Dates FROM tbl_cart WHERE status_id = 3 AND (order_date IS NOT NULL AND order_date != '0000-00-00') GROUP BY DATE_FORMAT(order_date, '%Y-%m')");
             foreach ($monthlyCoiRequest as $data) {
                 $monthlyCoi[] = $data['Dates'];
                 $serviceRequestCoiCount[] = $data['serviceRequestCoiCount'];
@@ -297,7 +297,7 @@ require_once("../backend/config/config.php");
     const dataBcReq = {
         labels: monthlyBc,
         datasets: [{
-            label: 'Request Count Monthly',
+            label: 'Sales Count Monthly',
             data: serviceRequestBcCount,
             backgroundColor: [
                 'rgba(255, 26, 104, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)',
@@ -317,7 +317,7 @@ require_once("../backend/config/config.php");
     const dataCoiReq = {
         labels: monthlyCoi,
         datasets: [{
-            label: 'Request Count Monthly',
+            label: 'Sales Count Monthly',
             data: serviceRequestCoiCount,
             backgroundColor: [
                 'rgba(255, 26, 104, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)',
