@@ -201,7 +201,8 @@ require_once("../backend/config/config.php");
                                 data-bs-target="#residenceAccountDetails<?php echo $data["item_id"] ?>" data-bs-whatever="@getbootstrap">
                                   <i class="fa-solid fa-eye" style="color: #fcfcfc;"></i>
                                 </button>
-                                <button type="button" class="btn btn-success acceptBtn" id="<?php echo $data["item_id"] ?>" data-prod-id="<?php echo $data["prod_id"]; ?>">
+                                <button type="button" class="btn btn-success acceptBtn" id="<?php echo $data["item_id"] ?>" data-prod-id="<?php echo $data["prod_id"]; ?>"
+                                data-prod-qnty="<?php echo $data["prod_qnty"]; ?>">
                                   <i class="fa-solid fa-check"  style="color: #fcfcfc;"></i>
                                 </button>
                             </td>

@@ -16,10 +16,38 @@
 
         if($status_id == 2){
             $prod_id = $_POST["prod_id"];
-            $query3 = "UPDATE tbl_products SET prod_stocks = prod_stocks - 1 WHERE prod_id = ? AND prod_stocks > 0";
-            $stmt3 = $conn->prepare($query3);
-            $stmt3->bind_param("i", $prod_id);
-            $stmt3->execute();
+            $prod_qnty = $_POST["prod_qnty"];
+            
+            $queryCheck = "SELECT prod_stocks FROM tbl_products WHERE prod_id = ?";
+            $stmtCheck = $conn->prepare($queryCheck);
+            $stmtCheck->bind_param("i", $prod_id);
+            $stmtCheck->execute();
+            $resultCheck = $stmtCheck->get_result();
+            
+            if ($resultCheck->num_rows > 0) {
+                $row = $resultCheck->fetch_assoc();
+                $current_stock = $row["prod_stocks"];
+            
+               
+                if ($prod_qnty <= $current_stock) {
+                    // Proceed with the update
+                    $query3 = "UPDATE tbl_products SET prod_stocks = prod_stocks - ? WHERE prod_id = ?";
+                    $stmt3 = $conn->prepare($query3);
+                    $stmt3->bind_param("ii", $prod_qnty, $prod_id);
+                    $stmt3->execute();
+            
+                    if ($stmt3->affected_rows > 0) {
+                        echo "Stock updated successfully.";
+                    } else {
+                        echo "Failed to update stock.";
+                    }
+                } else {
+                    echo "exceeds";
+                    exit();
+                }
+            } else {
+                echo "Error: Product not found.";
+            }
         }
 
         $query2 = "SELECT ac.ac_username, ac.role_id, ac.branch_id, tr.role_name FROM tbl_account ac 

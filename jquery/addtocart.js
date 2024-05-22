@@ -3,11 +3,7 @@ $(document).ready(()=>{
         
         const userDetails = JSON.parse(localStorage.getItem("userDetails"));
         if(userDetails){
-            const check =  $(this).closest(".con-item").find(".check")
-            check.css("opacity", "1");
-            setTimeout(function(){
-                check.css("opacity", "0");
-            },2000)
+            const check =  $(this).closest(".con-item").find(".check");
 
             const prodId = $(this).closest(".con-item").attr("id");
             const qnty = $(this).closest(".con-item").find(".qnty").val();
@@ -21,7 +17,18 @@ $(document).ready(()=>{
                     branch
                 },
                 success: function(response){
-                    console.log("added");
+                    if(response === 'exceeds'){
+                        Swal.fire({
+                            title: "Invalid quantity!",
+                            text: "Not enough stock for the requested quantity.",
+                            icon: "warning"
+                        });
+                    }else{
+                        check.css("opacity", "1");
+                        setTimeout(function(){
+                            check.css("opacity", "0");
+                        },2000)
+                    }
                 },  
                 error: function(){
                     alert("Connection Error");
