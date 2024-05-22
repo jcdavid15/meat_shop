@@ -37,6 +37,7 @@ if (isset($_POST["prodId"]) && isset($_POST["qnty"]) && isset($_POST["branch"]))
                     $stmt2 = $conn->prepare($query2);
                     $stmt2->bind_param("iiii", $updatedQnty, $prod_id, $account_id, $branch_id);
                     $stmt2->execute();
+                    echo "success";
                 } else {
                     echo "exceeds";
                 }
@@ -45,6 +46,7 @@ if (isset($_POST["prodId"]) && isset($_POST["qnty"]) && isset($_POST["branch"]))
                 $stmt2 = $conn->prepare($query2);
                 $stmt2->bind_param("iiii", $prod_id, $prod_qnty, $branch_id, $account_id);
                 $stmt2->execute();
+                echo "success";
             }
         } else {
             echo "exceeds";

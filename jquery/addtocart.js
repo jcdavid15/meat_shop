@@ -23,7 +23,7 @@ $(document).ready(()=>{
                             text: "Not enough stock for the requested quantity.",
                             icon: "warning"
                         });
-                    }else{
+                    }else if(response === 'success'){
                         check.css("opacity", "1");
                         setTimeout(function(){
                             check.css("opacity", "0");

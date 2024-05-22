@@ -15,9 +15,7 @@
 <body>
     <nav>
       <div class="left">
-        <a href="./index.php"><div class="img-con">
-            <img src="./assets/imgs/logo.png" alt="">
-        </div></a>
+        
         <a href=""><div>Home</div></a>
         <a href="./components/aboutUs.php"><div>About Us</div></a>
         <a href="./components/contactUs.php"><div>Contact Us</div></a>
@@ -26,6 +24,13 @@
 
       <div id="bar">
         <i class="fa-solid fa-bars"></i>
+      </div>
+
+      <div class="mid">
+      <a href="./index.php"><div class="img-con">
+            <img src="./assets/imgs/logo.png" alt="">
+        </div></a>
+        <div>Manny And Susse Meatshop</div>
       </div>
 
 
