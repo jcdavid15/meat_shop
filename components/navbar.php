@@ -4,6 +4,10 @@
 ?>
 <nav>
       <div class="left">
+        <a href="../index.php"><div class="img-con">
+            <img src="../assets/imgs/logo.jpeg" alt="">
+        </div>
+        </a>
         <a href="../index.php"><div>Home</div></a>
         <a href="./aboutUs.php"><div>About Us</div></a>
         <a href="./contactUs.php"><div>Contact Us</div></a>
@@ -15,11 +19,9 @@
       </div>
 
       <div class="mid">
-        <a href="../index.php"><div class="img-con">
-            <img src="../assets/imgs/logo.png" alt="">
-        </div>
+        
         <div>Manny And Susse Meatshop</div>
-    </a>
+    
       </div>
 
 

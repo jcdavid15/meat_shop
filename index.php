@@ -15,7 +15,9 @@
 <body>
     <nav>
       <div class="left">
-        
+        <a href="./index.php"><div class="img-con">
+            <img src="./assets/imgs/logo.jpeg" alt="">
+        </div></a>
         <a href=""><div>Home</div></a>
         <a href="./components/aboutUs.php"><div>About Us</div></a>
         <a href="./components/contactUs.php"><div>Contact Us</div></a>
@@ -27,9 +29,7 @@
       </div>
 
       <div class="mid">
-      <a href="./index.php"><div class="img-con">
-            <img src="./assets/imgs/logo.png" alt="">
-        </div></a>
+      
         <div>Manny And Susse Meatshop</div>
       </div>
 
@@ -275,8 +275,10 @@
 
 
     <footer>
+        <div class="center">
         <div class="img-con">
-          <img src="./assets/imgs/logo.png" alt="">
+          <img src="./assets/imgs/logo.jpeg" alt="">
+        </div>
         </div>
         <div class="footer-title">Manny And Susse Meatshop</div>
         <div class="footer-flex">

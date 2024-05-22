@@ -12,7 +12,16 @@ footer .footer-title{
 
 footer .img-con{
     height: 100px;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 20px;
 }
+
+footer .center{
+    display: flex;
+    justify-content: center;
+}
+
 footer .footer-flex div{
     font-size: 14px;
 }
