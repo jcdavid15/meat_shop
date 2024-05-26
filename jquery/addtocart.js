@@ -19,8 +19,8 @@ $(document).ready(()=>{
                 success: function(response){
                     if(response === 'exceeds'){
                         Swal.fire({
-                            title: "Invalid quantity!",
-                            text: "Not enough stock for the requested quantity.",
+                            title: "Item already in cart!",
+                            text: "This item is already in your cart.",
                             icon: "warning"
                         });
                     }else if(response === 'success'){

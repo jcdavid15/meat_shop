@@ -3,7 +3,7 @@ nav {
     padding: 0 20px;
     height: 100px;
     background: white;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: space-between;
     position: fixed;
@@ -11,7 +11,7 @@ nav {
     left: 0;
     right: 0;
     z-index: 1000;
-
+    gap: 20px;
     box-shadow: 1px 2px 5px -1px rgba(0,0,0,0.44);
 -webkit-box-shadow: 1px 2px 5px -1px rgba(0,0,0,0.44);
 -moz-box-shadow: 1px 2px 5px -1px rgba(0,0,0,0.44);
@@ -116,7 +116,7 @@ nav {
 
   @media (min-width: 768px) {
     nav {
-      display: flex;
+      display: flex !important;
       align-items: center;
       justify-content: space-between;
       padding: 0 30px;

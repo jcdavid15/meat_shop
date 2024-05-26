@@ -67,6 +67,7 @@ require_once("../backend/config/config.php");
                         </thead>
                         <tbody>
                           <?php
+                            $qnty_value = "";
                             $query = "SELECT tc.item_id, tc.account_id, tc.prod_id, tc.prod_qnty, 
                             tp.prod_name, tp.prod_price, 
                             CONCAT(ta.first_name, ' ', ta.middle_name, ' ', ta.last_name) as full_name,
@@ -81,13 +82,23 @@ require_once("../backend/config/config.php");
                             $result = $stmt->get_result();
                               while ($data = $result->fetch_assoc()) {
                               $total = $data["prod_qnty"] * $data["prod_price"];
+
+                              if($data["prod_qnty"] == "0.50"){
+                                $qnty_value = "1/2";
+                              }else if($data["prod_qnty"] == "0.25"){
+                                  $qnty_value = "1/4";
+                              }else if($data["prod_qnty"] == "1"){
+                                  $qnty_value = "1Kg";
+                              }else{
+                                  $qnty_value = "2Kg";
+                              }
                           ?>
                           <tr>
                             <td><?php echo $data['item_id'];?></td>
                             <td><?php echo $data['full_name'];?></td>
                             <td><?php echo $data['prod_name'];?></td>
                             <td><?php echo $data['prod_price'];?></td>
-                            <td><?php echo $data['prod_qnty'];?></td>
+                            <td><?php echo $qnty_value;?></td>
                             <td><?php echo $data['branch_name'];?></td>
                             <td>
                                 <button type="button" class="btn btn-primary" id="<?php echo $data["item_id"] ?>"  data-bs-toggle="modal" 

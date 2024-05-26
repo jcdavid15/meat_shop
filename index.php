@@ -39,7 +39,7 @@
           <?php if(!empty($_SESSION["user_id"])){ ?>
               <a href="./components/history.php"><div class="history">History</div></a>
           <?php }?>
-          <a href="./components/cart.php"><i class="fa-regular fa-heart"></i></a>
+          <a href="./components/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
 
           <?php if(!empty($_SESSION["user_id"])){ ?>
               <div class="dropdown">

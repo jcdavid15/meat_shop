@@ -14,7 +14,7 @@ if(isset($_POST["prod_id"]) && isset($_POST["prod_name"])
     $query = "UPDATE tbl_products SET prod_name=?, prod_price=?, prod_stocks=? WHERE prod_id=?";
     $stmt = $conn->prepare($query);
 
-    $stmt->bind_param("ssii", $prod_name, $prod_price, $prod_stocks, $prod_id);
+    $stmt->bind_param("ssdi", $prod_name, $prod_price, $prod_stocks, $prod_id);
     if($stmt->execute()){
         echo "success";
     } else {

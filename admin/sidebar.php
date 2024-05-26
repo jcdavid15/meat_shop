@@ -36,6 +36,9 @@
           <nav class="sb-sidenav-menu-nested nav">
             <a class="nav-link" href="deli.php">Deli Meats</a>
           </nav>
+          <nav class="sb-sidenav-menu-nested nav">
+            <a class="nav-link" href="addprod.php">Add Product</a>
+          </nav>
         </div>
         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEmployeeAccounts" aria-expanded="false" aria-controls="collapseEmployeeAccounts">
           <div class="sb-nav-link-icon">

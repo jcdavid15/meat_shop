@@ -106,7 +106,7 @@ require_once("../backend/config/config.php");
                   class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"
                 >
                 <?php
-                  $query8 = "SELECT COUNT(item_id) AS total_claim FROM tbl_cart WHERE status_id = 4 and branch_id = 2";
+                  $query8 = "SELECT COUNT(item_id) AS total_claim FROM tbl_cart WHERE status_id = 4 and branch_id = 1";
                   $stmt8 = $conn->prepare($query8);
                   $stmt8->execute();
                   $result8 = $stmt8->get_result();

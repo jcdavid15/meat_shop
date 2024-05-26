@@ -1,14 +1,14 @@
 $(document).ready(()=>{
     $(".delete-js").on("click", function(){
-        const prodId = $(this).attr("id");
-        const branchId = $(this).data("branch-id");
-        if(prodId){
+        // const prodId = $(this).attr("id");
+        // const branchId = $(this).data("branch-id");
+        const itemId = $(this).attr("id");
+        if(itemId){
             $.ajax({
                 url:"../backend/user/deleteprod.php",
                 metehod: "get",
                 data:{
-                    prodId,
-                    branchId
+                    itemId
                 },
                 success: function(response){
                     if(response === "deleted"){
@@ -74,7 +74,30 @@ $(document).ready(()=>{
         }
     })
 
-    $('.proceed-btn').on('click', function(){
+    $('.proceed-btn').on('click', function() {
+        const receiptFile = $('#receiptFile')[0].files[0]; // Corrected the ID to match your HTML input
+        const refNumber = $("#refNumber").val();
+    
+        if (!receiptFile) {
+            Swal.fire({
+                title: "Please upload your receipt",
+                text: "",
+                icon: "warning",
+                showConfirmButton: true,
+            });
+            return;
+        }
+    
+        if (!refNumber) {
+            Swal.fire({
+                title: "Please enter your reference number.",
+                text: "",
+                icon: "warning",
+                showConfirmButton: true,
+            });
+            return;
+        }
+    
         Swal.fire({
             title: "Want to pick up now?",
             text: "Your items will prepare right away.",
@@ -83,23 +106,41 @@ $(document).ready(()=>{
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, proceed!"
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
+                let formData = new FormData();
+                formData.append('receipt', receiptFile);
+                formData.append('refNumber', refNumber);
+    
                 $.ajax({
                     url: "../backend/user/proceed.php",
-                    success: function(response){
-                        if(response === 'success'){
+                    method: "post",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        if (response === 'success') {
                             window.location.reload();
-                        }else{
-                            alert("Update error");
+                        } else {
+                            Swal.fire({
+                                title: "Update error",
+                                text: response,
+                                icon: "error",
+                                showConfirmButton: true,
+                            });
                         }
                     },
-                    error: function(){
-                        alert("Connection Error!");
+                    error: function() {
+                        Swal.fire({
+                            title: "Connection Error!",
+                            text: "Could not connect to the server.",
+                            icon: "error",
+                            showConfirmButton: true,
+                        });
                     }
-                })
+                });
             }
-          });
-        
-    })
+        });
+    });
+    
 })

@@ -44,8 +44,106 @@ require_once("../backend/config/config.php");
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item active">Sales</li>
             </ol>
+                  <div class="card mb-5">
+                    <div class="card-header bg-info pt-3">
+                        <div class="text-center">
+                            <p class="card-title text-light">Bagbag Branch Receipt Orders
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <table id="residenceAccounts" class="table table-striped nowrap" style="width:100%">
+                        <thead>
+                          <tr>
+                              <th>Order Id</th>
+                              <th>Customer Name</th>
+                              <th>Reference No.</th>
+                              <th>Uploaded Date</th>
+                              <th>Action</th>
 
-              <div class="card mb-5">
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                            $query = "SELECT tr.*, CONCAT(td.first_name, ' ', td.middle_name, ' ', td.last_name) as full_name,
+                            td.address, td.contact
+                            FROM tbl_receipt tr
+                            INNER JOIN tbl_account_details td ON td.account_id = tr.account_id";
+                            $stmt = $conn->prepare($query);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                              while ($data = $result->fetch_assoc()) {
+                                $dateObject = new DateTime($data["uploaded_date"]);
+                                $formattedDate = $dateObject->format('M j, Y');
+                          ?>
+                          <tr>
+                            <td><?php echo $data['receipt_id'];?></td>
+                            <td><?php echo $data['full_name'];?></td>
+                            <td><?php echo $data["receipt_number"]; ?></td>
+                            <td><?php echo $formattedDate; ?></td>
+                            <td>
+                                <button type="button" class="btn btn-primary" id="<?php echo $data["receipt_id"] ?>"  data-bs-toggle="modal" 
+                                data-bs-target="#receiptDetails<?php echo $data["receipt_id"] ?>" data-bs-whatever="@getbootstrap">
+                                  <i class="fa-solid fa-eye" style="color: #fcfcfc;"></i>
+                                </button>
+                                <!-- <button type="button" class="btn btn-success updateBtn" id="<?php echo $data["receipt_id"] ?>" >
+                                  <i class="fa-solid fa-check"  style="color: #fcfcfc;"></i>
+                                </button> -->
+                            </td>
+                          </tr>
+                            <div class="modal fade" id="receiptDetails<?php echo $data["receipt_id"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Customer Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                  <form method="post">
+                                    <div class="mb-3">
+                                      <label class="col-form-label">Customer Receipt</label>
+                                      <input type="text" class="form-control updatedName" value="<?php echo $data["receipt_number"]; ?>" disabled >
+                                    </div>
+                                    <div class="mb-3">
+                                      <label class="col-form-label">Customer Name</label>
+                                      <input type="text" class="form-control updatedName" value="<?php echo $data["full_name"]; ?>" disabled >
+                                    </div>
+                                    <div class="mb-3">
+                                      <label class="col-form-label">Customer Address</label>
+                                      <input type="text" class="form-control updatedName" value="<?php echo $data["address"]; ?>" disabled >
+                                    </div>
+                                    <div class="mb-3">
+                                      <label class="col-form-label">Customer Contact</label>
+                                      <input type="text" class="form-control updatedName" value="<?php echo $data["contact"]; ?>" disabled >
+                                    </div>
+                                    <div>
+                                      <label class="col-form-label">Image Receipt:</label>
+                                      <div class="img-con" style="width: 250px;">
+                                        <img src="../backend/receipts/<?php echo $data["receipt_img"]; ?>" alt=""
+                                        style="width: 250px;">
+                                      </div>
+                                    </div>
+                                      
+                                    </form>
+                                  </div>
+                                  <div class="modal-footer">
+                                  <!-- <button type="button" class="btn btn-primary btn-accept updateResBtn" value="<?php echo $data["receipt_id"] ?>" >
+                                      Save
+                                  </button> -->
+                                    <button type="button" class="btn btn-secondary " value="<?php echo $data["receipt_id"]; ?>" data-bs-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          <?php
+                            }
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+
+                  <div class="card mb-5">
                     <div class="card-header bg-secondary pt-3">
                         <div class="text-center">
                             <p class="card-title text-light">Bagbag Branch Pending Orders
@@ -67,6 +165,7 @@ require_once("../backend/config/config.php");
                         </thead>
                         <tbody>
                           <?php
+                            $qnty_value = "";
                             $query = "SELECT tc.item_id, tc.account_id, tc.prod_id, tc.prod_qnty, 
                             tp.prod_name, tp.prod_price, 
                             CONCAT(ta.first_name, ' ', ta.middle_name, ' ', ta.last_name) as full_name,
@@ -81,13 +180,23 @@ require_once("../backend/config/config.php");
                             $result = $stmt->get_result();
                               while ($data = $result->fetch_assoc()) {
                               $total = $data["prod_qnty"] * $data["prod_price"];
+
+                              if($data["prod_qnty"] == "0.50"){
+                                $qnty_value = "1/2";
+                              }else if($data["prod_qnty"] == "0.25"){
+                                  $qnty_value = "1/4";
+                              }else if($data["prod_qnty"] == "1"){
+                                  $qnty_value = "1Kg";
+                              }else{
+                                  $qnty_value = "2Kg";
+                              }
                           ?>
                           <tr>
                             <td><?php echo $data['item_id'];?></td>
                             <td><?php echo $data['full_name'];?></td>
                             <td><?php echo $data['prod_name'];?></td>
                             <td><?php echo $data['prod_price'];?></td>
-                            <td><?php echo $data['prod_qnty'];?></td>
+                            <td><?php echo $qnty_value;?></td>
                             <td><?php echo $data['branch_name'];?></td>
                             <td>
                                 <button type="button" class="btn btn-primary" id="<?php echo $data["item_id"] ?>"  data-bs-toggle="modal" 
@@ -174,6 +283,7 @@ require_once("../backend/config/config.php");
                         </thead>
                         <tbody>
                           <?php
+                            $qnty_value = "";
                             $query = "SELECT tc.item_id, tc.account_id, tc.prod_id, tc.prod_qnty, 
                             tp.prod_name, tp.prod_price, 
                             CONCAT(ta.first_name, ' ', ta.middle_name, ' ', ta.last_name) as full_name,
@@ -188,13 +298,23 @@ require_once("../backend/config/config.php");
                             $result = $stmt->get_result();
                               while ($data = $result->fetch_assoc()) {
                               $total = $data["prod_qnty"] * $data["prod_price"];
+
+                              if($data["prod_qnty"] == "0.50"){
+                                $qnty_value = "1/2";
+                              }else if($data["prod_qnty"] == "0.25"){
+                                  $qnty_value = "1/4";
+                              }else if($data["prod_qnty"] == "1"){
+                                  $qnty_value = "1Kg";
+                              }else{
+                                  $qnty_value = "2Kg";
+                              }
                           ?>
                           <tr>
                             <td><?php echo $data['item_id'];?></td>
                             <td><?php echo $data['full_name'];?></td>
                             <td><?php echo $data['prod_name'];?></td>
                             <td><?php echo $data['prod_price'];?></td>
-                            <td><?php echo $data['prod_qnty'];?></td>
+                            <td><?php echo $qnty_value;?></td>
                             <td><?php echo $data['branch_name'];?></td>
                             <td>
                                 <button type="button" class="btn btn-primary" id="<?php echo $data["item_id"] ?>"  data-bs-toggle="modal" 

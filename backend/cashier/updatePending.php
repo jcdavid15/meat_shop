@@ -33,7 +33,7 @@
                     // Proceed with the update
                     $query3 = "UPDATE tbl_products SET prod_stocks = prod_stocks - ? WHERE prod_id = ?";
                     $stmt3 = $conn->prepare($query3);
-                    $stmt3->bind_param("ii", $prod_qnty, $prod_id);
+                    $stmt3->bind_param("di", $prod_qnty, $prod_id);
                     $stmt3->execute();
             
                     if ($stmt3->affected_rows > 0) {

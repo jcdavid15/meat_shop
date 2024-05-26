@@ -23,8 +23,21 @@
         }
     require_once("../backend/config/config.php"); 
     $current_user = $_SESSION['user_id'];
+    $claimQuery = "SELECT * FROM tbl_cart WHERE account_id = ? AND status_id = 4";
+    $stmtClaim = $conn->prepare($claimQuery);
+    $stmtClaim->bind_param("i", $current_user);
+    $stmtClaim->execute();
+    $resultClaim = $stmtClaim->get_result();
+    if($resultClaim->num_rows > 0){
     ?>
-
+    <script>
+        Swal.fire({
+            title: "You have item to claim!",
+            text: "Please prepare the amount to be paid.",
+            icon: "info"
+        });
+    </script>
+    <?php } ?>
     <div class="center">
         <div class="h1-div">
             <h1>Orders History</h1>
@@ -34,7 +47,7 @@
         </div>
     </div>
     <?php 
-        $query = "SELECT tc.prod_qnty, tc.branch_id, tb.branch_name, ts.status_name, tp.* FROM `tbl_cart` tc
+        $query = "SELECT tc.item_id, tc.prod_qnty, tc.branch_id, tb.branch_name, ts.status_name, tp.* FROM `tbl_cart` tc
         INNER JOIN tbl_products tp ON tc.prod_id = tp.prod_id 
         INNER JOIN tbl_status ts ON tc.status_id = ts.status_id
         INNER JOIN tbl_branch tb ON tb.branch_id = tc.branch_id
@@ -68,6 +81,7 @@
                                 <?php 
                                     $total = 0;
                                     $path = "";
+                                    $qnty_value = "";
                                     while($data = $result->fetch_assoc()){
                                     $total += $data["prod_price"] * $data["prod_qnty"];
                                     $subtotal = $data["prod_qnty"] * $data["prod_price"];
@@ -83,6 +97,16 @@
                                     }else if($data["prod_type"] == 5){
                                         $path = "deli_meats";
                                     }
+
+                                    if($data["prod_qnty"] == "0.50"){
+                                        $qnty_value = "1/2";
+                                    }else if($data["prod_qnty"] == "0.25"){
+                                        $qnty_value = "1/4";
+                                    }else if($data["prod_qnty"] == "1"){
+                                        $qnty_value = "1Kg";
+                                    }else{
+                                        $qnty_value = "2Kg";
+                                    }
                                 ?>
                                 <tr>
                                     <td class="img-con"><img src="../assets/<?php echo $path; ?>/<?php echo $data["prod_img"]; ?>" alt=""></td>
@@ -92,7 +116,7 @@
                                         <div class="qnty-td">
                                             <!-- <div class="minus-btn">-</div>
                                         <input type="text" class="qnty-input" min="1" value="1"> -->
-                                            <div class="qnty-js"><?php echo $data["prod_qnty"]; ?></div>
+                                            <div class="qnty-js"><?php echo $qnty_value; ?></div>
                                             <!-- <div class="add-btn">+</div> -->
                                         </div>
                                     </td>
@@ -154,6 +178,7 @@
                                 <?php 
                                     $total = 0;
                                     $path = "";
+                                    $qnty_value = "";
                                     while($data = $result->fetch_assoc()){
                                     $total += $data["prod_price"] * $data["prod_qnty"];
                                     $subtotal = $data["prod_qnty"] * $data["prod_price"];
@@ -169,6 +194,16 @@
                                     }else if($data["prod_type"] == 5){
                                         $path = "deli_meats";
                                     }
+
+                                    if($data["prod_qnty"] == "0.50"){
+                                        $qnty_value = "1/2";
+                                    }else if($data["prod_qnty"] == "0.25"){
+                                        $qnty_value = "1/4";
+                                    }else if($data["prod_qnty"] == "1"){
+                                        $qnty_value = "1Kg";
+                                    }else{
+                                        $qnty_value = "2Kg";
+                                    }
                                 ?>
                                 <tr>
                                     <td class="img-con"><img src="../assets/<?php echo $path; ?>/<?php echo $data["prod_img"]; ?>" alt=""></td>
@@ -178,7 +213,7 @@
                                         <div class="qnty-td">
                                             <!-- <div class="minus-btn">-</div>
                                         <input type="text" class="qnty-input" min="1" value="1"> -->
-                                            <div class="qnty-js"><?php echo $data["prod_qnty"]; ?></div>
+                                            <div class="qnty-js"><?php echo $qnty_value; ?></div>
                                             <!-- <div class="add-btn">+</div> -->
                                         </div>
                                     </td>

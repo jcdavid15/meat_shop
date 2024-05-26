@@ -33,7 +33,7 @@
                 </div>
                 <div class="container">
                     <?php
-                        $query = "SELECT pr.prod_id, pr.prod_name, pr.prod_stocks, pr.prod_price, pr.prod_type,
+                        $query = "SELECT pr.prod_id, pr.prod_stocks, pr.prod_name, pr.prod_stocks, pr.prod_price, pr.prod_type,
                         pr.prod_img, pt.prod_type_name FROM tbl_products pr
                         INNER JOIN tbl_product_type pt ON pr.prod_type = pt.prod_type_id;";
                         $stmt = $conn->prepare($query);
@@ -53,9 +53,14 @@
                                 <div class="price">₱<?php echo $data['prod_price']; ?>.00 PHP</div>
                                 <div class="check"><i class="fa-solid fa-check"></i></div>
                             </div>
-                            <div class="input-div">
-                                <span>Quantity:</span>
-                                <input type="number" class="qnty" min="1" value="1">
+                            <div class="qnty-div">
+                                <div class="name">Order Quantity</div>
+                                <select name="qnty" class="qnty">
+                                    <option value="1/2">1/2</option>
+                                    <option value="1/4">1/4</option>
+                                    <option value="1Kg">1Kg</option>
+                                    <option value="2Kg">2Kg</option>
+                                </select>
                             </div>
                         </div>
                         <div class="flex-con-det">
@@ -65,6 +70,13 @@
                                     <option value="1">Bagbag</option>
                                     <option value="2">Sauyo</option>
                                 </select>
+                            </div>
+                            <div class="input-div">
+                                <div>Stocks: 
+                                    <span style="font-weight: 500;">
+                                        <?php echo $data["prod_stocks"] ?>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div class="div-button">
