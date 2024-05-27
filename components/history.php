@@ -123,7 +123,7 @@
                                     <td class="total-price-js">₱<span class="subtotal-js"><?php echo $subtotal; ?></span>.00</td>
                                     <td><?php echo $data['branch_name']; ?></td>
                                     <td><?php echo $data['status_name']; ?></td>
-                                    <td class="delete-js" id="<?php echo $data["prod_id"]; ?>" data-branch-id="<?php echo $data["branch_id"]; ?>"><i class="fa-solid fa-x"></i></td>
+                                    <td class="delete-js" id="<?php echo $data["item_id"]; ?>" data-branch-id="<?php echo $data["branch_id"]; ?>"><i class="fa-solid fa-x"></i></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>

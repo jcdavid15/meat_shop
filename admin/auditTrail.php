@@ -69,7 +69,7 @@ require_once("../backend/config/config.php");
                             $stmt->execute();
                             $result = $stmt->get_result();
                               while ($data = $result->fetch_assoc()) {
-                                $dateObject = new DateTime($data["log_date"]);
+                                $dateObject = new DateTime($data["trail_date"]);
                           ?>
                           <tr>
                             <td><?php echo $data['trail_user_id'];?></td>
