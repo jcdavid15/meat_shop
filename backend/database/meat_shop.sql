@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 10, 2024 at 01:48 PM
+-- Generation Time: Jun 10, 2024 at 03:14 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -115,81 +115,6 @@ CREATE TABLE `tbl_audit_log` (
   `log_date` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tbl_audit_log`
---
-
-INSERT INTO `tbl_audit_log` (`log_user_id`, `log_username`, `log_user_type`, `log_date`) VALUES
-(9, 'lugs', '1', '2024-05-18 03:55:42'),
-(7, 'juan', '3', '2024-05-18 03:55:57'),
-(9, 'lugs', '1', '2024-05-18 03:56:14'),
-(7, 'juan', '3', '2024-05-18 03:56:31'),
-(9, 'lugs', '1', '2024-05-18 04:04:01'),
-(3, 'john erick', '2', '2024-05-18 04:04:19'),
-(3, 'john erick', '2', '2024-05-18 04:07:38'),
-(8, 'jhyra', '3', '2024-05-18 04:08:34'),
-(3, 'john erick', '2', '2024-05-18 04:08:49'),
-(9, 'lugs', '1', '2024-05-18 04:09:38'),
-(8, 'jhyra', '3', '2024-05-18 04:10:02'),
-(3, 'john erick', '2', '2024-05-18 04:10:20'),
-(9, 'lugs', '1', '2024-05-18 04:16:01'),
-(3, 'john erick', '2', '2024-05-18 04:16:50'),
-(7, 'juan', '3', '2024-05-18 04:17:03'),
-(3, 'john erick', '2', '2024-05-18 04:17:16'),
-(1, 'jcdavid', '1', '2024-05-19 08:51:20'),
-(8, 'jhyra', '3', '2024-05-19 08:51:47'),
-(3, 'john erick', '2', '2024-05-19 08:53:08'),
-(1, 'jcdavid', '1', '2024-05-19 08:55:00'),
-(3, 'john erick', '2', '2024-05-19 08:56:11'),
-(7, 'juan', '3', '2024-05-19 08:56:21'),
-(3, 'john erick', '2', '2024-05-19 08:56:35'),
-(7, 'juan', '3', '2024-05-19 08:57:17'),
-(1, 'jcdavid', '1', '2024-05-19 08:57:38'),
-(3, 'john erick', '2', '2024-05-19 08:58:37'),
-(1, 'jcdavid', '1', '2024-05-22 10:21:06'),
-(7, 'juan', '3', '2024-05-22 10:21:24'),
-(6, 'admin', '2', '2024-05-22 10:21:38'),
-(1, 'jcdavid', '1', '2024-05-22 10:33:57'),
-(8, 'jhyra', '3', '2024-05-22 11:02:28'),
-(1, 'jcdavid', '1', '2024-05-22 12:00:33'),
-(10, 'user', '1', '2024-05-26 01:16:41'),
-(6, 'admin', '2', '2024-05-26 08:09:09'),
-(8, 'jhyra', '3', '2024-05-26 08:09:22'),
-(10, 'user', '1', '2024-05-26 08:51:47'),
-(8, 'jhyra', '3', '2024-05-26 09:16:40'),
-(1, 'jcdavid', '1', '2024-05-26 09:18:35'),
-(8, 'jhyra', '3', '2024-05-26 09:19:43'),
-(1, 'jcdavid', '1', '2024-05-26 09:27:05'),
-(8, 'jhyra', '3', '2024-05-26 09:27:27'),
-(6, 'admin', '2', '2024-05-26 09:27:41'),
-(8, 'jhyra', '3', '2024-05-26 09:31:46'),
-(6, 'admin', '2', '2024-05-26 09:33:20'),
-(6, 'admin', '2', '2024-05-26 10:23:19'),
-(1, 'jcdavid', '1', '2024-05-26 10:23:38'),
-(7, 'juan', '3', '2024-05-26 10:24:23'),
-(6, 'admin', '2', '2024-05-26 10:37:05'),
-(6, 'admin', '2', '2024-05-26 10:39:37'),
-(1, 'jcdavid', '1', '2024-05-26 10:51:24'),
-(1, 'jcdavid', '1', '2024-05-26 11:02:50'),
-(8, 'jhyra', '3', '2024-05-26 11:03:04'),
-(1, 'jcdavid', '1', '2024-05-26 11:03:15'),
-(8, 'jhyra', '3', '2024-05-26 11:04:26'),
-(1, 'jcdavid', '1', '2024-05-26 11:04:51'),
-(1, 'jcdavid', '1', '2024-06-09 08:22:45'),
-(8, 'jhyra', '3', '2024-06-09 11:45:48'),
-(1, 'jcdavid', '1', '2024-06-09 11:48:39'),
-(8, 'jhyra', '3', '2024-06-09 12:14:00'),
-(6, 'admin', '2', '2024-06-09 12:33:03'),
-(1, 'jcdavid', '1', '2024-06-09 13:32:15'),
-(8, 'jhyra', '3', '2024-06-09 13:32:44'),
-(7, 'juan', '3', '2024-06-09 13:38:07'),
-(6, 'admin', '2', '2024-06-09 13:44:20'),
-(6, 'admin', '2', '2024-06-09 13:44:55'),
-(6, 'admin', '2', '2024-06-10 07:31:57'),
-(6, 'admin', '2', '2024-06-10 10:23:39'),
-(1, 'jcdavid', '1', '2024-06-10 11:22:58'),
-(6, 'admin', '2', '2024-06-10 11:24:59');
-
 -- --------------------------------------------------------
 
 --
@@ -203,30 +128,6 @@ CREATE TABLE `tbl_audit_trail` (
   `trail_user_type` varchar(50) DEFAULT NULL,
   `trail_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_audit_trail`
---
-
-INSERT INTO `tbl_audit_trail` (`trail_user_id`, `trail_username`, `trail_activity`, `trail_user_type`, `trail_date`) VALUES
-(3, 'john erick', 'Deactivated Account', 'Admin', '2024-05-19 08:54:08'),
-(3, 'john erick', 'Reactivated Account', 'Admin', '2024-05-19 08:54:12'),
-(3, 'john erick', 'Updated Product', 'Admin', '2024-05-19 08:58:53'),
-(3, 'john erick', 'Updated Product', 'Admin', '2024-05-19 08:59:07'),
-(6, 'admin', 'Updated Product', 'Admin', '2024-05-26 09:34:36'),
-(6, 'admin', 'Updated Product', 'Admin', '2024-05-26 09:34:41'),
-(6, 'admin', 'Updated Product', 'Admin', '2024-05-26 09:34:49'),
-(6, 'admin', 'Updated Product', 'Admin', '2024-05-26 10:23:31'),
-(6, 'admin', 'Updated Product', 'Admin', '2024-06-10 08:29:17'),
-(6, 'admin', 'Updated Product', 'Admin', '2024-06-10 08:29:29'),
-(6, 'admin', 'Updated Product', 'Admin', '2024-06-10 08:29:39'),
-(6, 'admin', 'Add Product', 'Admin', '2024-06-10 10:12:47'),
-(6, 'admin', 'Add Product', 'Admin', '2024-06-10 10:14:07'),
-(6, 'admin', 'Add Product', 'Admin', '2024-06-10 10:24:00'),
-(6, 'admin', 'Add Product', 'Admin', '2024-06-10 10:26:54'),
-(6, 'admin', 'Add Product', 'Admin', '2024-06-10 11:09:48'),
-(6, 'admin', 'Add Product', 'Admin', '2024-06-10 11:21:07'),
-(6, 'admin', 'Updated Product', 'Admin', '2024-06-10 11:25:08');
 
 -- --------------------------------------------------------
 
@@ -262,15 +163,6 @@ CREATE TABLE `tbl_cart` (
   `branch_id` int(11) NOT NULL,
   `account_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_cart`
---
-
-INSERT INTO `tbl_cart` (`item_id`, `prod_id`, `prod_qnty`, `order_date`, `status_id`, `branch_id`, `account_id`) VALUES
-(57, 5, 8, '2024-06-09', 2, 1, 1),
-(60, 2, 7, '2024-06-09', 2, 1, 1),
-(61, 3, 4, '2024-06-09', 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -351,14 +243,6 @@ CREATE TABLE `tbl_receipt` (
   `uploaded_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tbl_receipt`
---
-
-INSERT INTO `tbl_receipt` (`receipt_id`, `account_id`, `receipt_img`, `receipt_number`, `deposit_amount`, `uploaded_date`) VALUES
-(7, 1, '66659c79f2d93.jpeg', '123123', 600, '2024-06-09'),
-(8, 1, '6665aef3b8789.jpeg', '321321', 600, '2024-06-09');
-
 -- --------------------------------------------------------
 
 --
@@ -434,38 +318,6 @@ CREATE TABLE `tbl_transactions` (
   `activity_date` date NOT NULL,
   `branch_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_transactions`
---
-
-INSERT INTO `tbl_transactions` (`user_id`, `user_name`, `user_type`, `user_activity`, `activity_date`, `branch_id`) VALUES
-(8, 'jhyra', '3', 'Accept item 26', '2024-05-19', 1),
-(8, 'jhyra', '3', 'Claimed item 26', '2024-05-19', 1),
-(7, 'juan', '3', 'Accept item 27', '2024-05-19', 2),
-(7, 'juan', '3', 'Claimed item 27', '2024-05-19', 2),
-(7, 'juan', '3', 'Accept item 28', '2024-05-22', 2),
-(7, 'juan', '3', 'Claimed item 28', '2024-05-22', 2),
-(7, 'juan', '3', 'Accept item 29', '2024-05-22', 2),
-(7, 'juan', '3', 'Claimed item 29', '2024-05-22', 2),
-(8, 'jhyra', '3', 'Accept item 30', '2024-05-22', 1),
-(8, 'jhyra', '3', 'Claimed item 30', '2024-05-22', 1),
-(8, 'jhyra', '3', 'Accept item 24', '2024-05-22', 1),
-(8, 'jhyra', '3', 'Claimed item 24', '2024-05-22', 1),
-(8, 'jhyra', '3', 'Accept item 49', '2024-05-26', 1),
-(8, 'jhyra', '3', 'Accept item 51', '2024-05-26', 1),
-(8, 'jhyra', '3', 'Claimed item 51', '2024-05-26', 1),
-(8, 'jhyra', '3', 'Accept item 52', '2024-05-26', 1),
-(8, 'jhyra', '3', 'Claimed item 52', '2024-05-26', 1),
-(7, 'juan', '3', 'Accept item 53', '2024-05-26', 2),
-(7, 'juan', '3', 'Claimed item 53', '2024-05-26', 2),
-(8, 'jhyra', '3', 'Accept item 55', '2024-05-26', 1),
-(8, 'jhyra', '3', 'Accept item 57', '2024-06-09', 1),
-(8, 'jhyra', '3', 'Accept item 60', '2024-06-09', 1),
-(8, 'jhyra', '3', 'Claimed item 60', '2024-06-09', 1),
-(8, 'jhyra', '3', 'Claimed item 57', '2024-06-09', 1),
-(7, 'juan', '3', 'Accept item 61', '2024-06-09', 2),
-(7, 'juan', '3', 'Claimed item 61', '2024-06-09', 2);
 
 --
 -- Indexes for dumped tables
