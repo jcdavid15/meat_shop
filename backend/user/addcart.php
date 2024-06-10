@@ -9,14 +9,46 @@ if (isset($_POST["prodId"]) && isset($_POST["qnty"]) && isset($_POST["branch"]))
     $branch_id = $_POST["branch"];
     $qnty_value = 0;
 
-    if($prod_qnty == "1/2"){
-        $qnty_value = 0.50;
-    }else if($prod_qnty == "1/4"){
-        $qnty_value = 0.25;
-    }else if($prod_qnty == "1Kg"){
-        $qnty_value = 1;
-    }else{
-        $qnty_value = 2;
+    switch($prod_qnty) {
+        case "1/2":
+            $qnty_value = 0.50;
+            break;
+        case "1/4":
+            $qnty_value = 0.25;
+            break;
+        case "1Kg":
+            $qnty_value = 1;
+            break;
+        case "2Kg":
+            $qnty_value = 2;
+            break;
+        case "3Kg":
+            $qnty_value = 3;
+            break;
+        case "4Kg":
+            $qnty_value = 4;
+            break;
+        case "5Kg":
+            $qnty_value = 5;
+            break;
+        case "6Kg":
+            $qnty_value = 6;
+            break;
+        case "7Kg":
+            $qnty_value = 7;
+            break;
+        case "8Kg":
+            $qnty_value = 8;
+            break;
+        case "9Kg":
+            $qnty_value = 9;
+            break;
+        case "10Kg":
+            $qnty_value = 10;
+            break;
+        default:
+            $qnty_value = 2; // Default value
+            break;
     }
 
     // Fetch current stock level
@@ -30,7 +62,7 @@ if (isset($_POST["prodId"]) && isset($_POST["qnty"]) && isset($_POST["branch"]))
         $stockData = $resultStock->fetch_assoc();
         $currentStock = intval($stockData["prod_stocks"]);
 
-        if ($prod_qnty <= $currentStock) {
+        if ($qnty_value <= $currentStock) {
             // Check if the product is already in the cart
             $query = "SELECT * FROM tbl_cart WHERE prod_id = ? AND account_id = ? AND status_id = 1 AND branch_id = ? AND prod_qnty = ?";
             $stmt = $conn->prepare($query);
@@ -39,19 +71,6 @@ if (isset($_POST["prodId"]) && isset($_POST["qnty"]) && isset($_POST["branch"]))
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
-                // $data = $result->fetch_assoc();
-                // $currentQnty = intval($data["prod_qnty"]);
-                // $updatedQnty = $prod_qnty + $currentQnty;
-
-                // if ($updatedQnty <= $currentStock) {
-                //     $query2 = "UPDATE tbl_cart SET prod_qnty = ? WHERE prod_id = ? AND account_id = ? AND status_id = 1 AND branch_id = ?";
-                //     $stmt2 = $conn->prepare($query2);
-                //     $stmt2->bind_param("iiii", $updatedQnty, $prod_id, $account_id, $branch_id);
-                //     $stmt2->execute();
-                //     echo "success";
-                // } else {
-                //     echo "exceeds";
-                // }
                 echo "exceeds";
             } else {
                 $query2 = "INSERT INTO tbl_cart (prod_id, prod_qnty, branch_id, account_id) VALUES (?, ?, ?, ?)";

@@ -42,7 +42,7 @@ require_once("../backend/config/config.php");
             <!-- Page indicator -->
             <h1 class="mt-4" id="full_name">Admin,</h1>
             <ol class="breadcrumb mb-4">
-              <li class="breadcrumb-item active">Sales</li>
+              <li class="breadcrumb-item active">Add Product</li>
             </ol>
 
                 <div class="card mb-5">
@@ -69,11 +69,17 @@ require_once("../backend/config/config.php");
                                 <label for="prod_type" class="form-label">Product Type</label>
                                 <select id="prod_type" class="form-select">
                                     <option value="" disabled selected>Select Product</option>
-                                    <option value="1">Beef</option>
-                                    <option value="2">Pork</option>
-                                    <option value="3">Chicken</option>
-                                    <option value="4">Lamb</option>
-                                    <option value="5">Deli Meats</option>
+                                    <?php
+                                      $query = "SELECT * FROM tbl_product_type";
+                                      $stmt = $conn->prepare($query);
+                                      $stmt->execute();
+                                      $result = $stmt->get_result();
+                                      while($data = $result->fetch_assoc()){
+                                    ?>
+                                    <option value="<?php echo $data["prod_type_id"]; ?>">
+                                      <?php echo $data["prod_type_name"];  ?>    
+                                    </option>
+                                    <?php } ?>
                                 </select>      
                             </div>
                             <div class="col-md-4">
@@ -89,6 +95,30 @@ require_once("../backend/config/config.php");
                             </div>
 
                         </form>
+                    </div>
+                </div>
+
+
+
+
+                <div class="card mb-5">
+                    <div class="card-header bg-secondary pt-3">
+                        <div class="text-center">
+                            <p class="card-title text-light">Add Main Product <i class="fas fa-plus"></i></p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                    <form class="row g-3" method="post" id="addProdMain">
+                        <h5 class="text-center">Main Product Details</h5>
+                        <hr>
+                            <div class="col-md-4">
+                                <label for="prod_name" class="form-label">Product Name</label>
+                                <input type="text" class="form-control" id="prod_name_main" >
+                            </div>
+                            <div class="col-md-4 text-center mt-5">
+                                <button type="submit" id="submit-main" class="btn btn-primary btn-lg">Add Product</button>
+                            </div>
+                      </form>
                     </div>
                 </div>
             </div>
@@ -119,6 +149,7 @@ function validateNumberInput(input) {
     const full_name = document.getElementById('full_name');
     const acc_data = JSON.parse(localStorage.getItem('adminDetails'))
     full_name.innerText = 'Admin, ' + acc_data.full_name;
-  </script>  
+  </script> 
+<script src="../jquery/sideBarProd.js"></script> 
   </body>
 </html>

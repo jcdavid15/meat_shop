@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 26, 2024 at 01:01 PM
+-- Generation Time: Jun 10, 2024 at 01:48 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -169,7 +169,26 @@ INSERT INTO `tbl_audit_log` (`log_user_id`, `log_username`, `log_user_type`, `lo
 (7, 'juan', '3', '2024-05-26 10:24:23'),
 (6, 'admin', '2', '2024-05-26 10:37:05'),
 (6, 'admin', '2', '2024-05-26 10:39:37'),
-(1, 'jcdavid', '1', '2024-05-26 10:51:24');
+(1, 'jcdavid', '1', '2024-05-26 10:51:24'),
+(1, 'jcdavid', '1', '2024-05-26 11:02:50'),
+(8, 'jhyra', '3', '2024-05-26 11:03:04'),
+(1, 'jcdavid', '1', '2024-05-26 11:03:15'),
+(8, 'jhyra', '3', '2024-05-26 11:04:26'),
+(1, 'jcdavid', '1', '2024-05-26 11:04:51'),
+(1, 'jcdavid', '1', '2024-06-09 08:22:45'),
+(8, 'jhyra', '3', '2024-06-09 11:45:48'),
+(1, 'jcdavid', '1', '2024-06-09 11:48:39'),
+(8, 'jhyra', '3', '2024-06-09 12:14:00'),
+(6, 'admin', '2', '2024-06-09 12:33:03'),
+(1, 'jcdavid', '1', '2024-06-09 13:32:15'),
+(8, 'jhyra', '3', '2024-06-09 13:32:44'),
+(7, 'juan', '3', '2024-06-09 13:38:07'),
+(6, 'admin', '2', '2024-06-09 13:44:20'),
+(6, 'admin', '2', '2024-06-09 13:44:55'),
+(6, 'admin', '2', '2024-06-10 07:31:57'),
+(6, 'admin', '2', '2024-06-10 10:23:39'),
+(1, 'jcdavid', '1', '2024-06-10 11:22:58'),
+(6, 'admin', '2', '2024-06-10 11:24:59');
 
 -- --------------------------------------------------------
 
@@ -197,7 +216,17 @@ INSERT INTO `tbl_audit_trail` (`trail_user_id`, `trail_username`, `trail_activit
 (6, 'admin', 'Updated Product', 'Admin', '2024-05-26 09:34:36'),
 (6, 'admin', 'Updated Product', 'Admin', '2024-05-26 09:34:41'),
 (6, 'admin', 'Updated Product', 'Admin', '2024-05-26 09:34:49'),
-(6, 'admin', 'Updated Product', 'Admin', '2024-05-26 10:23:31');
+(6, 'admin', 'Updated Product', 'Admin', '2024-05-26 10:23:31'),
+(6, 'admin', 'Updated Product', 'Admin', '2024-06-10 08:29:17'),
+(6, 'admin', 'Updated Product', 'Admin', '2024-06-10 08:29:29'),
+(6, 'admin', 'Updated Product', 'Admin', '2024-06-10 08:29:39'),
+(6, 'admin', 'Add Product', 'Admin', '2024-06-10 10:12:47'),
+(6, 'admin', 'Add Product', 'Admin', '2024-06-10 10:14:07'),
+(6, 'admin', 'Add Product', 'Admin', '2024-06-10 10:24:00'),
+(6, 'admin', 'Add Product', 'Admin', '2024-06-10 10:26:54'),
+(6, 'admin', 'Add Product', 'Admin', '2024-06-10 11:09:48'),
+(6, 'admin', 'Add Product', 'Admin', '2024-06-10 11:21:07'),
+(6, 'admin', 'Updated Product', 'Admin', '2024-06-10 11:25:08');
 
 -- --------------------------------------------------------
 
@@ -239,7 +268,9 @@ CREATE TABLE `tbl_cart` (
 --
 
 INSERT INTO `tbl_cart` (`item_id`, `prod_id`, `prod_qnty`, `order_date`, `status_id`, `branch_id`, `account_id`) VALUES
-(54, 2, 0.5, NULL, 1, 1, 1);
+(57, 5, 8, '2024-06-09', 2, 1, 1),
+(60, 2, 7, '2024-06-09', 2, 1, 1),
+(61, 3, 4, '2024-06-09', 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -262,10 +293,10 @@ CREATE TABLE `tbl_products` (
 
 INSERT INTO `tbl_products` (`prod_id`, `prod_name`, `prod_price`, `prod_type`, `prod_stocks`, `prod_img`) VALUES
 (1, 'Fresh Beef Steak', 370, 1, 41.5, 'img-1.webp'),
-(2, 'Ground Beef', 360, 1, 49, 'img-2.jpeg'),
-(3, 'Roast Beef', 370, 1, 50, 'img-3.jpeg'),
+(2, 'Ground Beef', 360, 1, 42, 'img-2.jpeg'),
+(3, 'Roast Beef', 370, 1, 46, 'img-3.jpeg'),
 (4, 'Fresh Pork Chops', 390, 2, 50, 'img-1.jpeg'),
-(5, 'Fresh Pork Ribs', 340, 2, 50, 'img-2.jpeg'),
+(5, 'Fresh Pork Ribs', 340, 2, 42, 'img-2.jpeg'),
 (6, 'Fresh Bacon', 370, 2, 50, 'img-3.jpeg'),
 (7, 'Pork Ham', 340, 2, 50, 'img-4.jpeg'),
 (8, 'Pork Sausage', 310, 2, 50, 'img-5.jpeg'),
@@ -273,7 +304,7 @@ INSERT INTO `tbl_products` (`prod_id`, `prod_name`, `prod_price`, `prod_type`, `
 (10, 'Chicken Thigh', 320, 3, 50, 'img-2.jpeg'),
 (11, 'Chicken Wings', 290, 3, 50, 'img-3.jpeg'),
 (12, 'Drumsticks', 300, 3, 50, 'img-4.jpeg'),
-(13, 'One Whole Chicken', 360, 3, 50, 'img-5.webp'),
+(13, 'One Whole Chicken', 360, 3, 45, 'img-5.webp'),
 (14, 'Fresh Lamb Chops', 610, 4, 50, 'img-1.jpeg'),
 (15, 'Fresh Lamb Legs', 990, 4, 50, 'img-2.jpeg'),
 (16, 'Fresh Salami', 375, 5, 50, 'img-1.jpeg'),
@@ -316,8 +347,17 @@ CREATE TABLE `tbl_receipt` (
   `account_id` int(11) NOT NULL,
   `receipt_img` varchar(255) NOT NULL,
   `receipt_number` varchar(50) NOT NULL,
+  `deposit_amount` int(11) NOT NULL,
   `uploaded_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_receipt`
+--
+
+INSERT INTO `tbl_receipt` (`receipt_id`, `account_id`, `receipt_img`, `receipt_number`, `deposit_amount`, `uploaded_date`) VALUES
+(7, 1, '66659c79f2d93.jpeg', '123123', 600, '2024-06-09'),
+(8, 1, '6665aef3b8789.jpeg', '321321', 600, '2024-06-09');
 
 -- --------------------------------------------------------
 
@@ -418,7 +458,14 @@ INSERT INTO `tbl_transactions` (`user_id`, `user_name`, `user_type`, `user_activ
 (8, 'jhyra', '3', 'Accept item 52', '2024-05-26', 1),
 (8, 'jhyra', '3', 'Claimed item 52', '2024-05-26', 1),
 (7, 'juan', '3', 'Accept item 53', '2024-05-26', 2),
-(7, 'juan', '3', 'Claimed item 53', '2024-05-26', 2);
+(7, 'juan', '3', 'Claimed item 53', '2024-05-26', 2),
+(8, 'jhyra', '3', 'Accept item 55', '2024-05-26', 1),
+(8, 'jhyra', '3', 'Accept item 57', '2024-06-09', 1),
+(8, 'jhyra', '3', 'Accept item 60', '2024-06-09', 1),
+(8, 'jhyra', '3', 'Claimed item 60', '2024-06-09', 1),
+(8, 'jhyra', '3', 'Claimed item 57', '2024-06-09', 1),
+(7, 'juan', '3', 'Accept item 61', '2024-06-09', 2),
+(7, 'juan', '3', 'Claimed item 61', '2024-06-09', 2);
 
 --
 -- Indexes for dumped tables
@@ -510,13 +557,13 @@ ALTER TABLE `tbl_branch`
 -- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `tbl_products`
 --
 ALTER TABLE `tbl_products`
-  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `tbl_product_type`
@@ -528,7 +575,7 @@ ALTER TABLE `tbl_product_type`
 -- AUTO_INCREMENT for table `tbl_receipt`
 --
 ALTER TABLE `tbl_receipt`
-  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_reports`

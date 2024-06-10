@@ -77,6 +77,7 @@ $(document).ready(()=>{
     $('.proceed-btn').on('click', function() {
         const receiptFile = $('#receiptFile')[0].files[0]; // Corrected the ID to match your HTML input
         const refNumber = $("#refNumber").val();
+        const depositAmnt = $("#depAmount").val();
     
         if (!receiptFile) {
             Swal.fire({
@@ -97,6 +98,16 @@ $(document).ready(()=>{
             });
             return;
         }
+
+        if (!depositAmnt) {
+            Swal.fire({
+                title: "Please enter your deposit amount.",
+                text: "",
+                icon: "warning",
+                showConfirmButton: true,
+            });
+            return;
+        }
     
         Swal.fire({
             title: "Want to pick up now?",
@@ -111,6 +122,7 @@ $(document).ready(()=>{
                 let formData = new FormData();
                 formData.append('receipt', receiptFile);
                 formData.append('refNumber', refNumber);
+                formData.append('depositAmount', depositAmnt);
     
                 $.ajax({
                     url: "../backend/user/proceed.php",

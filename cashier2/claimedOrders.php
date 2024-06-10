@@ -76,15 +76,47 @@ require_once("../backend/config/config.php");
                   while ($data = $result->fetch_assoc()) {
                     $total = $data["prod_qnty"] * $data["prod_price"];
 
-                    if($data["prod_qnty"] == "0.50"){
-                      $qnty_value = "1/2";
-                    }else if($data["prod_qnty"] == "0.25"){
-                        $qnty_value = "1/4";
-                    }else if($data["prod_qnty"] == "1"){
-                        $qnty_value = "1Kg";
-                    }else{
-                        $qnty_value = "2Kg";
-                    }
+                    switch ($data["prod_qnty"]) {
+                      case "0.50":
+                          $qnty_value = "1/2";
+                          break;
+                      case "0.25":
+                          $qnty_value = "1/4";
+                          break;
+                      case "1":
+                          $qnty_value = "1Kg";
+                          break;
+                      case "2":
+                          $qnty_value = "2Kg";
+                          break;
+                      case "3":
+                          $qnty_value = "3Kg";
+                          break;
+                      case "4":
+                          $qnty_value = "4Kg";
+                          break;
+                      case "5":
+                          $qnty_value = "5Kg";
+                          break;
+                      case "6":
+                          $qnty_value = "6Kg";
+                          break;
+                      case "7":
+                          $qnty_value = "7Kg";
+                          break;
+                      case "8":
+                          $qnty_value = "8Kg";
+                          break;
+                      case "9":
+                          $qnty_value = "9Kg";
+                          break;
+                      case "10":
+                          $qnty_value = "10Kg";
+                          break;
+                      default:
+                          $qnty_value = $data["prod_qnty"] . "Kg";
+                          break;
+                  }
                   ?>
                   <tr>
                     <td><?php echo htmlspecialchars($data['item_id']); ?></td>

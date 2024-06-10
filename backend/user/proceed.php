@@ -18,9 +18,10 @@ if(isset($_SESSION["user_id"])){
         if(move_uploaded_file($_FILES['receipt']['tmp_name'], $uploadFile)) {
             // File successfully uploaded, now insert into tbl_receipt
             $ref_number = $_POST["refNumber"];
-            $receiptQuery = "INSERT INTO tbl_receipt (account_id, receipt_img, receipt_number, uploaded_date) VALUES (?, ?, ?, ?)";
+            $depositAmount = $_POST["depositAmount"];
+            $receiptQuery = "INSERT INTO tbl_receipt (account_id, receipt_img, receipt_number, deposit_amount, uploaded_date) VALUES (?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($receiptQuery);
-            $stmt->bind_param("isss", $user_id, $uniqueFileName, $ref_number, $date);
+            $stmt->bind_param("issis", $user_id, $uniqueFileName, $ref_number, $depositAmount, $date);
 
             if($stmt->execute()){
                 // If the insert into tbl_receipt is successful, update tbl_cart

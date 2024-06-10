@@ -42,50 +42,53 @@ require_once("../backend/config/config.php");
             <!-- Page indicator -->
             <h1 class="mt-4" id="full_name">Admin,</h1>
             <ol class="breadcrumb mb-4">
-              <li class="breadcrumb-item active">Accounts</li>
+              <li class="breadcrumb-item active">Products</li>
             </ol>
 
               <div class="card mb-5">
-                    <div class="card-header bg-danger pt-3">
+                    <div class="card-header bg-primary pt-3">
                         <div class="text-center">
-                            <p class="card-title text-light">Account Deactivated Details
+                            <p class="card-title text-light">List Products
                         </div>
                     </div>
                     <div class="card-body">
                       <table id="residenceAccounts" class="table table-striped nowrap" style="width:100%">
                         <thead>
                           <tr>
-                              <th>Account ID</th>
-                              <th>Name</th>
-                              <th>Contact</th>
-                              <th>Address</th>
+                              <th>Product Id</th>
+                              <th>Product Name</th>
+                              <th>Product Price</th>
+                              <th>Product Stocks</th>
                               <th>Action</th>
 
                           </tr>
                         </thead>
                         <tbody>
                           <?php
-                            $query = "SELECT ta.account_id, CONCAT(tc.first_name, ' ', tc.middle_name, ' ', tc.last_name) AS full_name, tc.contact, tc.address FROM tbl_account ta INNER JOIN tbl_account_details tc ON tc.account_id = ta.account_id WHERE ta.role_id = 1 AND ta.account_status_id = 2;";
-                            $stmt = $conn->prepare($query);
-                            $stmt->execute();
-                            $result = $stmt->get_result();
-                              while ($data = $result->fetch_assoc()) {
+                            if(isset($_GET['type'])){
+                                $prodId = intval($_GET["type"]);
+                                $query = "SELECT * FROM tbl_products WHERE prod_type = ?";
+                                $stmt = $conn->prepare($query);
+                                $stmt->bind_param("i", $prodId);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                                while ($data = $result->fetch_assoc()) {
                           ?>
                           <tr>
-                            <td><?php echo $data['account_id'];?></td>
-                            <td><?php echo $data['full_name'];?></td>
-                            <td><?php echo $data['contact'];?></td>
-                            <td><?php echo $data['address'];?></td>
+                            <td><?php echo $data['prod_id'];?></td>
+                            <td><?php echo $data['prod_name'];?></td>
+                            <td><?php echo $data['prod_price'];?></td>
+                            <td><?php echo $data['prod_stocks'];?></td>
                             <td>
-                                <!-- <button type="button" class="btn btn-primary" id="<?php echo $data["account_id"] ?>"  data-bs-toggle="modal" data-bs-target="#residenceAccountDetails<?php echo $data["prod_id"] ?>" data-bs-whatever="@getbootstrap">
+                                <button type="button" class="btn btn-primary" id="<?php echo $data["prod_id"] ?>"  data-bs-toggle="modal" data-bs-target="#residenceAccountDetails<?php echo $data["prod_id"] ?>" data-bs-whatever="@getbootstrap">
                                   <i class="fa-solid fa-pen-to-square" style="color: #fcfcfc;"></i>
-                                </button> -->
-                                <button type="button" class="btn btn-primary deactivateResBtn" id="<?php echo $data["account_id"] ?>" >
-                                  <i class="fa-solid fa-clock-rotate-left"  style="color: #fcfcfc;"></i>
                                 </button>
+                                <!-- <button type="button" class="btn btn-danger deactivateResBtn" id="<?php echo $data["prod_id"] ?>" >
+                                  <i class="fa-solid fa-trash"  style="color: #fcfcfc;"></i>
+                                </button> -->
                             </td>
                           </tr>
-                            <!-- <div class="modal fade" id="residenceAccountDetails<?php echo $data["account_id"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="residenceAccountDetails<?php echo $data["prod_id"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
                                   <div class="modal-header">
@@ -117,16 +120,15 @@ require_once("../backend/config/config.php");
                                   </div>
                                 </div>
                               </div>
-                            </div> -->
+                            </div>
                           <?php
-                            }
+                            } }
                           ?>
                         </tbody>
                       </table>
                     </div>
                   </div>
             </div>
-
       </main>
     </div>
   </div>
@@ -135,7 +137,7 @@ require_once("../backend/config/config.php");
     ></script>
     <script src="../scripts/jquery.js"></script>
     <script src="../scripts/toggle.js"></script>
-    <script src="../jquery/activate.js"></script>
+    <script src="../jquery/modifyProd.js"></script>
     <!-- DataTables Scripts -->
     <script src="../plugins/js/jquery.dataTables.min.js"></script>
     <script src="../plugins/js/dataTables.bootstrap5.min.js"></script>

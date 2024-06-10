@@ -21,24 +21,22 @@
           </div>
         </a>
         <div class="collapse" id="collapseEmployeeProducts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-          <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="beef.php">Beef</a>
-          </nav>
-          <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="pork.php">Pork</a>
-          </nav>
-          <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="chicken.php">Chicken</a>
-          </nav>
-          <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="lamb.php">Lamb</a>
-          </nav>
-          <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="deli.php">Deli Meats</a>
-          </nav>
-          <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="addprod.php">Add Product</a>
-          </nav>
+            <?php
+                $query = "SELECT * FROM tbl_product_type";
+                $stmt = $conn->prepare($query);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while($data = $result->fetch_assoc()){
+                    $prodId = $data["prod_type_id"];
+                    $prodName = $data["prod_type_name"];
+            ?>
+            <nav class="sb-sidenav-menu-nested nav" data-type-id="<?php echo $prodId; ?>">
+                <a class="nav-link prod-type" data-type-id="<?php echo $prodId; ?>" href="#"><?php echo $prodName; ?></a>
+            </nav>
+            <?php } ?>
+            <nav class="sb-sidenav-menu-nested nav">
+              <a  class="nav-link" href="addprod.php">Add Product</a>
+            </nav>
         </div>
         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEmployeeAccounts" aria-expanded="false" aria-controls="collapseEmployeeAccounts">
           <div class="sb-nav-link-icon">
@@ -107,3 +105,28 @@
     </div>
   </nav>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $('.prod-type').click(function(e){
+      e.preventDefault(); // Prevent the default link behavior
+      var typeId = $(this).data('type-id');
+      // loadProducts(typeId);
+      alert(typeId);
+    });
+  });
+
+  function loadProducts(typeId){
+    $.ajax({
+      url: 'products.php',
+      type: 'GET',
+      data: { type: typeId },
+      success: function(response){
+        window.location.href = "products.php?type=" + typeId;
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log("Error: " + textStatus, errorThrown);
+      }
+    });
+  }
+</script>

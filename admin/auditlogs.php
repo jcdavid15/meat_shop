@@ -138,5 +138,6 @@ require_once("../backend/config/config.php");
     const acc_data = JSON.parse(localStorage.getItem('adminDetails'))
     full_name.innerText = 'Admin, ' + acc_data.full_name;
   </script>  
+<script src="../jquery/sideBarProd.js"></script>
   </body>
 </html>

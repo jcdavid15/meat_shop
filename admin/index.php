@@ -118,14 +118,82 @@ require_once("../backend/config/config.php");
               </div>
             </div>
 
+            <div class="row">
+                <!-- Barangay Clearance Start of graph -->
+                <!-- Barangay Clearance Start of graph -->
+<div class="col-md m-1">
+    <div class="card">
+          <div class="card-header bg-primary pt-3">
+              <div class="text-center">
+                  <p class="card-title text-light">Bagbag Branch Sales</p>
+              </div>
+          </div>
+          <div class="card-header text-center d-flex justify-content-center flex-wrap" style="gap: 10px;">
+              <div class="d-flex flex-column">
+                  <p>Start date</p>
+                  <input onchange="filterData(reqbcstartdate, reqbcenddate, chartBcRequest, serviceRequestBcCount, monthlyBcHold, configRequestBc, dataBcReq)" type="month" id="reqbcstartdate">
+              </div>
+              <div class="d-flex flex-column">
+                  <p>End date</p>
+                  <input onchange="filterData(reqbcstartdate, reqbcenddate, chartBcRequest, serviceRequestBcCount, monthlyBcHold, configRequestBc, dataBcReq)" type="month" id="reqbcenddate">
+              </div>
+          </div>
+          <div class="card-body">
+              <?php
+              date_default_timezone_set('Asia/Manila');
+              $monthlyBc = [];
+              $serviceRequestBcCount = [];
+              $monthlyBcRequest = mysqli_query($conn, "SELECT SUM(tc.prod_qnty * tp.prod_price) AS serviceRequestBcCount, DATE_FORMAT(tc.order_date, '%M %Y') AS Dates FROM tbl_cart tc INNER JOIN tbl_products tp ON tp.prod_id = tc.prod_id WHERE status_id = 2 AND (tc.order_date IS NOT NULL AND tc.order_date != '0000-00-00') AND tc.branch_id = 1 GROUP BY DATE_FORMAT(tc.order_date, '%Y-%m')");
+              foreach ($monthlyBcRequest as $data) {
+                  $monthlyBc[] = $data['Dates'];
+                  $serviceRequestBcCount[] = $data['serviceRequestBcCount'];
+              }
+              ?>
+              <div>
+                  <canvas id="chartBcRequest"></canvas>
+              </div>
+          </div>
+  </div>
+</div>
+<!-- Barangay Clearance End of graph -->
+<!-- Certificate of Indigency Start of graph -->
+<div class="col-md m-1">
+    <div class="card">
+        <div class="card-header bg-primary pt-3">
+            <div class="text-center">
+                <p class="card-title text-light">Sauyo Branch Sales</p>
+            </div>
+        </div>
+        <div class="card-header text-center d-flex justify-content-center flex-wrap" style="gap: 10px;">
+            <div class="d-flex flex-column">
+                <p>Start date</p>
+                <input onchange="filterData(reqcoistartdate, reqcoienddate, chartCoiRequest, serviceRequestCoiCount, monthlyCoiHold, configRequestCoi, dataCoiReq)" type="month" id="reqcoistartdate">
+            </div>
+            <div class="d-flex flex-column">
+                <p>End date</p>
+                <input onchange="filterData(reqcoistartdate, reqcoienddate, chartCoiRequest, serviceRequestCoiCount, monthlyCoiHold, configRequestCoi, dataCoiReq)" type="month" id="reqcoienddate">
+            </div>
+        </div>
+        <div class="card-body">
+            <?php
+            $monthlyCoi = [];
+            $serviceRequestCoiCount = [];
+            $monthlyCoiRequest = mysqli_query($conn, "SELECT SUM(tc.prod_qnty * tp.prod_price) AS serviceRequestCoiCount, DATE_FORMAT(tc.order_date, '%M %Y') AS Dates FROM tbl_cart tc INNER JOIN tbl_products tp ON tp.prod_id = tc.prod_id WHERE tc.status_id = 2 AND (tc.order_date IS NOT NULL AND tc.order_date != '0000-00-00') AND tc.branch_id = 2 GROUP BY DATE_FORMAT(tc.order_date, '%Y-%m')");
+            foreach ($monthlyCoiRequest as $data) {
+                $monthlyCoi[] = $data['Dates'];
+                $serviceRequestCoiCount[] = $data['serviceRequestCoiCount'];
+            }
+            ?>
+            <div>
+                <canvas id="chartCoiRequest"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
 
-                
-                
-                
-                
             </div>
               <div class="row">
-                <div class="col-md m-1">
+                <!-- <div class="col-md m-1">
                   <div class="card">
                     <div class="card-header bg-secondary pt-3">
                       <div class="text-center">
@@ -153,11 +221,11 @@ require_once("../backend/config/config.php");
                     </div>
 
                   </div>
-                </div>
+                </div> -->
                 <div class="col-md m-1">
                   <div class="card" style="height:500px; overflow: auto;">
                     <div class="text-center mt-3">
-                            <p class="card-title">Available Request</p>
+                            <p class="card-title">Products List & Price</p>
                     </div>
                     <div class="card-body">
                       <table class="table table-bordered">
@@ -189,78 +257,7 @@ require_once("../backend/config/config.php");
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <!-- Barangay Clearance Start of graph -->
-                <!-- Barangay Clearance Start of graph -->
-                <div class="col-md m-1">
-    <div class="card">
-        <div class="card-header bg-primary pt-3">
-            <div class="text-center">
-                <p class="card-title text-light">Claimed Orders</p>
-            </div>
-        </div>
-        <div class="card-header text-center d-flex justify-content-center flex-wrap" style="gap: 10px;">
-            <div class="d-flex flex-column">
-                <p>Start date</p>
-                <input onchange="filterData(reqbcstartdate, reqbcenddate, chartBcRequest, serviceRequestBcCount, monthlyBcHold, configRequestBc, dataBcReq)" type="month" id="reqbcstartdate">
-            </div>
-            <div class="d-flex flex-column">
-                <p>End date</p>
-                <input onchange="filterData(reqbcstartdate, reqbcenddate, chartBcRequest, serviceRequestBcCount, monthlyBcHold, configRequestBc, dataBcReq)" type="month" id="reqbcenddate">
-            </div>
-        </div>
-        <div class="card-body">
-            <?php
-            date_default_timezone_set('Asia/Manila');
-            $monthlyBc = [];
-            $serviceRequestBcCount = [];
-            $monthlyBcRequest = mysqli_query($conn, "SELECT COUNT(*) AS serviceRequestBcCount, DATE_FORMAT(order_date, '%M %Y') AS Dates FROM tbl_cart WHERE status_id = 2 AND (order_date IS NOT NULL AND order_date != '0000-00-00') GROUP BY DATE_FORMAT(order_date, '%Y-%m')");
-            foreach ($monthlyBcRequest as $data) {
-                $monthlyBc[] = $data['Dates'];
-                $serviceRequestBcCount[] = $data['serviceRequestBcCount'];
-            }
-            ?>
-            <div>
-                <canvas id="chartBcRequest"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Barangay Clearance End of graph -->
-<!-- Certificate of Indigency Start of graph -->
-<div class="col-md m-1">
-    <div class="card">
-        <div class="card-header bg-primary pt-3">
-            <div class="text-center">
-                <p class="card-title text-light">Pending Orders</p>
-            </div>
-        </div>
-        <div class="card-header text-center d-flex justify-content-center flex-wrap" style="gap: 10px;">
-            <div class="d-flex flex-column">
-                <p>Start date</p>
-                <input onchange="filterData(reqcoistartdate, reqcoienddate, chartCoiRequest, serviceRequestCoiCount, monthlyCoiHold, configRequestCoi, dataCoiReq)" type="month" id="reqcoistartdate">
-            </div>
-            <div class="d-flex flex-column">
-                <p>End date</p>
-                <input onchange="filterData(reqcoistartdate, reqcoienddate, chartCoiRequest, serviceRequestCoiCount, monthlyCoiHold, configRequestCoi, dataCoiReq)" type="month" id="reqcoienddate">
-            </div>
-        </div>
-        <div class="card-body">
-            <?php
-            $monthlyCoi = [];
-            $serviceRequestCoiCount = [];
-            $monthlyCoiRequest = mysqli_query($conn, "SELECT COUNT(*) AS serviceRequestCoiCount, DATE_FORMAT(order_date, '%M %Y') AS Dates FROM tbl_cart WHERE status_id = 3 AND (order_date IS NOT NULL AND order_date != '0000-00-00') GROUP BY DATE_FORMAT(order_date, '%Y-%m')");
-            foreach ($monthlyCoiRequest as $data) {
-                $monthlyCoi[] = $data['Dates'];
-                $serviceRequestCoiCount[] = $data['serviceRequestCoiCount'];
-            }
-            ?>
-            <div>
-                <canvas id="chartCoiRequest"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <script src="../scripts/bootstrap.bundle.min.js"></script>
 <script src="../scripts/jquery.js"></script>
@@ -428,7 +425,7 @@ require_once("../backend/config/config.php");
         });
     });
 </script>
-
+<script src="../jquery/sideBarProd.js"></script>
 
   </body>
 </html>

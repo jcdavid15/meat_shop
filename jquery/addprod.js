@@ -61,4 +61,53 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('#addProdMain').submit(function(e){
+        e.preventDefault();
+        var prodNameMain = $('#prod_name_main').val();
+
+        if(!prodNameMain){
+            Swal.fire({
+                title: "Empty Product Name!",
+                text: "Please fill in all fields.",
+                icon: "warning",
+                showConfirmButton: true,
+            })
+            return;
+        }
+
+        $.ajax({
+            url: "../backend/admin/addProdMain.php",
+            method: "post",
+            data: {prodNameMain},
+            success: function(response){
+                if(response === 'success'){
+                    Swal.fire({
+                        title: "Successfully Added",
+                        text: "Product Added Successfully!",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then((result)=>{
+                        if(result){
+                            location.reload();
+                        }
+                    })
+                }else if(response === 'exist'){
+                    Swal.fire({
+                        title: "Folder Already Exist!",
+                        text: "Please try another name.",
+                        icon: "warning",
+                        showConfirmButton: true,
+                        timer: 2000
+                    })
+                }
+            },
+            error: function() {
+                // Handle error response
+                alert('Error: Failed to communicate with server.');
+            }
+        })
+    })
+
 });
