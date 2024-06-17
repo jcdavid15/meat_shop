@@ -39,7 +39,6 @@ if(isset($_POST["prod_name"]) && isset($_POST["prod_price"]) &&
         }
     }
 
-    // Example: Inserting data into the database
     $query = "INSERT INTO tbl_products (prod_name, prod_price, prod_type, prod_stocks, prod_img) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("siids", $prod_name, $prod_price, $prod_type, $prod_stocks, $prod_img['name']);

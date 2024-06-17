@@ -48,7 +48,7 @@
                     "gender" => $data["gender"],
                     "address" => $data["address"],
                     "branch_id" => $data["branch_id"]
-                );
+                ); //array_associative
                 if($role_id == 1){
                     $_SESSION["user_id"] = $data["account_id"];
                 }else if($role_id == 2){

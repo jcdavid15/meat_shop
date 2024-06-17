@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 10, 2024 at 03:14 PM
+-- Generation Time: Jun 17, 2024 at 09:18 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -115,6 +115,13 @@ CREATE TABLE `tbl_audit_log` (
   `log_date` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_audit_log`
+--
+
+INSERT INTO `tbl_audit_log` (`log_user_id`, `log_username`, `log_user_type`, `log_date`) VALUES
+(6, 'admin', '2', '2024-06-17 07:17:21');
+
 -- --------------------------------------------------------
 
 --
@@ -184,7 +191,7 @@ CREATE TABLE `tbl_products` (
 --
 
 INSERT INTO `tbl_products` (`prod_id`, `prod_name`, `prod_price`, `prod_type`, `prod_stocks`, `prod_img`) VALUES
-(1, 'Fresh Beef Steak', 370, 1, 41.5, 'img-1.webp'),
+(1, 'Fresh Beef Steak', 370, 1, 39.5, 'img-1.webp'),
 (2, 'Ground Beef', 360, 1, 42, 'img-2.jpeg'),
 (3, 'Roast Beef', 370, 1, 46, 'img-3.jpeg'),
 (4, 'Fresh Pork Chops', 390, 2, 50, 'img-1.jpeg'),
@@ -409,13 +416,13 @@ ALTER TABLE `tbl_branch`
 -- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `tbl_products`
 --
 ALTER TABLE `tbl_products`
-  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `tbl_product_type`
@@ -427,7 +434,7 @@ ALTER TABLE `tbl_product_type`
 -- AUTO_INCREMENT for table `tbl_receipt`
 --
 ALTER TABLE `tbl_receipt`
-  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_reports`

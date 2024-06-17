@@ -2,6 +2,7 @@ $(document).ready(()=>{
     $(".div-button").on("click", function(){
         
         const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+
         if(userDetails){
             const check =  $(this).closest(".con-item").find(".check");
 
@@ -39,7 +40,7 @@ $(document).ready(()=>{
                 title: "Log in first!",
                 text: "You need to log in first before you order!",
                 icon: "warning"
-            });
+            });//SweetAlert 
         }
     })
 })

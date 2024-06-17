@@ -112,7 +112,7 @@
     <script>
         $(document).ready(function(){
             $('.prod-type').click(function(){
-                var typeId = $(this).data('type-id');
+                var typeId = $(this).data('type-id');//type-id = 2
                 $('.prod-type').removeAttr('style');
                 $(this).css({'background': 'rgb(23, 68, 113)', 'color': 'white'});
                 loadProducts(typeId);
@@ -128,7 +128,7 @@
                     }
                 });
             }
-        });
+        });//jquery = framework, ajax = library
     </script>
     <script src="../scripts/navbar.js"></script>
     <script src="../jquery/addtocart.js"></script>
