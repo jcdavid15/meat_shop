@@ -29,6 +29,12 @@ $(document).ready(()=>{
                         setTimeout(function(){
                             check.css("opacity", "0");
                         },2000)
+                    }else if(response === 'low'){
+                        Swal.fire({
+                            title: "Invalid Quantity",
+                            text: "Make sure your quantity is right.",
+                            icon: "warning"
+                        });
                     }
                 },  
                 error: function(){

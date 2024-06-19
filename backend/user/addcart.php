@@ -80,7 +80,7 @@ if (isset($_POST["prodId"]) && isset($_POST["qnty"]) && isset($_POST["branch"]))
                 echo "success";
             }
         } else {
-            echo "exceeds";
+            echo "low";
         }
     } else {
         echo "Error: Product not found.";
