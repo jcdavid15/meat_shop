@@ -148,10 +148,15 @@ $current_user = $_SESSION['user_id'];
                             </div>
                             <div class="text">
                                 <div>Total:</div>
-                                <span class="text-total">₱<?php echo number_format($total, 2); ?></span>
+                                <div class="text-total">₱<?php echo number_format($total, 2); ?></div>
                             </div>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Pick up now</button>
                         </div>
+                    </div>
+
+                    <div class="modal-body d-flex align-items-start" style="font-size: 15px;">
+                        <input name="terms" type="checkbox" required class="mr-2 mt-1" id="checkTerms">
+                        <label for="terms"> I have read and agree to the <a href="#" data-toggle="modal" data-target="#termsModal">Terms and Conditions</a></label>
                     </div>
                 </div>
             </div>
@@ -180,13 +185,18 @@ $current_user = $_SESSION['user_id'];
                 </div>
                 <div class="modal-body">
                     <form>
+                        <div class="mb-3">
+                            <label class="col-form-label">Total Amount:</label>
+                            <input type="text"
+                            disabled id="overAllTotal" class="font-weight-bold" value=<?php echo "₱".number_format($total, 2) ?> >
+                        </div>
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Upload Your Receipt:</label>
                             <input type="file" class="form-control-file" id="receiptFile">
                         </div>
                         <div class="mb-3">
                             <label class="col-form-label">Reference Number</label>
-                            <input type="text" class="form-control" id="refNumber">
+                            <input type="text" class="form-control" id="refNumber" maxlength="13">
                         </div>
                         <div class="mb-3">
                             <label class="col-form-label">Deposit Amount:</label>
@@ -198,6 +208,7 @@ $current_user = $_SESSION['user_id'];
                         </div>
                     </form>
                 </div>
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary proceed-btn">Proceed</button>
@@ -205,6 +216,29 @@ $current_user = $_SESSION['user_id'];
             </div>
         </div>
     </div>
+
+    <!-- Terms and Conditions Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Once a purchase has been made, no refunds will be issued for any reason. This policy applies to all products, including fresh meat, deli products, and other perishable goods.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
     <?php include "./footer.php"; ?>
     <script src="../scripts/navbar.js"></script>

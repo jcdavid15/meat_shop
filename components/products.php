@@ -78,7 +78,7 @@
                                     <option value="6Kg">6Kg</option>
                                     <option value="7Kg">7Kg</option>
                                     <option value="8Kg">8Kg</option>
-                                    <option value="9Kg">9Kg</option>
+                                    <option value="9Kg">9Kg</option> 
                                     <option value="10Kg">10Kg</option>
                                 </select>
                             </div>

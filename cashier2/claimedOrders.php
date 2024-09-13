@@ -122,7 +122,7 @@ require_once("../backend/config/config.php");
                     <td><?php echo htmlspecialchars($data['item_id']); ?></td>
                     <td><?php echo htmlspecialchars($data['full_name']); ?></td>
                     <td><?php echo htmlspecialchars($data['prod_name']); ?></td>
-                    <td><?php echo htmlspecialchars($data['prod_price']); ?></td>
+                    <td>₱<?php echo number_format($data['prod_price'], 2); ?>/Kg</td>
                     <td><?php echo $qnty_value; ?></td>
                     <td><?php echo htmlspecialchars($data['branch_name']); ?></td>
                     <td>

@@ -113,6 +113,29 @@ nav {
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}
 
+.count-div{
+  position: relative;
+}
+
+.count {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  text-align: center;
+  line-height: 18px; /* Ensures the text is vertically centered */
+}
+
+  nav .left a:hover div, nav .right a i:hover, nav .right a:hover .prod,
+  nav .right a:hover .history{
+    background: #011425;
+    color: white;
+}
 
   @media (min-width: 768px) {
     nav {

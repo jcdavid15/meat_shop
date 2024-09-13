@@ -1,3 +1,13 @@
+const checkTerms = document.getElementById('checkTerms');
+let check = false;
+checkTerms.addEventListener('click', function() {
+    if(checkTerms.checked){
+        check = true;
+    }else{
+        check = false;
+    }
+})
+
 $(document).ready(()=>{
     $(".delete-js").on("click", function(){
         // const prodId = $(this).attr("id");
@@ -75,43 +85,90 @@ $(document).ready(()=>{
     })
 
     $('.proceed-btn').on('click', function() {
-        const receiptFile = $('#receiptFile')[0].files[0]; // Corrected the ID to match your HTML input
-        const refNumber = $("#refNumber").val();
-        const depositAmnt = $("#depAmount").val();
+        const check = $('input[name="terms"]').is(':checked');
     
-        if (!receiptFile) {
+        if (!check) {
             Swal.fire({
-                title: "Please upload your receipt",
-                text: "",
+                title: "Please read and accept the terms and conditions.",
                 icon: "warning",
                 showConfirmButton: true,
             });
             return;
         }
     
+        const receiptFile = $('#receiptFile')[0].files[0];
+        const refNumber = $("#refNumber").val().trim();
+        const depositAmnt = $("#depAmount").val().trim();
+        const totalAmnt = $("#overAllTotal").val().trim().replace("₱", "").replace(",", "");    
+        
+        // Check if the receipt file is uploaded
+        if (!receiptFile) {
+            Swal.fire({
+                title: "Please upload your receipt",
+                icon: "warning",
+                showConfirmButton: true,
+            });
+            return;
+        }
+        
+        const allowedExtensions = ['jpg', 'jpeg', 'png', 'svg', 'webp'];
+        const fileExtension = receiptFile.name.split('.').pop().toLowerCase();
+        
+        // Validate file extension
+        if (!allowedExtensions.includes(fileExtension)) {
+            Swal.fire({
+                title: "Invalid file type",
+                text: "Please upload a file with one of the following extensions: jpg, jpeg, png, svg, webp",
+                icon: "warning",
+                showConfirmButton: true,
+            });
+            return;
+        }
+        
+        // Validate reference number input
         if (!refNumber) {
             Swal.fire({
                 title: "Please enter your reference number.",
-                text: "",
                 icon: "warning",
                 showConfirmButton: true,
             });
             return;
         }
 
-        if (!depositAmnt) {
+        if(refNumber.length < 13){
             Swal.fire({
-                title: "Please enter your deposit amount.",
-                text: "",
+                title: "Invalid reference number",
+                text: "Reference number must be 13 characters long.",
                 icon: "warning",
                 showConfirmButton: true,
             });
             return;
         }
     
+        // Validate deposit amount input
+        if (!depositAmnt || isNaN(depositAmnt) || parseFloat(depositAmnt) <= 0) {
+            Swal.fire({
+                title: "Please enter a valid deposit amount.",
+                icon: "warning",
+                showConfirmButton: true,
+            });
+            return;
+        }
+        console.log(parseFloat(totalAmnt) / 2);
+        if((parseFloat(totalAmnt) / 2) > depositAmnt){
+            Swal.fire({
+                title: "Invalid deposit amount",
+                text: "Deposit amount must be at least 50% of the total amount.",
+                icon: "warning",
+                showConfirmButton: true,
+            });
+            return;
+        }
+        
+        // Confirm pickup action
         Swal.fire({
             title: "Want to pick up now?",
-            text: "Your items will prepare right away.",
+            text: "Your items will be prepared right away.",
             icon: "info",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -154,5 +211,6 @@ $(document).ready(()=>{
             }
         });
     });
+    
     
 })

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 17, 2024 at 09:18 AM
+-- Generation Time: Sep 13, 2024 at 01:22 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -115,13 +115,6 @@ CREATE TABLE `tbl_audit_log` (
   `log_date` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tbl_audit_log`
---
-
-INSERT INTO `tbl_audit_log` (`log_user_id`, `log_username`, `log_user_type`, `log_date`) VALUES
-(6, 'admin', '2', '2024-06-17 07:17:21');
-
 -- --------------------------------------------------------
 
 --
@@ -191,9 +184,9 @@ CREATE TABLE `tbl_products` (
 --
 
 INSERT INTO `tbl_products` (`prod_id`, `prod_name`, `prod_price`, `prod_type`, `prod_stocks`, `prod_img`) VALUES
-(1, 'Fresh Beef Steak', 370, 1, 39.5, 'img-1.webp'),
-(2, 'Ground Beef', 360, 1, 42, 'img-2.jpeg'),
-(3, 'Roast Beef', 370, 1, 46, 'img-3.jpeg'),
+(1, 'Fresh Beef Steak', 370, 1, 38.5, 'img-1.webp'),
+(2, 'Ground Beef', 360, 1, 40.5, 'img-2.jpeg'),
+(3, 'Roast Beef', 370, 1, 5, 'img-3.jpeg'),
 (4, 'Fresh Pork Chops', 390, 2, 50, 'img-1.jpeg'),
 (5, 'Fresh Pork Ribs', 340, 2, 42, 'img-2.jpeg'),
 (6, 'Fresh Bacon', 370, 2, 50, 'img-3.jpeg'),
@@ -247,7 +240,8 @@ CREATE TABLE `tbl_receipt` (
   `receipt_img` varchar(255) NOT NULL,
   `receipt_number` varchar(50) NOT NULL,
   `deposit_amount` int(11) NOT NULL,
-  `uploaded_date` date NOT NULL
+  `uploaded_date` date NOT NULL,
+  `branch_id` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -416,7 +410,7 @@ ALTER TABLE `tbl_branch`
 -- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `tbl_products`
@@ -434,7 +428,7 @@ ALTER TABLE `tbl_product_type`
 -- AUTO_INCREMENT for table `tbl_receipt`
 --
 ALTER TABLE `tbl_receipt`
-  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tbl_reports`

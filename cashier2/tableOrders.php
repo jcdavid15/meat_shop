@@ -68,7 +68,8 @@ require_once("../backend/config/config.php");
                             $query = "SELECT tr.*, CONCAT(td.first_name, ' ', td.middle_name, ' ', td.last_name) as full_name,
                             td.address, td.contact
                             FROM tbl_receipt tr
-                            INNER JOIN tbl_account_details td ON td.account_id = tr.account_id";
+                            INNER JOIN tbl_account_details td ON td.account_id = tr.account_id
+                            WHERE tr.branch_id = 2;";
                             $stmt = $conn->prepare($query);
                             $stmt->execute();
                             $result = $stmt->get_result();
@@ -228,7 +229,7 @@ require_once("../backend/config/config.php");
                             <td><?php echo $data['item_id'];?></td>
                             <td><?php echo $data['full_name'];?></td>
                             <td><?php echo $data['prod_name'];?></td>
-                            <td><?php echo $data['prod_price'];?></td>
+                            <td>₱<?php echo number_format($data['prod_price'], 2);?>/Kg</td>
                             <td><?php echo $qnty_value;?></td>
                             <td><?php echo $data['branch_name'];?></td>
                             <td>
@@ -346,7 +347,7 @@ require_once("../backend/config/config.php");
                             <td><?php echo $data['item_id'];?></td>
                             <td><?php echo $data['full_name'];?></td>
                             <td><?php echo $data['prod_name'];?></td>
-                            <td><?php echo $data['prod_price'];?></td>
+                            <td><?php echo number_format($data['prod_price'], 2);?>/Kg</td>
                             <td><?php echo $qnty_value;?></td>
                             <td><?php echo $data['branch_name'];?></td>
                             <td>

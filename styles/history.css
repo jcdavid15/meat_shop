@@ -83,9 +83,8 @@ main{
 
 /* Style for delete cell */
 .styled-table td:last-child {
-    text-align: center;
     cursor: pointer;
-    color: rgb(190, 190, 190);
+    color: rgb(157, 157, 157);
     font-weight: bold;
     transition: 0.3s ease;
 }

@@ -1,5 +1,5 @@
 function validateInput(input) {
-    // Remove non-numeric characters
+    
     input.value = input.value.replace(/\D/g, '');
 }
 

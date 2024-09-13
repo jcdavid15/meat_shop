@@ -1,3 +1,4 @@
+<?php require_once('./backend/config/config.php') ?>
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +40,24 @@
           <?php if(!empty($_SESSION["user_id"])){ ?>
               <a href="./components/history.php"><div class="history">History</div></a>
           <?php }?>
+          <?php if(!empty($_SESSION["user_id"])){ 
+                $query = "SELECT COUNT(*) AS CountItems FROM tbl_cart WHERE status_id = 4 and account_id = ?;";
+                $stmt = $conn->prepare($query);
+                $stmt->bind_param("i", $_SESSION["user_id"]);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $data = $result->fetch_assoc();
+            ?>
+                
+            <a href="./cart.php">
+                <div class="count-div">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="count">
+                        <?php echo $data["CountItems"]; ?>
+                    </div>
+                </div>
+            </a>
+            <?php } ?>
           <a href="./components/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
 
           <?php if(!empty($_SESSION["user_id"])){ ?>
@@ -114,7 +133,7 @@
                     </div>
                     <div class="center">
                         <div class="flex">
-                            <a href="./components/porkprod.php">
+                            <a href="./components/products.php">
                                 <div class="con-item">
                                     <div class="img-con">
                                         <img src="./assets/pork/img-1.jpeg" alt="">
@@ -128,7 +147,7 @@
                                 </div>
                             </a>
     
-                            <a href="./components/porkprod.php">
+                            <a href="./components/products.php">
                                 <div class="con-item">
                                     <div class="img-con">
                                         <img src="./assets/pork/img-6.jpeg" alt="">
@@ -142,7 +161,7 @@
                                 </div>
                             </a>
     
-                            <a href="./components/porkprod.php">
+                            <a href="./components/products.php">
                                 <div class="con-item">
                                     <div class="img-con">
                                         <img src="./assets/pork/img-7.jpeg" alt="">
@@ -156,7 +175,7 @@
                                 </div>
                             </a>
 
-                            <a href="./components/porkprod.php">
+                            <a href="./components/products.php">
                                 <div class="con-item">
                                     <div class="img-con">
                                         <img src="./assets/pork/img-8.jpeg" alt="">
@@ -192,7 +211,7 @@
                                     <p class="price">₱310.00 PHP</p>
                                 </div>
                                 <div class="div-button">
-                                    <a href="./components/chickenprod.php">
+                                    <a href="./components/products.php">
                                         <button>
                                             SHOP NOW
                                             <div><i class="fa-solid fa-arrow-right"></i></div>
@@ -246,7 +265,7 @@
                             </div>
     
                             <div class="con-item">
-                                <a href="./components/porkprod.php">
+                                <a href="./components/products.php">
                                     <div class="img-con">
                                         <img src="./assets/pork/img-2.jpeg" alt="">
                                     </div>
@@ -258,7 +277,7 @@
                                     <p class="price">₱340.00PHP</p>
                                 </div>
                                 <div class="div-button">
-                                    <a href="./components/porkprod.php">
+                                    <a href="./components/products.php">
                                         <button>
                                             SHOP NOW
                                             <div><i class="fa-solid fa-arrow-right"></i></div>

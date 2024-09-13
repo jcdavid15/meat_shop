@@ -1,6 +1,11 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
       <!-- Navbar Brand-->
-      <a class="navbar-brand ps-3" href="index.php">Sauyo Cashier</a>
+      <div class="d-flex align-items-center">
+          <div class="me-3">
+              <img src="../assets/imgs/logo.jpeg" alt="Logo" class="img-fluid" style="height: 50px;">
+          </div>
+          <a class="navbar-brand" href="index.php">Sauyo Cashier</a>
+      </div>
       <!-- Sidebar Toggle-->
       <button
         class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"

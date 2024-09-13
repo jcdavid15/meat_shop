@@ -30,6 +30,23 @@
           <?php if(!empty($_SESSION["user_id"])){ ?>
               <a href="./history.php"><div class="history">History</div></a>
           <?php }?>
+            <?php if(!empty($_SESSION["user_id"])){ 
+                $query = "SELECT COUNT(*) AS CountItems FROM tbl_cart WHERE status_id = 4 and account_id = ?;";
+                $stmt = $conn->prepare($query);
+                $stmt->bind_param("i", $_SESSION["user_id"]);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $data = $result->fetch_assoc();
+            ?>
+            <a href="./ProcessOrders.php">
+                <div class="count-div">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="count">
+                        <?php echo $data["CountItems"]; ?>
+                    </div>
+                </div>
+            </a>
+            <?php } ?>
           <a href="./cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
 
           <?php if(!empty($_SESSION["user_id"])){ ?>

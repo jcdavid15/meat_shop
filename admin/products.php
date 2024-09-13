@@ -77,8 +77,8 @@ require_once("../backend/config/config.php");
                           <tr>
                             <td><?php echo $data['prod_id'];?></td>
                             <td><?php echo $data['prod_name'];?></td>
-                            <td><?php echo $data['prod_price'];?></td>
-                            <td><?php echo $data['prod_stocks'];?></td>
+                            <td>₱<?php echo number_format($data['prod_price'], 2);?>/Kg</td>
+                            <td><?php echo $data['prod_stocks'];?>Kg</td>
                             <td>
                                 <button type="button" class="btn btn-primary" id="<?php echo $data["prod_id"] ?>"  data-bs-toggle="modal" data-bs-target="#residenceAccountDetails<?php echo $data["prod_id"] ?>" data-bs-whatever="@getbootstrap">
                                   <i class="fa-solid fa-pen-to-square" style="color: #fcfcfc;"></i>

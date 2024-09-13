@@ -60,7 +60,7 @@ require_once("../backend/config/config.php");
                 ?>
                   Total Sales
                 </h4>
-                <span class='hind-font caption-12 c-dashboardInfo__count'><?php echo $data5["total_sales"] != 0 ? $data5["total_sales"] : "0"; ?></span>
+                <span class='hind-font caption-12 c-dashboardInfo__count'><?php echo $data5["total_sales"] != 0 ? number_format($data5["total_sales"], 2) : "0.00"; ?></span>
               </div>
             </div>
 
@@ -247,7 +247,7 @@ require_once("../backend/config/config.php");
                           <tr>
                             <td><?php echo $data['prod_id'];?></td>
                             <td><?php echo $data['prod_name'];?></td>
-                            <td><?php echo $data['prod_price'];?></td>
+                            <td>₱<?php echo number_format($data['prod_price'], 2);?>/Kg</td>
                           </tr>
                         <?php 
                             }

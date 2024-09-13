@@ -97,7 +97,7 @@ require_once("../backend/config/config.php");
                             <td><?php echo $data['item_id'];?></td>
                             <td><?php echo $data['full_name'];?></td>
                             <td><?php echo $data['prod_name'];?></td>
-                            <td><?php echo $data['prod_price'];?></td>
+                            <td>₱<?php echo number_format($data['prod_price'], 2);?></td>
                             <td><?php echo $qnty_value; ?></td>
                             <td><?php echo $data['branch_name'];?></td>
                             <td>

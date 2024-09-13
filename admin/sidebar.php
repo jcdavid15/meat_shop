@@ -62,7 +62,7 @@
           <div class="sb-nav-link-icon">
             <i class="fa-solid fa-hand-holding-dollar"></i>
           </div>
-          Reports
+          Feedbacks
         </a>
         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePickup" aria-expanded="false" aria-controls="collapsePickup">
           <div class="sb-nav-link-icon">
@@ -106,27 +106,4 @@
   </nav>
 </div>
 
-<script>
-  $(document).ready(function(){
-    $('.prod-type').click(function(e){
-      e.preventDefault(); // Prevent the default link behavior
-      var typeId = $(this).data('type-id');
-      // loadProducts(typeId);
-      alert(typeId);
-    });
-  });
 
-  function loadProducts(typeId){
-    $.ajax({
-      url: 'products.php',
-      type: 'GET',
-      data: { type: typeId },
-      success: function(response){
-        window.location.href = "products.php?type=" + typeId;
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.log("Error: " + textStatus, errorThrown);
-      }
-    });
-  }
-</script>
