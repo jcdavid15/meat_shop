@@ -42,7 +42,7 @@ require_once("../backend/config/config.php");
           <div class="card mb-5">
             <div class="card-header bg-success pt-3">
               <div class="text-center">
-                <p class="card-title text-light">Bagbag Branch Success Orders</p>
+                <p class="card-title text-light">Sauyo Branch Cancelled Orders</p>
               </div>
             </div>
             <div class="card-body">
@@ -69,59 +69,60 @@ require_once("../backend/config/config.php");
                             INNER JOIN tbl_products tp ON tp.prod_id = tc.prod_id 
                             INNER JOIN tbl_branch tb ON tc.branch_id = tb.branch_id 
                             INNER JOIN tbl_account_details ta ON ta.account_id = tc.account_id 
-                            WHERE tb.branch_id = 1 AND tc.status_id = 2;";
+                            WHERE tb.branch_id = 2 AND tc.status_id = 5;";
                   $stmt = $conn->prepare($query);
                   $stmt->execute();
                   $result = $stmt->get_result();
                   while ($data = $result->fetch_assoc()) {
                     $total = $data["prod_qnty"] * $data["prod_price"];
-                      switch ($data["prod_qnty"]) {
-                        case "0.50":
-                            $qnty_value = "1/2Kg";
-                            break;
-                        case "0.25":
-                            $qnty_value = "1/4Kg";
-                            break;
-                        case "1":
-                            $qnty_value = "1Kg";
-                            break;
-                        case "2":
-                            $qnty_value = "2Kg";
-                            break;
-                        case "3":
-                            $qnty_value = "3Kg";
-                            break;
-                        case "4":
-                            $qnty_value = "4Kg";
-                            break;
-                        case "5":
-                            $qnty_value = "5Kg";
-                            break;
-                        case "6":
-                            $qnty_value = "6Kg";
-                            break;
-                        case "7":
-                            $qnty_value = "7Kg";
-                            break;
-                        case "8":
-                            $qnty_value = "8Kg";
-                            break;
-                        case "9":
-                            $qnty_value = "9Kg";
-                            break;
-                        case "10":
-                            $qnty_value = "10Kg";
-                            break;
-                        default:
-                            $qnty_value = $data["prod_qnty"] . "Kg";
-                            break;
-                    }
+
+                    switch ($data["prod_qnty"]) {
+                      case "0.50":
+                          $qnty_value = "1/2Kg";
+                          break;
+                      case "0.25":
+                          $qnty_value = "1/4Kg";
+                          break;
+                      case "1":
+                          $qnty_value = "1Kg";
+                          break;
+                      case "2":
+                          $qnty_value = "2Kg";
+                          break;
+                      case "3":
+                          $qnty_value = "3Kg";
+                          break;
+                      case "4":
+                          $qnty_value = "4Kg";
+                          break;
+                      case "5":
+                          $qnty_value = "5Kg";
+                          break;
+                      case "6":
+                          $qnty_value = "6Kg";
+                          break;
+                      case "7":
+                          $qnty_value = "7Kg";
+                          break;
+                      case "8":
+                          $qnty_value = "8Kg";
+                          break;
+                      case "9":
+                          $qnty_value = "9Kg";
+                          break;
+                      case "10":
+                          $qnty_value = "10Kg";
+                          break;
+                      default:
+                          $qnty_value = $data["prod_qnty"] . "Kg";
+                          break;
+                  }
                   ?>
                   <tr>
                     <td><?php echo htmlspecialchars($data['item_id']); ?></td>
                     <td><?php echo htmlspecialchars($data['full_name']); ?></td>
                     <td><?php echo htmlspecialchars($data['prod_name']); ?></td>
-                    <td><?php echo htmlspecialchars($data['prod_price']); ?></td>
+                    <td>₱<?php echo number_format($data['prod_price'], 2); ?>/Kg</td>
                     <td><?php echo $qnty_value; ?></td>
                     <td><?php echo htmlspecialchars($data['branch_name']); ?></td>
                     <td>

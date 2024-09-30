@@ -42,7 +42,7 @@ require_once("../backend/config/config.php");
           <div class="card mb-5">
             <div class="card-header bg-success pt-3">
               <div class="text-center">
-                <p class="card-title text-light">Bagbag Branch Success Orders</p>
+                <p class="card-title text-light">Sauyo Branch Success Orders</p>
               </div>
             </div>
             <div class="card-body">
@@ -78,10 +78,10 @@ require_once("../backend/config/config.php");
 
                     switch ($data["prod_qnty"]) {
                       case "0.50":
-                          $qnty_value = "1/2";
+                          $qnty_value = "1/2Kg";
                           break;
                       case "0.25":
-                          $qnty_value = "1/4";
+                          $qnty_value = "1/4Kg";
                           break;
                       case "1":
                           $qnty_value = "1Kg";

@@ -1,12 +1,3 @@
-const checkTerms = document.getElementById('checkTerms');
-let check = false;
-checkTerms.addEventListener('click', function() {
-    if(checkTerms.checked){
-        check = true;
-    }else{
-        check = false;
-    }
-})
 
 $(document).ready(()=>{
     $(".delete-js").on("click", function(){
@@ -85,16 +76,6 @@ $(document).ready(()=>{
     })
 
     $('.proceed-btn').on('click', function() {
-        const check = $('input[name="terms"]').is(':checked');
-    
-        if (!check) {
-            Swal.fire({
-                title: "Please read and accept the terms and conditions.",
-                icon: "warning",
-                showConfirmButton: true,
-            });
-            return;
-        }
     
         const receiptFile = $('#receiptFile')[0].files[0];
         const refNumber = $("#refNumber").val().trim();

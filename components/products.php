@@ -94,7 +94,7 @@
                             <div class="input-div">
                                 <div>Stocks: 
                                     <span style="font-weight: 500;">
-                                        <?php echo $data["prod_stocks"] ?>
+                                        <?php echo $data["prod_stocks"] ?>Kg
                                     </span>
                                 </div>
                             </div>

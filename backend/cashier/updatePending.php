@@ -67,8 +67,9 @@
                 $activity = "Accept item ".$item_id;
             }else{
                 $activity = "Claimed item ".$item_id;
+                transaction($conn, $cashier_id, $user_name, $role_id, $current_date, $activity, $branch_id);
             }
-            transaction($conn, $cashier_id, $user_name, $role_id, $current_date, $activity, $branch_id);
+           
         }
         echo "success";
     }

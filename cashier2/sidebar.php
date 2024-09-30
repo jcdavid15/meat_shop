@@ -25,6 +25,13 @@
           Claimed Orders
         </a>
 
+        <a class="nav-link" href="cancelledOrders.php">
+          <div class="sb-nav-link-icon">
+            <i class="fa-solid fa-ban"></i>
+          </div>
+          Cancelled Orders
+        </a>
+
         <div class="sb-sidenav-menu-heading">Report </div>
         <a class="nav-link" href="transHistory.php">
           <div class="sb-nav-link-icon">

@@ -1,5 +1,15 @@
 $(document).ready(()=>{
     $("#submit").on("click", function(e){
+        const check = $('input[name="terms"]').is(':checked');
+    
+        if (!check) {
+            Swal.fire({
+                title: "Please read and accept the terms and conditions.",
+                icon: "warning",
+                showConfirmButton: true,
+            });
+            return;
+        }
         const email = $("#email").val()
         const password = $("#password").val()
 

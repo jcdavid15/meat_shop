@@ -40,7 +40,7 @@ require_once("../backend/config/config.php");
         <main>
           <div class="container-fluid px-4">
             <!-- Page indicator -->
-            <h1 class="mt-4" id="full_name">Admin,</h1>
+            <h1 class="mt-4" id="full_name">Admin</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item active">Create Account</li>
             </ol>
@@ -73,7 +73,7 @@ require_once("../backend/config/config.php");
                                 <label for="selectRole" class="form-label">Role</label>
                                 <select id="selectRole" class="form-select">
                                     <option value="" disabled selected>Account Role</option>
-                                    <option value="2">Admin</option>
+                                    <!-- <option value="2">Admin</option> -->
                                     <option value="3">Cashier</option>
                                 </select>      
                             </div>
@@ -173,11 +173,11 @@ require_once("../backend/config/config.php");
       });
 </script>
 
-<script>
+<!-- <script>
     const full_name = document.getElementById('full_name');
     const acc_data = JSON.parse(localStorage.getItem('adminDetails'))
     full_name.innerText = 'Admin, ' + acc_data.full_name;
-  </script>  
+  </script>   -->
 <script src="../jquery/sideBarProd.js"></script>
   </body>
 </html>

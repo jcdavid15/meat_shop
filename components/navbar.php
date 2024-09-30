@@ -38,14 +38,16 @@
                 $result = $stmt->get_result();
                 $data = $result->fetch_assoc();
             ?>
-            <a href="./ProcessOrders.php">
+            
                 <div class="count-div">
+                <a href="./ProcessOrders.php">
                     <i class="fa-regular fa-bell"></i>
                     <div class="count">
                         <?php echo $data["CountItems"]; ?>
                     </div>
+                </a>
                 </div>
-            </a>
+            
             <?php } ?>
           <a href="./cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
 

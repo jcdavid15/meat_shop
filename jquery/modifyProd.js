@@ -26,8 +26,18 @@ $(document).ready(()=>{
                                 window.location.reload();
                             }
                         })
+                    }else if(response === 'you cannot reduce the stocks'){
+                        Swal.fire({
+                            title: "Invalid Stocks",
+                            text: "You cannot reduce the stocks",
+                            icon: "warning"
+                        })
                     }else{
-                        alert("Connection error");
+                        Swal.fire({
+                            title: "Product Not Updated",
+                            text: "Product has not been updated",
+                            icon: "warning"
+                        })
                     }
                 },
                 error: function(){

@@ -40,7 +40,7 @@ require_once("../backend/config/config.php");
         <main>
           <div class="container-fluid px-4">
             <!-- Page indicator -->
-            <h1 class="mt-4" id="full_name">Admin,</h1>
+            <h1 class="mt-4" id="full_name">Admin</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item active">Sales</li>
             </ol>
@@ -199,11 +199,11 @@ require_once("../backend/config/config.php");
       });
 </script>
 
-<script>
+<!-- <script>
     const full_name = document.getElementById('full_name');
     const acc_data = JSON.parse(localStorage.getItem('adminDetails'))
     full_name.innerText = 'Admin, ' + acc_data.full_name;
-  </script>  
+  </script>   -->
 <script src="../jquery/sideBarProd.js"></script>
   </body>
 </html>

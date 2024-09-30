@@ -40,7 +40,7 @@ require_once("../backend/config/config.php");
         <main>
           <div class="container-fluid px-4">
             <!-- Page indicator -->
-            <h1 class="mt-4" id="full_name">Admin,</h1>
+            <h1 class="mt-4" id="full_name">Admin</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item active">Reports</li>
             </ol>
@@ -103,11 +103,18 @@ require_once("../backend/config/config.php");
                                         <?php echo $data["rp_message"]; ?>
                                       </textarea>
                                     </div>
-                                      
+                                    <div class="mb-3">
+                                      <label class="col-form-label">Response Message</label>
+                                      <textarea class="form-control" id="message-response" >
+
+                                      </textarea>
+                                      <input type="text" disabled id="email-val" value="<?php echo $data["rp_email"] ?>" style="display:none;">
+                                    </div>
                                     </form>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary " value="<?php echo $data["prod_id"]; ?>" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="submit">Submit</button>
                                   </div>
                                 </div>
                               </div>
@@ -127,8 +134,9 @@ require_once("../backend/config/config.php");
       src="../scripts/bootstrap.bundle.min.js"
     ></script>
     <script src="../scripts/jquery.js"></script>
+    <script src="../jquery/responseReport.js"></script>
     <script src="../scripts/toggle.js"></script>
-    <script src="../jquery/modifyProd.js"></script>
+    <!-- <script src="../jquery/modifyProd.js"></script> -->
     <!-- DataTables Scripts -->
     <script src="../plugins/js/jquery.dataTables.min.js"></script>
     <script src="../plugins/js/dataTables.bootstrap5.min.js"></script>
@@ -157,11 +165,11 @@ require_once("../backend/config/config.php");
       });
 </script>
 
-<script>
+<!-- <script>
     const full_name = document.getElementById('full_name');
     const acc_data = JSON.parse(localStorage.getItem('adminDetails'))
     full_name.innerText = 'Admin, ' + acc_data.full_name;
-  </script> 
+  </script>  -->
 <script src="../jquery/sideBarProd.js"></script> 
   </body>
 </html>

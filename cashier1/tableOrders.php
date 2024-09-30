@@ -184,10 +184,10 @@ require_once("../backend/config/config.php");
                               $total = $data["prod_qnty"] * $data["prod_price"];
                               switch ($data["prod_qnty"]) {
                                 case "0.50":
-                                    $qnty_value = "1/2";
+                                    $qnty_value = "1/2Kg";
                                     break;
                                 case "0.25":
-                                    $qnty_value = "1/4";
+                                    $qnty_value = "1/4Kg";
                                     break;
                                 case "1":
                                     $qnty_value = "1Kg";
@@ -238,6 +238,9 @@ require_once("../backend/config/config.php");
                                 </button>
                                 <button type="button" class="btn btn-success updateBtn" id="<?php echo $data["item_id"] ?>" >
                                   <i class="fa-solid fa-check"  style="color: #fcfcfc;"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger delete-js" id="<?php echo $data["item_id"] ?>" >
+                                  <i class="fa-solid fa-ban"  style="color: #fcfcfc;"></i>
                                 </button>
                             </td>
                           </tr>
@@ -333,14 +336,33 @@ require_once("../backend/config/config.php");
                               $total = $data["prod_qnty"] * $data["prod_price"];
 
                               if($data["prod_qnty"] == "0.50"){
-                                $qnty_value = "1/2";
+                                $qnty_value = "1/2Kg";
                               }else if($data["prod_qnty"] == "0.25"){
-                                  $qnty_value = "1/4";
+                                  $qnty_value = "1/4Kg";
                               }else if($data["prod_qnty"] == "1"){
                                   $qnty_value = "1Kg";
-                              }else{
+                              }else if($data["prod_qnty"] == "2"){
                                   $qnty_value = "2Kg";
+                              }else if($data["prod_qnty"] == "3"){
+                                  $qnty_value = "3Kg";
+                              }else if($data["prod_qnty"] == "4"){
+                                  $qnty_value = "4Kg";
+                              }else if($data["prod_qnty"] == "5"){
+                                  $qnty_value = "5Kg";
+                              }else if($data["prod_qnty"] == "6"){
+                                  $qnty_value = "6Kg";
+                              }else if($data["prod_qnty"] == "7"){
+                                  $qnty_value = "7Kg";
+                              }else if($data["prod_qnty"] == "8"){
+                                  $qnty_value = "8Kg";
+                              }else if($data["prod_qnty"] == "9"){
+                                  $qnty_value = "9Kg";
+                              }else if($data["prod_qnty"] == "10"){
+                                  $qnty_value = "10Kg";
+                              }else{
+                                  $qnty_value = $data["prod_qnty"] . "Kg";
                               }
+                    
                           ?>
                           <tr>
                             <td><?php echo $data['item_id'];?></td>
@@ -449,6 +471,8 @@ require_once("../backend/config/config.php");
           });
       });
 </script>
+
+<script src="../jquery/cancelOrder.js"></script>
 
 <script>
       $(document).ready(function() {

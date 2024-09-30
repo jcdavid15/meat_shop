@@ -40,9 +40,9 @@ require_once("../backend/config/config.php");
             <li class="breadcrumb-item active">Sales</li>
           </ol>
           <div class="card mb-5">
-            <div class="card-header bg-success pt-3">
+            <div class="card-header bg-danger pt-3">
               <div class="text-center">
-                <p class="card-title text-light">Bagbag Branch Success Orders</p>
+                <p class="card-title text-light">Bagbag Branch Cancelled Orders</p>
               </div>
             </div>
             <div class="card-body">
@@ -69,7 +69,7 @@ require_once("../backend/config/config.php");
                             INNER JOIN tbl_products tp ON tp.prod_id = tc.prod_id 
                             INNER JOIN tbl_branch tb ON tc.branch_id = tb.branch_id 
                             INNER JOIN tbl_account_details ta ON ta.account_id = tc.account_id 
-                            WHERE tb.branch_id = 1 AND tc.status_id = 2;";
+                            WHERE tb.branch_id = 1 AND tc.status_id = 5;";
                   $stmt = $conn->prepare($query);
                   $stmt->execute();
                   $result = $stmt->get_result();

@@ -21,7 +21,7 @@
         if($result->num_rows > 0){
             $data = $result->fetch_assoc();
             $username = $data["ac_username"];
-            $act = "Deactivated Account";
+            $act = "Deactivated Account ID: $account_id";
             $type = "Admin";
             report($conn, $admin_id, $username, $act, $type);
         }

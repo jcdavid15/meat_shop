@@ -117,7 +117,7 @@ nav {
   position: relative;
 }
 
-.count {
+nav .right .count {
   position: absolute;
   top: -5px;
   right: -8px;

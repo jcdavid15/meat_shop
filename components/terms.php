@@ -20,13 +20,43 @@
             <div class="con">
                 <div class="title">Terms & Conditions</div>
                 <div class="col">
-                    <div>Welcome to the Manny And Susse Meat Shop website. These terms and conditions outline the rules and regulations for the use of the Manny And Susse Meat Shop website.</div>
-                    <div>By accessing this website, it is assumed that you accept and agree to abide by these terms and conditions. If you do not agree with any part of these terms, please refrain from using the Manny And Susse Meat Shop website.</div>
-                    <div>
-                        The following terminology applies to these Terms and Conditions, Privacy Statement, and Disclaimer Notice, and all Agreements: "User," "You," and "Your" refer to you, the individual accessing the website and complying with the terms and conditions of the Company. All terms refer to the offer, acceptance, and consideration of payment necessary to carry out the process of our assistance to the User in the most appropriate manner for the express purpose of meeting the User's needs in relation to the provision of stated services by the Company, in accordance with and subject to the applicable laws of the Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization, and/or he or they are considered interchangeable and therefore refer to the same.
+                    <div>Welcome to Manny and Susse Meatshop. We ask that you carefully read these Terms and Conditions before placing any order with us. By making a purchase, you acknowledge and agree to the terms outlined here, which are designed to ensure a fair, efficient, and satisfactory experience for all customers.
                     </div>
-                    <div>Our website offers a range of products, including various cuts of meat and related accessories. By using the Manny And Susse Meat Shop website, you acknowledge and agree to comply with the specific terms and conditions related to each category of products offered. Additionally, these terms and conditions are subject to change without prior notice, and it is the User's responsibility to review them periodically.</div>
-                    <div>Thank you for choosing Manny And Susse Meat Shop. We look forward to providing you with quality products and services.</div>
+                    <div>First and foremost, we would like to inform you that we do not offer delivery services. All purchases made at Manny and Susse Meatshop must be picked up in-store during our operating hours. After placing an order, you will be informed of the scheduled pickup time. It is essential that orders are collected within the specified time frame to guarantee the freshness and quality of the products. This policy ensures that the high standards of our products are maintained from the moment they leave our shop until they reach your hands.</div>
+
+                    <div>
+                    At Manny and Susse Meatshop we are committed to providing a clear and transparent system for purchasing our meat products. One of the key aspects of our operations is that all meat products are sold exclusively by kilograms (kg). This policy ensures consistency and simplicity for our customers, making it easier to understand and compare the pricing and quantity of our offerings.
+                    </div>
+
+                    <div>We do not offer any sales based on other weight measurements, such as pounds, grams, or ounces. This exclusive focus on kilograms streamlines the buying process and aligns with international standards for food sales. By maintaining this approach, we eliminate any potential confusion that might arise from multiple weight categories and ensure that our customers always receive the correct portion size and price per kilogram.
+                    </div>
+
+                    <div>Customers are required to purchase a minimum of 1/4 kilogram of meat, unless otherwise specified. This minimum order quantity allows us to manage our stock more effectively, minimize waste, and offer the freshest products possible. By setting this baseline, we can better serve our customers with both small and large orders, ensuring that every customer gets the quantity they need without compromising quality.</div>
+
+                    <div>We also implement certain limitations on the size of individual orders. To accommodate as many customers as possible, we have set a maximum order limit of 10 kilograms per order. This rule helps ensure that we can serve a larger number of customers with the freshest products each day. Orders exceeding this limit will not be processed.</div>
+
+                    <div>In addition, we maintain a strict no refund policy. Due to the perishable nature of our meat products, once a purchase has been made and processed, all sales are final. We do not offer refunds, returns, or exchanges for any reason. We urge customers to double-check their orders before finalizing the transaction to avoid any mistakes. Once an order is confirmed, we are not responsible for any changes, errors, or requests for modifications. This policy is in place to ensure the smooth operation of our business and to avoid unnecessary waste or confusion regarding returned goods.
+                    </div>
+
+                    <div>
+                    The order process at Manny and Susse Meatshop is simple and straightforward. Orders can be placed either in-store or through the official methods provided on our website. Payments are made at the time of pickup, and we accept both cash and G-cash for customer convenience. However, we ask that all orders be verified before finalization, as changes cannot be made once the order is submitted.
+                    </div>
+
+                    <div>
+                    We also emphasize that product availability is subject to stock levels, which may vary on a daily basis. As a result, we reserve the right to cancel or modify orders in the event that a particular item becomes unavailable. We appreciate your understanding and cooperation in these instances, as we are committed to providing the freshest products.
+                    </div>
+
+                    <div>
+                    At Manny and Susse Meatshop, we take great pride in the quality and freshness of our meat. Every effort is made to ensure that the products you receive meet the highest standards. We encourage customers to inspect their orders at the time of pickup to guarantee satisfaction. Once an order has left our premises, it is the responsibility of the customer to store and handle the products in a safe and proper manner. We cannot be held liable for any spoilage or damage caused by improper handling after the product has been collected.
+                    </div>
+
+                    <div>
+                    Lastly, we reserve the right to modify or update these Terms and Conditions as needed. Any changes will be posted on our website, and by continuing to use our services, you agree to abide by the updated terms. We advise customers to review these terms periodically to stay informed about any updates.
+                    </div>
+
+                    <div>
+                    Thank you for choosing Manny and Susse Meatshop and accepting to these Terms & Conditions. Your understanding and cooperation enable us to provide an effortless and pleasurable purchasing experience for all.
+                    </div>
                 </div>
             </div>
         </div>

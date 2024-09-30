@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 13, 2024 at 01:22 PM
+-- Generation Time: Sep 30, 2024 at 12:58 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -129,6 +129,14 @@ CREATE TABLE `tbl_audit_trail` (
   `trail_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_audit_trail`
+--
+
+INSERT INTO `tbl_audit_trail` (`trail_user_id`, `trail_username`, `trail_activity`, `trail_user_type`, `trail_date`) VALUES
+(6, 'admin', 'Updated Product', 'Admin', '2024-09-30 10:52:49'),
+(6, 'admin', 'Updated Product', 'Admin', '2024-09-30 10:53:53');
+
 -- --------------------------------------------------------
 
 --
@@ -164,6 +172,13 @@ CREATE TABLE `tbl_cart` (
   `account_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_cart`
+--
+
+INSERT INTO `tbl_cart` (`item_id`, `prod_id`, `prod_qnty`, `order_date`, `status_id`, `branch_id`, `account_id`) VALUES
+(85, 1, 0.5, '2024-09-30', 3, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -186,7 +201,7 @@ CREATE TABLE `tbl_products` (
 INSERT INTO `tbl_products` (`prod_id`, `prod_name`, `prod_price`, `prod_type`, `prod_stocks`, `prod_img`) VALUES
 (1, 'Fresh Beef Steak', 370, 1, 38.5, 'img-1.webp'),
 (2, 'Ground Beef', 360, 1, 40.5, 'img-2.jpeg'),
-(3, 'Roast Beef', 370, 1, 5, 'img-3.jpeg'),
+(3, 'Roast Beef', 370, 1, 6, 'img-3.jpeg'),
 (4, 'Fresh Pork Chops', 390, 2, 50, 'img-1.jpeg'),
 (5, 'Fresh Pork Ribs', 340, 2, 42, 'img-2.jpeg'),
 (6, 'Fresh Bacon', 370, 2, 50, 'img-3.jpeg'),
@@ -244,6 +259,13 @@ CREATE TABLE `tbl_receipt` (
   `branch_id` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_receipt`
+--
+
+INSERT INTO `tbl_receipt` (`receipt_id`, `account_id`, `receipt_img`, `receipt_number`, `deposit_amount`, `uploaded_date`, `branch_id`) VALUES
+(22, 1, '66fa6ba96e5a3.jpeg', '3212313131313', 120, '2024-09-30', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -262,7 +284,7 @@ CREATE TABLE `tbl_reports` (
 --
 
 INSERT INTO `tbl_reports` (`report_id`, `rp_name`, `rp_email`, `rp_message`) VALUES
-(1, 'Jc David', 'jcdavid@gmail.com', 'magandaaa');
+(1, 'Jc David', 'jcdavid123c@gmail.com', 'magandaaa');
 
 -- --------------------------------------------------------
 
@@ -303,7 +325,8 @@ INSERT INTO `tbl_status` (`status_id`, `status_name`) VALUES
 (1, 'PENDING'),
 (2, 'CLAIMED'),
 (3, 'PROCESS'),
-(4, 'TO CLAIM');
+(4, 'TO CLAIM'),
+(5, 'CANCELED');
 
 -- --------------------------------------------------------
 
@@ -410,7 +433,7 @@ ALTER TABLE `tbl_branch`
 -- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `tbl_products`
@@ -428,7 +451,7 @@ ALTER TABLE `tbl_product_type`
 -- AUTO_INCREMENT for table `tbl_receipt`
 --
 ALTER TABLE `tbl_receipt`
-  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `tbl_reports`
@@ -446,7 +469,7 @@ ALTER TABLE `tbl_role`
 -- AUTO_INCREMENT for table `tbl_status`
 --
 ALTER TABLE `tbl_status`
-  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
