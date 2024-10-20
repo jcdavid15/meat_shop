@@ -1,11 +1,11 @@
 $(document).ready(function() {
-    const report = document.getElementById('message-response'); // Move outside to optimize
-    const email = document.getElementById('email-val'); // Move outside to optimize
     
-    $('#submit').on('click', function(e) {
+    $('.submit').on('click', function(e) {
         e.preventDefault();
+        const report = $(this).closest('.modal-content').find('.message-response').val();
+        const email = $(this).closest('.modal-content').find('.email-val').val();
 
-        if (report.value.trim() === '') {
+        if (report === '') {
             Swal.fire({
                 title: 'Empty Fields!',
                 text: 'Please fill out the required fields.',
@@ -29,8 +29,8 @@ $(document).ready(function() {
             url: '../backend/admin/responseReport.php',
             method: 'post',
             data: {
-                report: report.value,
-                email: email.value
+                report: report,
+                email: email
             },
             success: function(response) {
                 

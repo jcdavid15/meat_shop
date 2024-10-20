@@ -67,20 +67,7 @@
                             </div>
                             <div class="qnty-div">
                                 <div class="name">Order Quantity</div>
-                                <select name="qnty" class="qnty">
-                                    <option value="1/2">1/2</option>
-                                    <option value="1/4">1/4</option>
-                                    <option value="1Kg">1Kg</option>
-                                    <option value="2Kg">2Kg</option>
-                                    <option value="3Kg">3Kg</option>
-                                    <option value="4Kg">4Kg</option>
-                                    <option value="5Kg">5Kg</option>
-                                    <option value="6Kg">6Kg</option>
-                                    <option value="7Kg">7Kg</option>
-                                    <option value="8Kg">8Kg</option>
-                                    <option value="9Kg">9Kg</option> 
-                                    <option value="10Kg">10Kg</option>
-                                </select>
+                                <input type="number" min="0.5" placeholder="Min of 1/2" class="qnty">
                             </div>
                         </div>
                         <div class="flex-con-det">

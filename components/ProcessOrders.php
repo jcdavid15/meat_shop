@@ -53,7 +53,7 @@
         INNER JOIN tbl_status ts ON tc.status_id = ts.status_id
         INNER JOIN tbl_branch tb ON tb.branch_id = tc.branch_id
         INNER JOIN tbl_product_type pt ON tp.prod_type = pt.prod_type_id
-        WHERE tc.account_id = ? AND (tc.status_id = 3);";
+        WHERE tc.account_id = ? AND (tc.status_id = 3 OR tc.status_id = 4);";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $current_user);
         $stmt->execute();
@@ -81,73 +81,35 @@
                             </thead>
 
                             <tbody>
-                                <?php 
-                                    $total = 0;
-                                    $path = "";
-                                    $qnty_value = "";
-                                    while($data = $result->fetch_assoc()){
-                                    $total += $data["prod_price"] * $data["prod_qnty"];
-                                    $subtotal = $data["prod_qnty"] * $data["prod_price"];
-                                    $formattedTypeName = strtolower(str_replace(' ', '_', $data["prod_type_name"]));
+                            <?php 
+                            $total = 0;
+                            $path = "";
 
-                                    switch ($data["prod_qnty"]) {
-                                        case "0.50":
-                                            $qnty_value = "1/2";
-                                            break;
-                                        case "0.25":
-                                            $qnty_value = "1/4";
-                                            break;
-                                        case "1":
-                                            $qnty_value = "1Kg";
-                                            break;
-                                        case "2":
-                                            $qnty_value = "2Kg";
-                                            break;
-                                        case "3":
-                                            $qnty_value = "3Kg";
-                                            break;
-                                        case "4":
-                                            $qnty_value = "4Kg";
-                                            break;
-                                        case "5":
-                                            $qnty_value = "5Kg";
-                                            break;
-                                        case "6":
-                                            $qnty_value = "6Kg";
-                                            break;
-                                        case "7":
-                                            $qnty_value = "7Kg";
-                                            break;
-                                        case "8":
-                                            $qnty_value = "8Kg";
-                                            break;
-                                        case "9":
-                                            $qnty_value = "9Kg";
-                                            break;
-                                        case "10":
-                                            $qnty_value = "10Kg";
-                                            break;
-                                        default:
-                                            $qnty_value = $data["prod_qnty"] . "Kg";
-                                            break;
-                                    }
-                                ?>
-                                <tr>
-                                    <td class="img-con"><img src="../assets/<?php echo $formattedTypeName; ?>/<?php echo $data["prod_img"]; ?>" alt=""></td>
-                                    <td><?php echo $data["prod_name"]; ?></td>
-                                    <td>₱<?php echo $data["prod_price"]; ?>.00</td>
-                                    <td>
-                                        <div class="qnty-td">
-                                            <div class="qnty-js"><?php echo $qnty_value; ?></div>
-                                        </div>
-                                    </td>
-                                    <td class="total-price-js">₱<span class="subtotal-js"><?php echo $subtotal; ?></span>.00</td>
-                                    <td><?php echo $data['branch_name']; ?></td>
-                                    <td><?php echo $data['status_name']; ?></td>
-                                    <td class="delete-js" id="<?php echo $data["item_id"]; ?>" data-branch-id="<?php echo $data["branch_id"]; ?>"><i class="fa-solid fa-x"></i></td>
-                                </tr>
-                                <?php } ?>
-                            </tbody>
+                            while ($data = $result->fetch_assoc()) {
+                                $total += $data["prod_price"] * $data["prod_qnty"];
+                                $subtotal = $data["prod_qnty"] * $data["prod_price"];
+                                $formattedTypeName = strtolower(str_replace(' ', '_', $data["prod_type_name"]));
+
+                                // Use the function to get the quantity value dynamically
+                                $qnty_value = $data["prod_qnty"];
+                            ?>
+                            <tr>
+                                <td class="img-con"><img src="../assets/<?php echo $formattedTypeName; ?>/<?php echo $data["prod_img"]; ?>" alt=""></td>
+                                <td><?php echo $data["prod_name"]; ?></td>
+                                <td>₱<?php echo number_format($data["prod_price"], 2); ?></td>
+                                <td>
+                                    <div class="qnty-td">
+                                        <div class="qnty-js"><?php echo $qnty_value; ?>Kg</div>
+                                    </div>
+                                </td>
+                                <td class="total-price-js">₱<span class="subtotal-js"><?php echo number_format($subtotal, 2); ?></span></td>
+                                <td><?php echo $data['branch_name']; ?></td>
+                                <td><?php echo $data['status_name']; ?></td>
+                                <td class="delete-js" id="<?php echo $data["item_id"]; ?>" data-branch-id="<?php echo $data["branch_id"]; ?>"><i class="fa-solid fa-x"></i></td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+
                         </table>
                     </div>
                 </div>

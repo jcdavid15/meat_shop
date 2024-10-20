@@ -129,7 +129,7 @@ require_once("../backend/config/config.php");
     full_name.innerText = 'Cashier, ' + acc_data.full_name;
 </script>
 
-
+<script src="../jquery/sideBarProd.js"></script>
   </body>
 </html>
  

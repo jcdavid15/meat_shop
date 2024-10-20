@@ -11,21 +11,21 @@ if(isset($_POST["prod_id"]) && isset($_POST["prod_name"])
     $prod_stocks = $_POST["prod_stocks"];
     $account_id = $_SESSION["admin_id"];
 
-    $query1 = "SELECT * FROM tbl_products WHERE prod_id = ?";
-    $stmt1 = $conn->prepare($query1);
-    $stmt1->bind_param("i", $prod_id);
-    $stmt1->execute();
-    $result1 = $stmt1->get_result();
-    if($result1->num_rows <= 0){
-        echo "not found";
-        exit();
-    }
+    // $query1 = "SELECT * FROM tbl_products WHERE prod_id = ?";
+    // $stmt1 = $conn->prepare($query1);
+    // $stmt1->bind_param("i", $prod_id);
+    // $stmt1->execute();
+    // $result1 = $stmt1->get_result();
+    // if($result1->num_rows <= 0){
+    //     echo "not found";
+    //     exit();
+    // }
 
-    $data = $result1->fetch_assoc();
-    if($data["prod_stocks"] > $prod_stocks){
-        echo "you cannot reduce the stocks";
-        exit();
-    }
+    // $data = $result1->fetch_assoc();
+    // if($data["prod_stocks"] > $prod_stocks){
+    //     echo "you cannot reduce the stocks";
+    //     exit();
+    // }
 
     $query = "UPDATE tbl_products SET prod_name=?, prod_price=?, prod_stocks=? WHERE prod_id=?";
     $stmt = $conn->prepare($query);

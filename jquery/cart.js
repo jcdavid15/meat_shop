@@ -171,13 +171,19 @@ $(document).ready(()=>{
                     success: function(response) {
                         if (response === 'success') {
                             window.location.reload();
-                        } else {
+                        } else if(response === 'exceeds'){
                             Swal.fire({
-                                title: "Update error",
-                                text: response,
-                                icon: "error",
+                                title: "Some item is out of stock!",
+                                text: "The item you ordered is out of stock and has been removed from your cart.",
+                                icon: "info",
                                 showConfirmButton: true,
+                            }).then((result) => {
+                                if (result) {
+                                    window.location.reload();
+                                }
                             });
+                        }else{
+                            alert(response)
                         }
                     },
                     error: function() {

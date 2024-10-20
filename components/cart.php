@@ -71,52 +71,16 @@ $current_user = $_SESSION['user_id'];
                             </thead>
                             <tbody>
                                 <?php
+                                $total = 0; // Initialize the total variable
+                            
+
                                 while ($data = $result->fetch_assoc()) {
                                     $subtotal = round($data["prod_qnty"] * $data["prod_price"], 2);
                                     $total += $subtotal;
                                     $formattedTypeName = strtolower(str_replace(' ', '_', $data["prod_type_name"]));
 
-                                    switch ($data["prod_qnty"]) {
-                                        case "0.50":
-                                            $qnty_value = "1/2";
-                                            break;
-                                        case "0.25":
-                                            $qnty_value = "1/4";
-                                            break;
-                                        case "1":
-                                            $qnty_value = "1Kg";
-                                            break;
-                                        case "2":
-                                            $qnty_value = "2Kg";
-                                            break;
-                                        case "3":
-                                            $qnty_value = "3Kg";
-                                            break;
-                                        case "4":
-                                            $qnty_value = "4Kg";
-                                            break;
-                                        case "5":
-                                            $qnty_value = "5Kg";
-                                            break;
-                                        case "6":
-                                            $qnty_value = "6Kg";
-                                            break;
-                                        case "7":
-                                            $qnty_value = "7Kg";
-                                            break;
-                                        case "8":
-                                            $qnty_value = "8Kg";
-                                            break;
-                                        case "9":
-                                            $qnty_value = "9Kg";
-                                            break;
-                                        case "10":
-                                            $qnty_value = "10Kg";
-                                            break;
-                                        default:
-                                            $qnty_value = $data["prod_qnty"] . "Kg";
-                                            break;
-                                    }
+                                    // Use the function to get the quantity value dynamically
+                                    $qnty_value = $data["prod_qnty"]."Kg";
                                 ?>
                                 <tr>
                                     <td class="img-con">
@@ -135,6 +99,7 @@ $current_user = $_SESSION['user_id'];
                                 </tr>
                                 <?php } ?>
                             </tbody>
+
                         </table>
                     </div>
                 </div>
@@ -199,7 +164,13 @@ $current_user = $_SESSION['user_id'];
                         </div>
                         <div class="img-con" style="height: 350px; padding-bottom: 20px;">
                             <label class="col-form-label">Send Your Payment Here:</label>
-                            <img src="../assets/imgs/qr-code.jpeg" alt="" style="object-fit: contain;">
+                            <?php 
+                                $query = "SELECT * FROM tbl_qr_img";
+                                $result = $conn->query($query);
+                                $data = $result->fetch_assoc();
+                                
+                             ?>
+                            <img src="../assets/imgs/<?php echo $data["qr_img"] ?>" alt="" style="object-fit: contain;">
                         </div>
                     </form>
                 </div>

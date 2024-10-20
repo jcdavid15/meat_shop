@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 30, 2024 at 12:58 PM
+-- Generation Time: Oct 20, 2024 at 06:58 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -115,6 +115,68 @@ CREATE TABLE `tbl_audit_log` (
   `log_date` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_audit_log`
+--
+
+INSERT INTO `tbl_audit_log` (`log_user_id`, `log_username`, `log_user_type`, `log_date`) VALUES
+(6, 'admin', '2', '2024-09-30 10:59:21'),
+(6, 'admin', '2', '2024-09-30 11:01:52'),
+(6, 'admin', '2', '2024-09-30 12:35:36'),
+(1, 'jcdavid', '1', '2024-09-30 12:35:48'),
+(6, 'admin', '2', '2024-09-30 12:36:16'),
+(6, 'admin', '2', '2024-09-30 12:42:43'),
+(1, 'jcdavid', '1', '2024-09-30 13:16:16'),
+(1, 'jcdavid', '1', '2024-09-30 13:43:01'),
+(1, 'jcdavid', '1', '2024-09-30 13:43:09'),
+(6, 'admin', '2', '2024-10-01 10:31:02'),
+(6, 'admin', '2', '2024-10-01 10:33:28'),
+(8, 'jhyra', '3', '2024-10-01 10:37:55'),
+(6, 'admin', '2', '2024-10-01 10:38:36'),
+(6, 'admin', '2', '2024-10-06 08:39:35'),
+(6, 'admin', '2', '2024-10-06 09:34:25'),
+(1, 'jcdavid', '1', '2024-10-06 10:51:44'),
+(1, 'jcdavid', '1', '2024-10-20 10:35:02'),
+(6, 'admin', '2', '2024-10-20 11:06:07'),
+(8, 'jhyra', '3', '2024-10-20 11:07:22'),
+(1, 'jcdavid', '1', '2024-10-20 11:13:02'),
+(8, 'jhyra', '3', '2024-10-20 11:16:32'),
+(1, 'jcdavid', '1', '2024-10-20 11:19:34'),
+(8, 'jhyra', '3', '2024-10-20 11:22:04'),
+(6, 'admin', '2', '2024-10-20 11:24:31'),
+(1, 'jcdavid', '1', '2024-10-20 11:44:22'),
+(6, 'admin', '2', '2024-10-20 11:46:02'),
+(1, 'jcdavid', '1', '2024-10-20 11:52:35'),
+(6, 'admin', '2', '2024-10-20 11:52:48'),
+(1, 'jcdavid', '1', '2024-10-20 11:58:33'),
+(2, 'golden', '1', '2024-10-20 12:36:39'),
+(1, 'jcdavid', '1', '2024-10-20 12:45:03'),
+(1, 'jcdavid', '1', '2024-10-20 13:06:57'),
+(6, 'admin', '2', '2024-10-20 13:14:25'),
+(1, 'jcdavid', '1', '2024-10-20 13:14:50'),
+(8, 'jhyra', '3', '2024-10-20 14:04:19'),
+(6, 'admin', '2', '2024-10-20 14:21:37'),
+(8, 'jhyra', '3', '2024-10-20 14:21:49'),
+(6, 'admin', '2', '2024-10-20 14:28:51'),
+(8, 'jhyra', '3', '2024-10-20 14:29:22'),
+(8, 'jhyra', '3', '2024-10-20 14:30:42'),
+(6, 'admin', '2', '2024-10-20 14:44:52'),
+(8, 'jhyra', '3', '2024-10-20 14:45:12'),
+(6, 'admin', '2', '2024-10-20 15:08:58'),
+(7, 'juan', '3', '2024-10-20 15:11:24'),
+(7, 'juan', '3', '2024-10-20 15:13:42'),
+(6, 'admin', '2', '2024-10-20 15:17:56'),
+(8, 'jhyra', '3', '2024-10-20 15:18:47'),
+(1, 'jcdavid', '1', '2024-10-20 16:10:03'),
+(8, 'jhyra', '3', '2024-10-20 16:10:37'),
+(7, 'juan', '3', '2024-10-20 16:35:25'),
+(7, 'juan', '3', '2024-10-20 16:36:36'),
+(8, 'jhyra', '3', '2024-10-20 16:45:14'),
+(7, 'juan', '3', '2024-10-20 16:45:28'),
+(6, 'admin', '2', '2024-10-20 16:53:09'),
+(7, 'juan', '3', '2024-10-20 16:53:29'),
+(6, 'admin', '2', '2024-10-20 16:55:09');
+
 -- --------------------------------------------------------
 
 --
@@ -135,7 +197,9 @@ CREATE TABLE `tbl_audit_trail` (
 
 INSERT INTO `tbl_audit_trail` (`trail_user_id`, `trail_username`, `trail_activity`, `trail_user_type`, `trail_date`) VALUES
 (6, 'admin', 'Updated Product', 'Admin', '2024-09-30 10:52:49'),
-(6, 'admin', 'Updated Product', 'Admin', '2024-09-30 10:53:53');
+(6, 'admin', 'Updated Product', 'Admin', '2024-09-30 10:53:53'),
+(6, 'admin', 'Updated Product ID: 2', 'Admin', '2024-09-30 11:04:10'),
+(6, 'admin', 'Updated Product ID: 3', 'Admin', '2024-10-20 13:14:38');
 
 -- --------------------------------------------------------
 
@@ -177,7 +241,12 @@ CREATE TABLE `tbl_cart` (
 --
 
 INSERT INTO `tbl_cart` (`item_id`, `prod_id`, `prod_qnty`, `order_date`, `status_id`, `branch_id`, `account_id`) VALUES
-(85, 1, 0.5, '2024-09-30', 3, 1, 1);
+(85, 1, 2.5, '2024-10-20', 3, 2, 1),
+(96, 3, 5, '2024-10-20', 3, 2, 1),
+(99, 2, 1, '2024-10-20', 2, 2, 2),
+(100, 3, 1, '2024-10-20', 2, 1, 8),
+(101, 4, 2, '2024-10-20', 2, 2, 7),
+(102, 2, 2, '2024-10-20', 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -199,27 +268,27 @@ CREATE TABLE `tbl_products` (
 --
 
 INSERT INTO `tbl_products` (`prod_id`, `prod_name`, `prod_price`, `prod_type`, `prod_stocks`, `prod_img`) VALUES
-(1, 'Fresh Beef Steak', 370, 1, 38.5, 'img-1.webp'),
-(2, 'Ground Beef', 360, 1, 40.5, 'img-2.jpeg'),
-(3, 'Roast Beef', 370, 1, 6, 'img-3.jpeg'),
-(4, 'Fresh Pork Chops', 390, 2, 50, 'img-1.jpeg'),
-(5, 'Fresh Pork Ribs', 340, 2, 42, 'img-2.jpeg'),
-(6, 'Fresh Bacon', 370, 2, 50, 'img-3.jpeg'),
-(7, 'Pork Ham', 340, 2, 50, 'img-4.jpeg'),
-(8, 'Pork Sausage', 310, 2, 50, 'img-5.jpeg'),
-(9, 'Chicken Breast', 310, 3, 42.5, 'img-1.webp'),
-(10, 'Chicken Thigh', 320, 3, 50, 'img-2.jpeg'),
-(11, 'Chicken Wings', 290, 3, 50, 'img-3.jpeg'),
-(12, 'Drumsticks', 300, 3, 50, 'img-4.jpeg'),
-(13, 'One Whole Chicken', 360, 3, 45, 'img-5.webp'),
-(14, 'Fresh Lamb Chops', 610, 4, 50, 'img-1.jpeg'),
-(15, 'Fresh Lamb Legs', 990, 4, 50, 'img-2.jpeg'),
-(16, 'Fresh Salami', 375, 5, 50, 'img-1.jpeg'),
-(17, 'Fresh Pastrami', 315, 5, 49, 'img-2.jpeg'),
-(18, 'Roast Beef', 870, 5, 50, 'img-3.jpeg'),
-(19, 'Pork Liempo', 290, 2, 50, 'img-6.jpeg'),
-(20, 'Pork Kasim', 230, 2, 50, 'img-7.jpeg'),
-(21, 'Pork Lomo', 210, 2, 50, 'img-8.jpeg');
+(1, 'Fresh Beef Steak', 370, 1, 38, 'Fresh beefsteak.jpg'),
+(2, 'Ground Beef', 360, 1, 38, 'Groundbeef.png'),
+(3, 'Roast Beef', 370, 1, 5, 'roastbeef.jpg'),
+(4, 'Fresh Pork Chops', 390, 2, 48, 'Freshporkchops.png'),
+(5, 'Fresh Pork Ribs', 340, 2, 42, 'Fresh Pork ribs.jpg'),
+(6, 'Fresh Bacon', 370, 2, 50, 'freshbacon.jpg'),
+(7, 'Pork Ham', 340, 2, 50, 'Pork Ham.png'),
+(8, 'Pork Sausage', 310, 2, 50, 'Pork Sausage.jpg'),
+(9, 'Chicken Breast', 310, 3, 42.5, 'Chickenbreast.png'),
+(10, 'Chicken Thigh', 320, 3, 50, 'Chickenthigh.png'),
+(11, 'Chicken Wings', 290, 3, 50, 'chickenwings.png'),
+(12, 'Drumsticks', 300, 3, 50, 'drumsticks.png'),
+(13, 'One Whole Chicken', 360, 3, 45, '1wholechicken.jpg'),
+(14, 'Fresh Lamb Chops', 610, 4, 50, 'Freshlambchops.jpg'),
+(15, 'Fresh Lamb Legs', 990, 4, 50, 'freshlamblegs.jpg'),
+(16, 'Fresh Salami', 375, 5, 50, 'fresh salami.jpg'),
+(17, 'Fresh Pastrami', 315, 5, 49, 'fresh pastrami.jpg'),
+(18, 'Roast Beef', 870, 5, 50, 'roastbeef.jpg'),
+(19, 'Pork Liempo', 290, 2, 50, 'PorkLiempo.png'),
+(20, 'Pork Kasim', 230, 2, 50, 'Porkkasim.png'),
+(21, 'Pork Lomo', 210, 2, 50, 'PorkLomo.png');
 
 -- --------------------------------------------------------
 
@@ -246,6 +315,24 @@ INSERT INTO `tbl_product_type` (`prod_type_id`, `prod_type_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_qr_img`
+--
+
+CREATE TABLE `tbl_qr_img` (
+  `qr_id` int(11) NOT NULL,
+  `qr_img` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_qr_img`
+--
+
+INSERT INTO `tbl_qr_img` (`qr_id`, `qr_img`) VALUES
+(1, 'Qr_code.JPG');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_receipt`
 --
 
@@ -264,7 +351,11 @@ CREATE TABLE `tbl_receipt` (
 --
 
 INSERT INTO `tbl_receipt` (`receipt_id`, `account_id`, `receipt_img`, `receipt_number`, `deposit_amount`, `uploaded_date`, `branch_id`) VALUES
-(22, 1, '66fa6ba96e5a3.jpeg', '3212313131313', 120, '2024-09-30', 1);
+(22, 1, '66fa6ba96e5a3.jpeg', '3212313131313', 120, '2024-09-30', 1),
+(23, 2, '6714fb451e31a.jpeg', '2131231231321', 1850, '2024-10-20', 1),
+(24, 1, '6715020241c7c.jpeg', '3212313131313', 1000, '2024-10-20', 1),
+(25, 1, '671502ba6f0da.jpeg', '3212313131313', 400, '2024-10-20', 1),
+(26, 1, '67152b6e7562a.jpeg', '3212313131313', 720, '2024-10-20', 1);
 
 -- --------------------------------------------------------
 
@@ -284,7 +375,8 @@ CREATE TABLE `tbl_reports` (
 --
 
 INSERT INTO `tbl_reports` (`report_id`, `rp_name`, `rp_email`, `rp_message`) VALUES
-(1, 'Jc David', 'jcdavid123c@gmail.com', 'magandaaa');
+(1, 'Jc David', 'jcdavid123c@gmail.com', 'magandaaa'),
+(2, 'Jc David', 'jcdavid123c@gmail.com', 'bulok');
 
 -- --------------------------------------------------------
 
@@ -342,6 +434,15 @@ CREATE TABLE `tbl_transactions` (
   `activity_date` date NOT NULL,
   `branch_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_transactions`
+--
+
+INSERT INTO `tbl_transactions` (`user_id`, `user_name`, `user_type`, `user_activity`, `activity_date`, `branch_id`) VALUES
+(8, 'jhyra', '3', 'Claimed item Fresh Beef Steak', '2024-10-01', 1),
+(7, 'juan', '3', 'Accept item ', '2024-10-20', 2),
+(7, 'juan', '3', 'Claimed items', '2024-10-20', 2);
 
 --
 -- Indexes for dumped tables
@@ -433,7 +534,7 @@ ALTER TABLE `tbl_branch`
 -- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `tbl_products`
@@ -451,13 +552,13 @@ ALTER TABLE `tbl_product_type`
 -- AUTO_INCREMENT for table `tbl_receipt`
 --
 ALTER TABLE `tbl_receipt`
-  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `tbl_reports`
 --
 ALTER TABLE `tbl_reports`
-  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_role`

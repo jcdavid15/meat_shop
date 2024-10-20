@@ -61,6 +61,7 @@ require_once("../backend/config/config.php");
                 <tbody>
                   <?php
                   $qnty_value = "";
+                  $total = 0;
                   $query = "SELECT tc.item_id, tc.account_id, tc.prod_id, tc.prod_qnty, 
                             tp.prod_name, tp.prod_price, 
                             CONCAT(ta.first_name, ' ', ta.middle_name, ' ', ta.last_name) as full_name,
@@ -70,59 +71,20 @@ require_once("../backend/config/config.php");
                             INNER JOIN tbl_branch tb ON tc.branch_id = tb.branch_id 
                             INNER JOIN tbl_account_details ta ON ta.account_id = tc.account_id 
                             WHERE tb.branch_id = 1 AND tc.status_id = 2;";
+    
                   $stmt = $conn->prepare($query);
                   $stmt->execute();
                   $result = $stmt->get_result();
                   while ($data = $result->fetch_assoc()) {
                     $total = $data["prod_qnty"] * $data["prod_price"];
-                      switch ($data["prod_qnty"]) {
-                        case "0.50":
-                            $qnty_value = "1/2Kg";
-                            break;
-                        case "0.25":
-                            $qnty_value = "1/4Kg";
-                            break;
-                        case "1":
-                            $qnty_value = "1Kg";
-                            break;
-                        case "2":
-                            $qnty_value = "2Kg";
-                            break;
-                        case "3":
-                            $qnty_value = "3Kg";
-                            break;
-                        case "4":
-                            $qnty_value = "4Kg";
-                            break;
-                        case "5":
-                            $qnty_value = "5Kg";
-                            break;
-                        case "6":
-                            $qnty_value = "6Kg";
-                            break;
-                        case "7":
-                            $qnty_value = "7Kg";
-                            break;
-                        case "8":
-                            $qnty_value = "8Kg";
-                            break;
-                        case "9":
-                            $qnty_value = "9Kg";
-                            break;
-                        case "10":
-                            $qnty_value = "10Kg";
-                            break;
-                        default:
-                            $qnty_value = $data["prod_qnty"] . "Kg";
-                            break;
-                    }
+                    $qnty_value = $data["prod_qnty"];
                   ?>
                   <tr>
                     <td><?php echo htmlspecialchars($data['item_id']); ?></td>
                     <td><?php echo htmlspecialchars($data['full_name']); ?></td>
                     <td><?php echo htmlspecialchars($data['prod_name']); ?></td>
                     <td><?php echo htmlspecialchars($data['prod_price']); ?></td>
-                    <td><?php echo $qnty_value; ?></td>
+                    <td><?php echo $qnty_value; ?>Kg</td>
                     <td><?php echo htmlspecialchars($data['branch_name']); ?></td>
                     <td>
                       <button type="button" class="btn btn-primary" id="<?php echo htmlspecialchars($data["item_id"]); ?>" data-bs-toggle="modal" data-bs-target="#residenceAccountDetails<?php echo htmlspecialchars($data["item_id"]); ?>" data-bs-whatever="@getbootstrap">
@@ -219,5 +181,6 @@ require_once("../backend/config/config.php");
     const acc_data = JSON.parse(localStorage.getItem('cashierDetails'));
     full_name.innerText = 'Cashier, ' + acc_data.full_name;
   </script>
+  <script src="../jquery/sideBarProd.js"></script>
 </body>
 </html>

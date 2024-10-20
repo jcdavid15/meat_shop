@@ -60,7 +60,7 @@ require_once("../backend/config/config.php");
                             <th>Username</th>
                             <th>User Activty</th>
                             <th>User Type</th>
-                            <th>Log Date</th>
+                            <th>Claimed Date</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -77,8 +77,8 @@ require_once("../backend/config/config.php");
                           <tr>
                             <td><?php echo $data['user_id'];?></td>
                             <td><?php echo $data['user_name'];?></td>
-                            <td><?php echo $data['role_name'];?></td>
                             <td><?php echo $data['user_activity'];?></td>
+                            <td><?php echo $data['role_name'];?></td>
                             <td><?php echo $dateObject->format('F j, Y'); ?></td>
                           </tr>
                           <?php
@@ -143,4 +143,5 @@ require_once("../backend/config/config.php");
     full_name.innerText = 'Cashier, ' + acc_data.full_name;
   </script>  
   </body>
+  <script src="../jquery/sideBarProd.js"></script>
 </html>

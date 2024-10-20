@@ -42,7 +42,7 @@
         <h1 style='color: #333333; font-size: 24px; text-align: center;'>Report Feedback</h1>
         <p style='color: #555555; font-size: 16px; line-height: 1.5;'>{$report}</p>
         <div style='margin-top: 20px; text-align: center; font-size: 12px; color: #999999;'>
-            <p>&copy; 2024 MisterBae. All Rights Reserved.</p>
+            <p>&copy; 2024 MannySuseShop. All Rights Reserved.</p>
         </div>
     </div>
 </body>

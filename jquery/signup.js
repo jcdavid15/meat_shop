@@ -21,6 +21,18 @@ function validateContactNo(contactNo) {
 $(document).ready(() => {
     $(".button").on("click", function(event) {
         event.preventDefault();
+        const check = $('input[name="terms"]').is(':checked');
+    
+        if (!check) {
+            Swal.fire({
+                title: "Please read and accept the terms and conditions.",
+                icon: "warning",
+                showConfirmButton: true,
+            });
+            return;
+        }
+
+
         const gender = $('input[name="gender"]:checked').val();
         const fname = $('#fname').val();
         const mname = $('#mname').val();

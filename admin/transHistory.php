@@ -18,7 +18,7 @@ require_once("../backend/config/config.php");
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Cashier Panel</title>
+    <title>Admin</title>
     <!-- DataTables -->
     <link href="../plugins/dataTables.bootstrap5.min.css" rel="stylesheet" />
     <link href="../plugins/responsive.bootstrap5.min.css" rel="stylesheet" />
@@ -41,7 +41,7 @@ require_once("../backend/config/config.php");
         <main>
           <div class="container-fluid px-4">
             <!-- Page indicator -->
-            <h1 class="mt-4" id="full_name">Admin</h1>
+            <h1 class="mt-4" id="full_name">Admin,</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item active">Sales</li>
             </ol>
@@ -60,7 +60,7 @@ require_once("../backend/config/config.php");
                             <th>Username</th>
                             <th>User Activty</th>
                             <th>User Type</th>
-                            <th>Log Date</th>
+                            <th>Claimed Date</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -76,8 +76,8 @@ require_once("../backend/config/config.php");
                           <tr>
                             <td><?php echo $data['user_id'];?></td>
                             <td><?php echo $data['user_name'];?></td>
-                            <td><?php echo $data['role_name'];?></td>
                             <td><?php echo $data['user_activity'];?></td>
+                            <td><?php echo $data['role_name'];?></td>
                             <td><?php echo $dateObject->format('F j, Y'); ?></td>
                           </tr>
                           <?php
@@ -120,27 +120,27 @@ require_once("../backend/config/config.php");
       $(document).ready(function() {
           $('#userAuditLogs').DataTable({
               responsive: true,
-              order: [[0, 'desc']],
-        //       dom: 'Bfrtip',
-        //       buttons: [
-        //     {
-        //         extend: 'csvHtml5',
-        //         text: '<i class="fa-solid fa-file-csv fa-2xl" style="color: #1e7b64;"></i>',
-        //     },
-        //     {
-        //         extend: 'pdfHtml5',
-        //         text: '<i class="fa-solid fa-file-pdf fa-2xl" style="color: #a01818;"></i> ',
-        //     }
-        // ]
+              order: [[3, 'desc']],
+              dom: 'Bfrtip',
+              buttons: [
+            {
+                extend: 'csvHtml5',
+                text: '<i class="fa-solid fa-file-csv fa-2xl" style="color: #1e7b64;"></i>',
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fa-solid fa-file-pdf fa-2xl" style="color: #a01818;"></i> ',
+            }
+        ]
           });
       });
 </script>
 
-<!-- <script>
+<script>
     const full_name = document.getElementById('full_name');
-    const acc_data = JSON.parse(localStorage.getItem('adminDetails'))
-    full_name.innerText = 'Admin, ' + acc_data.full_name;
-  </script>   -->
-<script src="../jquery/sideBarProd.js"></script>
+    const acc_data = JSON.parse(localStorage.getItem('cashierDetails'))
+    full_name.innerText = 'Cashier, ' + acc_data.full_name;
+  </script>  
   </body>
+  <script src="../jquery/sideBarProd.js"></script>
 </html>

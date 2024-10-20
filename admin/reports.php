@@ -105,16 +105,16 @@ require_once("../backend/config/config.php");
                                     </div>
                                     <div class="mb-3">
                                       <label class="col-form-label">Response Message</label>
-                                      <textarea class="form-control" id="message-response" >
+                                      <textarea class="form-control message-response"  >
 
                                       </textarea>
-                                      <input type="text" disabled id="email-val" value="<?php echo $data["rp_email"] ?>" style="display:none;">
+                                      <input type="text" disabled class="email-val" value="<?php echo $data["rp_email"] ?>" style="display:none;">
                                     </div>
                                     </form>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary " value="<?php echo $data["prod_id"]; ?>" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" id="submit">Submit</button>
+                                    <button type="button" class="btn btn-primary submit" >Submit</button>
                                   </div>
                                 </div>
                               </div>

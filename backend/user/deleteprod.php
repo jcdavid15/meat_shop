@@ -12,6 +12,7 @@
         $stmt = $conn->prepare($query);
         $stmt->bind_param("ii", $item_id, $user_id);
         $stmt->execute();
+
         echo "deleted";
     }
 ?>

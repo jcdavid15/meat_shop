@@ -9,6 +9,16 @@ $(document).ready(()=>{
             const prodId = $(this).closest(".con-item").attr("id");
             const qnty = $(this).closest(".con-item").find(".qnty").val();
             const branch = $(this).closest('.con-item').find('.branch').val();
+
+            if(qnty <= 0){
+                Swal.fire({
+                    title: "Invalid Quantity",
+                    text: "Make sure your quantity is right.",
+                    icon: "warning"
+                });
+                return;
+            }
+
             $.ajax({
                 url: "../backend/user/addcart.php",
                 method: "post",

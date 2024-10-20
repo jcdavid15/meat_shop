@@ -75,48 +75,7 @@ require_once("../backend/config/config.php");
                   $result = $stmt->get_result();
                   while ($data = $result->fetch_assoc()) {
                     $total = $data["prod_qnty"] * $data["prod_price"];
-
-                    switch ($data["prod_qnty"]) {
-                      case "0.50":
-                          $qnty_value = "1/2Kg";
-                          break;
-                      case "0.25":
-                          $qnty_value = "1/4Kg";
-                          break;
-                      case "1":
-                          $qnty_value = "1Kg";
-                          break;
-                      case "2":
-                          $qnty_value = "2Kg";
-                          break;
-                      case "3":
-                          $qnty_value = "3Kg";
-                          break;
-                      case "4":
-                          $qnty_value = "4Kg";
-                          break;
-                      case "5":
-                          $qnty_value = "5Kg";
-                          break;
-                      case "6":
-                          $qnty_value = "6Kg";
-                          break;
-                      case "7":
-                          $qnty_value = "7Kg";
-                          break;
-                      case "8":
-                          $qnty_value = "8Kg";
-                          break;
-                      case "9":
-                          $qnty_value = "9Kg";
-                          break;
-                      case "10":
-                          $qnty_value = "10Kg";
-                          break;
-                      default:
-                          $qnty_value = $data["prod_qnty"] . "Kg";
-                          break;
-                  }
+                    $qnty_value = $data["prod_qnty"] . 'Kg';
                   ?>
                   <tr>
                     <td><?php echo htmlspecialchars($data['item_id']); ?></td>
@@ -220,5 +179,6 @@ require_once("../backend/config/config.php");
     const acc_data = JSON.parse(localStorage.getItem('cashierDetails'));
     full_name.innerText = 'Cashier, ' + acc_data.full_name;
   </script>
+  <script src="../jquery/sideBarProd.js"></script>
 </body>
 </html>

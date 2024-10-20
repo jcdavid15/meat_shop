@@ -76,7 +76,7 @@ require_once("../backend/config/config.php");
                             INNER JOIN tbl_products tp ON tp.prod_id = tc.prod_id 
                             INNER JOIN tbl_branch tb ON tc.branch_id = tb.branch_id 
                             INNER JOIN tbl_account_details ta ON ta.account_id = tc.account_id 
-                            WHERE tb.branch_id = 1 AND tc.status_id = 4;";
+                            WHERE tb.branch_id = 1 AND tc.status_id IN (3, 4);";
                             $stmt = $conn->prepare($query);
                             $stmt->execute();
                             $result = $stmt->get_result();

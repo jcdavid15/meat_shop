@@ -81,6 +81,12 @@
             <a class="nav-link" href="branch2.php">Branch 2</a>
           </nav>
         </div>
+        <a class="nav-link" href="qrUpload.php">
+          <div class="sb-nav-link-icon">
+            <i class="fa-solid fa-qrcode"></i>
+          </div>
+          Modify QR Code
+        </a>
 
         <div class="sb-sidenav-menu-heading">Report </div>
         <a class="nav-link" href="auditLogs.php">

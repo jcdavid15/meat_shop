@@ -12,7 +12,7 @@ $(document).ready(function(){
       type: 'GET',
       data: { type: typeId },
       success: function(response){
-        window.location.href = "products.php?type=" + typeId;
+        window.location.href = "./products.php?type=" + typeId;
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log("Error: " + textStatus, errorThrown);

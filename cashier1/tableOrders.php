@@ -155,282 +155,222 @@ require_once("../backend/config/config.php");
                       <table id="residenceAccounts" class="table table-striped nowrap" style="width:100%">
                         <thead>
                           <tr>
-                              <th>Order Id</th>
+                              <th>Custmer Id</th>
                               <th>Customer Name</th>
-                              <th>Order Name</th>
-                              <th>Order Price</th>
-                              <th>Order Quantity</th>
-                              <th>Pick Up Branch</th>
+                              <th>Customer Contact</th>
+                              <th>Customer Address</th>
                               <th>Action</th>
 
                           </tr>
                         </thead>
                         <tbody>
-                          <?php
-                            $qnty_value = "";
-                            $query = "SELECT tc.item_id, tc.account_id, tc.prod_id, tc.prod_qnty, 
-                            tp.prod_name, tp.prod_price, 
-                            CONCAT(ta.first_name, ' ', ta.middle_name, ' ', ta.last_name) as full_name,
-                            ta.contact, ta.address, tb.branch_name 
-                            FROM tbl_cart tc 
-                            INNER JOIN tbl_products tp ON tp.prod_id = tc.prod_id 
-                            INNER JOIN tbl_branch tb ON tc.branch_id = tb.branch_id 
-                            INNER JOIN tbl_account_details ta ON ta.account_id = tc.account_id 
-                            WHERE tb.branch_id = 1 AND tc.status_id = 3;";
+                            <?php
+                            $query = "SELECT DISTINCT CONCAT(ta.first_name, ' ', ta.middle_name, ' ', ta.last_name) AS full_name,
+                                        ta.contact, ta.address, ta.account_id, tb.branch_name 
+                                    FROM tbl_cart tc
+                                    INNER JOIN tbl_account tba ON tba.account_id = tc.account_id
+                                    INNER JOIN tbl_account_details ta ON ta.account_id = tba.account_id
+                                    INNER JOIN tbl_branch tb ON tb.branch_id = tc.branch_id
+                                    WHERE tb.branch_id = 1 AND tc.status_id = 3";
+
                             $stmt = $conn->prepare($query);
                             $stmt->execute();
                             $result = $stmt->get_result();
-                              while ($data = $result->fetch_assoc()) {
-                              $total = $data["prod_qnty"] * $data["prod_price"];
-                              switch ($data["prod_qnty"]) {
-                                case "0.50":
-                                    $qnty_value = "1/2Kg";
-                                    break;
-                                case "0.25":
-                                    $qnty_value = "1/4Kg";
-                                    break;
-                                case "1":
-                                    $qnty_value = "1Kg";
-                                    break;
-                                case "2":
-                                    $qnty_value = "2Kg";
-                                    break;
-                                case "3":
-                                    $qnty_value = "3Kg";
-                                    break;
-                                case "4":
-                                    $qnty_value = "4Kg";
-                                    break;
-                                case "5":
-                                    $qnty_value = "5Kg";
-                                    break;
-                                case "6":
-                                    $qnty_value = "6Kg";
-                                    break;
-                                case "7":
-                                    $qnty_value = "7Kg";
-                                    break;
-                                case "8":
-                                    $qnty_value = "8Kg";
-                                    break;
-                                case "9":
-                                    $qnty_value = "9Kg";
-                                    break;
-                                case "10":
-                                    $qnty_value = "10Kg";
-                                    break;
-                                default:
-                                    $qnty_value = $data["prod_qnty"] . "Kg";
-                                    break;
-                            }
-                          ?>
-                          <tr>
-                            <td><?php echo $data['item_id'];?></td>
-                            <td><?php echo $data['full_name'];?></td>
-                            <td><?php echo $data['prod_name'];?></td>
-                            <td>₱<?php echo number_format($data['prod_price'], 2);?>/Kg</td>
-                            <td><?php echo $qnty_value;?></td>
-                            <td><?php echo $data['branch_name'];?></td>
-                            <td>
-                                <button type="button" class="btn btn-primary" id="<?php echo $data["item_id"] ?>"  data-bs-toggle="modal" 
-                                data-bs-target="#residenceAccountDetails<?php echo $data["item_id"] ?>" data-bs-whatever="@getbootstrap">
-                                  <i class="fa-solid fa-eye" style="color: #fcfcfc;"></i>
-                                </button>
-                                <button type="button" class="btn btn-success updateBtn" id="<?php echo $data["item_id"] ?>" >
-                                  <i class="fa-solid fa-check"  style="color: #fcfcfc;"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger delete-js" id="<?php echo $data["item_id"] ?>" >
-                                  <i class="fa-solid fa-ban"  style="color: #fcfcfc;"></i>
-                                </button>
-                            </td>
-                          </tr>
-                            <div class="modal fade" id="residenceAccountDetails<?php echo $data["item_id"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Product Details</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                  <form method="post">
-                                    <div class="mb-3">
-                                      <label class="col-form-label">Customer Name</label>
-                                      <input type="text" class="form-control updatedName" value="<?php echo $data["full_name"]; ?>" disabled >
+
+                            while ($data = $result->fetch_assoc()) {
+                            ?>
+                            <tr>
+                                <td><?php echo $data['account_id']; ?></td>
+                                <td><?php echo $data['full_name']; ?></td>
+                                <td><?php echo $data['contact']; ?></td>
+                                <td><?php echo $data['address']; ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" id="modalButton<?php echo $data['account_id']; ?>" data-bs-toggle="modal" 
+                                            data-bs-target="#residenceAccountDetails<?php echo $data['account_id']; ?>" data-bs-whatever="@getbootstrap">
+                                        <i class="fa-solid fa-eye" style="color: #fcfcfc;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal for this customer -->
+                            <div class="modal fade" id="residenceAccountDetails<?php echo $data['account_id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Order Details for <?php echo $data['full_name']; ?></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <?php
+                                            $query2 = "SELECT tc.item_id, tc.account_id, tc.prod_id, tc.prod_qnty, 
+                                                                tp.prod_name, tp.prod_price, 
+                                                                CONCAT(ta.first_name, ' ', ta.middle_name, ' ', ta.last_name) AS full_name,
+                                                                ta.contact, ta.address, tb.branch_name 
+                                                        FROM tbl_cart tc 
+                                                        INNER JOIN tbl_products tp ON tp.prod_id = tc.prod_id 
+                                                        INNER JOIN tbl_branch tb ON tc.branch_id = tb.branch_id 
+                                                        INNER JOIN tbl_account_details ta ON ta.account_id = tc.account_id 
+                                                        WHERE tb.branch_id = 1 AND tc.status_id = 3 AND tc.account_id = ?";
+                                            
+                                            $stmt2 = $conn->prepare($query2);
+                                            $stmt2->bind_param('i', $data['account_id']);  // Bind account_id to only show relevant order details
+                                            $stmt2->execute();
+                                            $result2 = $stmt2->get_result();
+                                            
+                                            while ($order = $result2->fetch_assoc()) {
+                                                $total = $order['prod_qnty'] * $order['prod_price'];
+                                            ?>
+                                                <form method="post">
+                                                    <div class="mb-3">
+                                                        <label class="col-form-label border-top border-3 border-danger"><strong>Order Name</strong></label>
+                                                        <input type="text" class="form-control" value="<?php echo $order['prod_name']; ?>" disabled>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="col-form-label">Order Price</label>
+                                                        <input type="text" class="form-control" value="<?php echo $order['prod_price']; ?>" disabled>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="col-form-label">Order Quantity</label>
+                                                        <input type="text" class="form-control" value="<?php echo $order['prod_qnty']; ?>" disabled>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="col-form-label">Total</label>
+                                                        <input type="text" class="form-control" value="<?php echo $total; ?>" disabled>
+                                                    </div>
+                                                </form>
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary updateBtn" data-account-id="<?php echo $data["account_id"] ?>">Accept</button>
+                                            <button type="button" class="btn btn-danger declineBtn" data-account-id="<?php echo $data["account_id"] ?>">Decline</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                      <label class="col-form-label">Customer Address</label>
-                                      <input type="text" class="form-control updatedName" value="<?php echo $data["address"]; ?>" disabled >
-                                    </div>
-                                    <div class="mb-3">
-                                      <label class="col-form-label">Customer Contact</label>
-                                      <input type="text" class="form-control updatedName" value="<?php echo $data["contact"]; ?>" disabled >
-                                    </div>
-                                    <div class="mb-3">
-                                      <label class="col-form-label">Order Name</label>
-                                      <input type="text" class="form-control updatedName" value="<?php echo $data["prod_name"]; ?>" disabled >
-                                    </div>
-                                    <div class="mb-3">
-                                      <label class="col-form-label">Order Price</label>
-                                      <input type="text" class="form-control updatedPrice" value="<?php echo $data["prod_price"]; ?>" disabled >
-                                    </div>
-                                    <div class="mb-3">
-                                      <label class="col-form-label">Total</label>
-                                      <input type="text" class="form-control updatedPrice" value="<?php echo $total; ?>" disabled >
-                                    </div>
-                                      
-                                    </form>
-                                  </div>
-                                  <div class="modal-footer">
-                                  <!-- <button type="button" class="btn btn-primary btn-accept updateResBtn" value="<?php echo $data["prod_id"] ?>" >
-                                      Save
-                                  </button> -->
-                                    <button type="button" class="btn btn-secondary " value="<?php echo $data["prod_id"]; ?>" data-bs-dismiss="modal">Close</button>
-                                  </div>
                                 </div>
-                              </div>
                             </div>
-                          <?php
+                            <?php
                             }
-                          ?>
-                        </tbody>
+                            ?>
+                            </tbody>
+
+
                       </table>
                     </div>
                   </div>
 
+                  
                   <div class="card mb-5">
                     <div class="card-header bg-primary pt-3">
                         <div class="text-center">
-                            <p class="card-title text-light">Bagbag Branch To Claim Orders
+                            <p class="card-title text-light">Bagbag Branch Pending Orders
                         </div>
                     </div>
                     <div class="card-body">
-                      <table id="toClaimOrders" class="table table-striped nowrap" style="width:100%">
+                      <table id="residenceAccounts" class="table table-striped nowrap" style="width:100%">
                         <thead>
                           <tr>
-                              <th>Order Id</th>
+                              <th>Custmer Id</th>
                               <th>Customer Name</th>
-                              <th>Order Name</th>
-                              <th>Order Price</th>
-                              <th>Order Quantity</th>
-                              <th>Pick Up Branch</th>
+                              <th>Customer Contact</th>
+                              <th>Customer Address</th>
                               <th>Action</th>
 
                           </tr>
                         </thead>
                         <tbody>
-                          <?php
-                            $qnty_value = "";
-                            $query = "SELECT tc.item_id, tc.account_id, tc.prod_id, tc.prod_qnty, 
-                            tp.prod_name, tp.prod_price, 
-                            CONCAT(ta.first_name, ' ', ta.middle_name, ' ', ta.last_name) as full_name,
-                            ta.contact, ta.address, tb.branch_name 
-                            FROM tbl_cart tc 
-                            INNER JOIN tbl_products tp ON tp.prod_id = tc.prod_id 
-                            INNER JOIN tbl_branch tb ON tc.branch_id = tb.branch_id 
-                            INNER JOIN tbl_account_details ta ON ta.account_id = tc.account_id 
-                            WHERE tb.branch_id = 1 AND tc.status_id = 4;";
+                            <?php
+                            $query = "SELECT DISTINCT CONCAT(ta.first_name, ' ', ta.middle_name, ' ', ta.last_name) AS full_name,
+                                        ta.contact, ta.address, ta.account_id, tb.branch_name 
+                                    FROM tbl_cart tc
+                                    INNER JOIN tbl_account tba ON tba.account_id = tc.account_id
+                                    INNER JOIN tbl_account_details ta ON ta.account_id = tba.account_id
+                                    INNER JOIN tbl_branch tb ON tb.branch_id = tc.branch_id
+                                    WHERE tb.branch_id = 1 AND tc.status_id = 4";
+
                             $stmt = $conn->prepare($query);
                             $stmt->execute();
                             $result = $stmt->get_result();
-                              while ($data = $result->fetch_assoc()) {
-                              $total = $data["prod_qnty"] * $data["prod_price"];
 
-                              if($data["prod_qnty"] == "0.50"){
-                                $qnty_value = "1/2Kg";
-                              }else if($data["prod_qnty"] == "0.25"){
-                                  $qnty_value = "1/4Kg";
-                              }else if($data["prod_qnty"] == "1"){
-                                  $qnty_value = "1Kg";
-                              }else if($data["prod_qnty"] == "2"){
-                                  $qnty_value = "2Kg";
-                              }else if($data["prod_qnty"] == "3"){
-                                  $qnty_value = "3Kg";
-                              }else if($data["prod_qnty"] == "4"){
-                                  $qnty_value = "4Kg";
-                              }else if($data["prod_qnty"] == "5"){
-                                  $qnty_value = "5Kg";
-                              }else if($data["prod_qnty"] == "6"){
-                                  $qnty_value = "6Kg";
-                              }else if($data["prod_qnty"] == "7"){
-                                  $qnty_value = "7Kg";
-                              }else if($data["prod_qnty"] == "8"){
-                                  $qnty_value = "8Kg";
-                              }else if($data["prod_qnty"] == "9"){
-                                  $qnty_value = "9Kg";
-                              }else if($data["prod_qnty"] == "10"){
-                                  $qnty_value = "10Kg";
-                              }else{
-                                  $qnty_value = $data["prod_qnty"] . "Kg";
-                              }
-                    
-                          ?>
-                          <tr>
-                            <td><?php echo $data['item_id'];?></td>
-                            <td><?php echo $data['full_name'];?></td>
-                            <td><?php echo $data['prod_name'];?></td>
-                            <td>₱<?php echo number_format($data['prod_price'], 2);?>/Kg</td>
-                            <td><?php echo $qnty_value;?></td>
-                            <td><?php echo $data['branch_name'];?></td>
-                            <td>
-                                <button type="button" class="btn btn-primary" id="<?php echo $data["item_id"] ?>"  data-bs-toggle="modal" 
-                                data-bs-target="#residenceAccountDetails<?php echo $data["item_id"] ?>" data-bs-whatever="@getbootstrap">
-                                  <i class="fa-solid fa-eye" style="color: #fcfcfc;"></i>
-                                </button>
-                                <button type="button" class="btn btn-success acceptBtn" id="<?php echo $data["item_id"] ?>" data-prod-id="<?php echo $data["prod_id"]; ?>"
-                                data-prod-qnty="<?php echo $data["prod_qnty"]; ?>">
-                                  <i class="fa-solid fa-check"  style="color: #fcfcfc;"></i>
-                                </button>
-                            </td>
-                          </tr>
-                            <div class="modal fade" id="residenceAccountDetails<?php echo $data["item_id"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Product Details</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                  <form method="post">
-                                    <div class="mb-3">
-                                      <label class="col-form-label">Customer Name</label>
-                                      <input type="text" class="form-control updatedName" value="<?php echo $data["full_name"]; ?>" disabled >
+                            while ($data = $result->fetch_assoc()) {
+                            ?>
+                            <tr>
+                                <td><?php echo $data['account_id']; ?></td>
+                                <td><?php echo $data['full_name']; ?></td>
+                                <td><?php echo $data['contact']; ?></td>
+                                <td><?php echo $data['address']; ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" id="modalButton<?php echo $data['account_id']; ?>" data-bs-toggle="modal" 
+                                            data-bs-target="#residenceAccountDetails<?php echo $data['account_id']; ?>" data-bs-whatever="@getbootstrap">
+                                        <i class="fa-solid fa-eye" style="color: #fcfcfc;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal for this customer -->
+                            <div class="modal fade" id="residenceAccountDetails<?php echo $data['account_id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Order Details for <?php echo $data['full_name']; ?></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <?php
+                                            $query2 = "SELECT tc.item_id, tc.account_id, tc.prod_id, tc.prod_qnty, 
+                                                                tp.prod_name, tp.prod_price, 
+                                                                CONCAT(ta.first_name, ' ', ta.middle_name, ' ', ta.last_name) AS full_name,
+                                                                ta.contact, ta.address, tb.branch_name 
+                                                        FROM tbl_cart tc 
+                                                        INNER JOIN tbl_products tp ON tp.prod_id = tc.prod_id 
+                                                        INNER JOIN tbl_branch tb ON tc.branch_id = tb.branch_id 
+                                                        INNER JOIN tbl_account_details ta ON ta.account_id = tc.account_id 
+                                                        WHERE tb.branch_id = 1 AND tc.status_id = 4 AND tc.account_id = ?";
+                                            
+                                            $stmt2 = $conn->prepare($query2);
+                                            $stmt2->bind_param('i', $data['account_id']);  // Bind account_id to only show relevant order details
+                                            $stmt2->execute();
+                                            $result2 = $stmt2->get_result();
+                                            
+                                            while ($order = $result2->fetch_assoc()) {
+                                                $total = $order['prod_qnty'] * $order['prod_price'];
+                                            ?>
+                                                <form method="post">
+                                                    <div class="mb-3">
+                                                        <label class="col-form-label border-top border-3 border-danger"><strong>Order Name</strong></label>
+                                                        <input type="text" class="form-control" value="<?php echo $order['prod_name']; ?>" disabled>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="col-form-label">Order Price</label>
+                                                        <input type="text" class="form-control" value="<?php echo $order['prod_price']; ?>" disabled>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="col-form-label">Order Quantity</label>
+                                                        <input type="text" class="form-control" value="<?php echo $order['prod_qnty']; ?>" disabled>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="col-form-label">Total</label>
+                                                        <input type="text" class="form-control" value="<?php echo $total; ?>" disabled>
+                                                    </div>
+                                                </form>
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary acceptBtn" data-account-id="<?php echo $data["account_id"] ?>">Accept</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                      <label class="col-form-label">Customer Address</label>
-                                      <input type="text" class="form-control updatedName" value="<?php echo $data["address"]; ?>" disabled >
-                                    </div>
-                                    <div class="mb-3">
-                                      <label class="col-form-label">Customer Contact</label>
-                                      <input type="text" class="form-control updatedName" value="<?php echo $data["contact"]; ?>" disabled >
-                                    </div>
-                                    <div class="mb-3">
-                                      <label class="col-form-label">Order Name</label>
-                                      <input type="text" class="form-control updatedName" value="<?php echo $data["prod_name"]; ?>" disabled >
-                                    </div>
-                                    <div class="mb-3">
-                                      <label class="col-form-label">Order Price</label>
-                                      <input type="text" class="form-control updatedPrice" value="<?php echo $data["prod_price"]; ?>" disabled >
-                                    </div>
-                                    <div class="mb-3">
-                                      <label class="col-form-label">Total</label>
-                                      <input type="text" class="form-control updatedPrice" value="<?php echo $total; ?>" disabled >
-                                    </div>
-                                      
-                                    </form>
-                                  </div>
-                                  <div class="modal-footer">
-                                  <!-- <button type="button" class="btn btn-primary btn-accept updateResBtn" value="<?php echo $data["prod_id"] ?>" >
-                                      Save
-                                  </button> -->
-                                    <button type="button" class="btn btn-secondary " value="<?php echo $data["prod_id"]; ?>" data-bs-dismiss="modal">Close</button>
-                                  </div>
                                 </div>
-                              </div>
                             </div>
-                          <?php
+                            <?php
                             }
-                          ?>
-                        </tbody>
+                            ?>
+                            </tbody>
+
+
                       </table>
                     </div>
                   </div>
@@ -472,7 +412,6 @@ require_once("../backend/config/config.php");
       });
 </script>
 
-<script src="../jquery/cancelOrder.js"></script>
 
 <script>
       $(document).ready(function() {
@@ -488,5 +427,6 @@ require_once("../backend/config/config.php");
     const acc_data = JSON.parse(localStorage.getItem('cashierDetails'))
     full_name.innerText = 'Cashier, ' + acc_data.full_name;
   </script>  
+   <script src="../jquery/sideBarProd.js"></script>
   </body>
 </html>
